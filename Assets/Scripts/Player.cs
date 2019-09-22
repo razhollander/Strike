@@ -12,18 +12,22 @@ public class Player : MonoBehaviour
     float rotationSpeed = 1;
     [SerializeField]
     float speed = 5;
+    [SerializeField]
+    float maxSpeed = 10;
 
+    public float rotation = 0;
+    public float driftPower = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        car.transform.Rotate(0, Input.GetAxis("Horizontal")* rotationSpeed*Time.deltaTime, 0);
-        rb.AddForce(-car.transform.forward* speed* Input.GetAxis("Vertical"));
-
+        car.transform.Rotate(0, rotation * rotationSpeed * Time.deltaTime, 0);
+        if(rb.velocity.magnitude< maxSpeed)
+        rb.AddForce(-car.transform.forward * speed /** Input.GetAxis("Vertical")*/);
     }
 }
