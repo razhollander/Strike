@@ -1,77 +1,258 @@
 fileFormatVersion: 2
 guid: 09e64466acbe94caf9b481b85cd65501
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: cylinder_hollow_20
-    100004: cylinder_hollow_21
-    100006: detail_antenna_16
-    100008: detail_bumper_17
-    100010: detail_bumper_19
-    100012: detail_policeLights_10
-    100014: hood_default_5
-    100016: trunk_square_7
-    100018: windshield_square_4
-    400000: //RootNode
-    400002: cylinder_hollow_20
-    400004: cylinder_hollow_21
-    400006: detail_antenna_16
-    400008: detail_bumper_17
-    400010: detail_bumper_19
-    400012: detail_policeLights_10
-    400014: hood_default_5
-    400016: trunk_square_7
-    400018: windshield_square_4
-    2100000: _defaultMat
-    2100002: tire
-    2100004: lightBlue
-    2100006: lightRed
-    2100008: customMaterial10
-    2100010: customMaterial8
-    2100012: light
-    2100014: customMaterial9
-    2100016: glass
-    2300000: cylinder_hollow_20
-    2300002: cylinder_hollow_21
-    2300004: detail_antenna_16
-    2300006: detail_bumper_17
-    2300008: detail_bumper_19
-    2300010: detail_policeLights_10
-    2300012: hood_default_5
-    2300014: trunk_square_7
-    2300016: windshield_square_4
-    3300000: cylinder_hollow_20
-    3300002: cylinder_hollow_21
-    3300004: detail_antenna_16
-    3300006: detail_bumper_17
-    3300008: detail_bumper_19
-    3300010: detail_policeLights_10
-    3300012: hood_default_5
-    3300014: trunk_square_7
-    3300016: windshield_square_4
-    4300000: cylinder_hollow_20
-    4300002: cylinder_hollow_21
-    4300004: detail_antenna_16
-    4300006: detail_bumper_17
-    4300008: detail_bumper_19
-    4300010: detail_policeLights_10
-    4300012: hood_default_5
-    4300014: trunk_square_7
-    4300016: windshield_square_4
-    11400000: //RootNode
-    11400002: //RootNode
-    11400004: cylinder_hollow_20
-    11400006: cylinder_hollow_21
-    11400008: detail_antenna_16
-    11400010: detail_bumper_17
-    11400012: detail_bumper_19
-    11400014: detail_policeLights_10
-    11400016: hood_default_5
-    11400018: trunk_square_7
-    11400020: windshield_square_4
-    2186277476908879412: ImportLogs
-  externalObjects: {}
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: cylinder_hollow_20
+  - first:
+      1: 100004
+    second: cylinder_hollow_21
+  - first:
+      1: 100006
+    second: detail_antenna_16
+  - first:
+      1: 100008
+    second: detail_bumper_17
+  - first:
+      1: 100010
+    second: detail_bumper_19
+  - first:
+      1: 100012
+    second: detail_policeLights_10
+  - first:
+      1: 100014
+    second: hood_default_5
+  - first:
+      1: 100016
+    second: trunk_square_7
+  - first:
+      1: 100018
+    second: windshield_square_4
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: cylinder_hollow_20
+  - first:
+      4: 400004
+    second: cylinder_hollow_21
+  - first:
+      4: 400006
+    second: detail_antenna_16
+  - first:
+      4: 400008
+    second: detail_bumper_17
+  - first:
+      4: 400010
+    second: detail_bumper_19
+  - first:
+      4: 400012
+    second: detail_policeLights_10
+  - first:
+      4: 400014
+    second: hood_default_5
+  - first:
+      4: 400016
+    second: trunk_square_7
+  - first:
+      4: 400018
+    second: windshield_square_4
+  - first:
+      21: 2100000
+    second: _defaultMat
+  - first:
+      21: 2100002
+    second: tire
+  - first:
+      21: 2100004
+    second: lightBlue
+  - first:
+      21: 2100006
+    second: lightRed
+  - first:
+      21: 2100008
+    second: customMaterial10
+  - first:
+      21: 2100010
+    second: customMaterial8
+  - first:
+      21: 2100012
+    second: light
+  - first:
+      21: 2100014
+    second: customMaterial9
+  - first:
+      21: 2100016
+    second: glass
+  - first:
+      23: 2300000
+    second: cylinder_hollow_20
+  - first:
+      23: 2300002
+    second: cylinder_hollow_21
+  - first:
+      23: 2300004
+    second: detail_antenna_16
+  - first:
+      23: 2300006
+    second: detail_bumper_17
+  - first:
+      23: 2300008
+    second: detail_bumper_19
+  - first:
+      23: 2300010
+    second: detail_policeLights_10
+  - first:
+      23: 2300012
+    second: hood_default_5
+  - first:
+      23: 2300014
+    second: trunk_square_7
+  - first:
+      23: 2300016
+    second: windshield_square_4
+  - first:
+      33: 3300000
+    second: cylinder_hollow_20
+  - first:
+      33: 3300002
+    second: cylinder_hollow_21
+  - first:
+      33: 3300004
+    second: detail_antenna_16
+  - first:
+      33: 3300006
+    second: detail_bumper_17
+  - first:
+      33: 3300008
+    second: detail_bumper_19
+  - first:
+      33: 3300010
+    second: detail_policeLights_10
+  - first:
+      33: 3300012
+    second: hood_default_5
+  - first:
+      33: 3300014
+    second: trunk_square_7
+  - first:
+      33: 3300016
+    second: windshield_square_4
+  - first:
+      43: 4300000
+    second: cylinder_hollow_20
+  - first:
+      43: 4300002
+    second: cylinder_hollow_21
+  - first:
+      43: 4300004
+    second: detail_antenna_16
+  - first:
+      43: 4300006
+    second: detail_bumper_17
+  - first:
+      43: 4300008
+    second: detail_bumper_19
+  - first:
+      43: 4300010
+    second: detail_policeLights_10
+  - first:
+      43: 4300012
+    second: hood_default_5
+  - first:
+      43: 4300014
+    second: trunk_square_7
+  - first:
+      43: 4300016
+    second: windshield_square_4
+  - first:
+      114: 11400000
+    second: //RootNode
+  - first:
+      114: 11400002
+    second: //RootNode
+  - first:
+      114: 11400004
+    second: cylinder_hollow_20
+  - first:
+      114: 11400006
+    second: cylinder_hollow_21
+  - first:
+      114: 11400008
+    second: detail_antenna_16
+  - first:
+      114: 11400010
+    second: detail_bumper_17
+  - first:
+      114: 11400012
+    second: detail_bumper_19
+  - first:
+      114: 11400014
+    second: detail_policeLights_10
+  - first:
+      114: 11400016
+    second: hood_default_5
+  - first:
+      114: 11400018
+    second: trunk_square_7
+  - first:
+      114: 11400020
+    second: windshield_square_4
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: 75eb25794bb868040b8d4f6e04ece9d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: customMaterial10
+    second: {fileID: 2100000, guid: a39a3047d99cff54fa47408de723017d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: customMaterial8
+    second: {fileID: 2100000, guid: 57210da328149294897738220165d9ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: customMaterial9
+    second: {fileID: 2100000, guid: 442ef1b7c75a93b44bea28f6b1bd068b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 3142c3b3fdeaeb24c830c769529b0d85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: light
+    second: {fileID: 2100000, guid: 8018c76ddd543ed489d28c722b8445c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lightBlue
+    second: {fileID: 2100000, guid: ed14f60c967f9c34d9ed63fc92fdf7e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lightRed
+    second: {fileID: 2100000, guid: 53a5f548a8f39a640a786a0cefb89603, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tire
+    second: {fileID: 2100000, guid: 08b090a04355d9146a055901077b39dc, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -105,6 +286,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -112,10 +294,13 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -127,10 +312,14 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -140,8 +329,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

@@ -22,9 +22,11 @@ namespace VehicleBehaviour {
     #endif
         // If isPlayer is false inputs are ignored
         [SerializeField] bool isPlayer = true;
-        public bool IsPlayer { get{ return isPlayer; } set{ isPlayer = value; } } 
+        public bool IsPlayer { get{ return isPlayer; } set{ isPlayer = value; } }
 
         // Input names to read using GetAxis
+        public float steerValue = 0;
+
         [SerializeField] string throttleInput = "Throttle";
         [SerializeField] string brakeInput = "Brake";
         [SerializeField] string turnInput = "Horizontal";
@@ -235,12 +237,14 @@ namespace VehicleBehaviour {
                 if (throttleInput != "" && throttleInput != null)
                 {
                     throttle = GetInput(throttleInput) - GetInput(brakeInput);
+                    throttle = _rb.velocity.sqrMagnitude < 50 ? 1 : 0;
                 }
                 // Boost
                 boosting = (GetInput(boostInput) > 0.5f);
                 // Turn
-                steering = turnInputCurve.Evaluate(GetInput(turnInput)) * steerAngle;
+                steering = turnInputCurve.Evaluate(steerValue) * steerAngle;
                 // Dirft
+
                 drift = GetInput(driftInput) > 0 && _rb.velocity.sqrMagnitude > 100;
                 // Jump
                 jumping = GetInput(jumpInput) != 0;

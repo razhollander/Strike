@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     float maxSpeed = 10;
 
+    public Transform VaccumPoint;
     public float rotation = 0;
     public float driftPower = 0;
     // Start is called before the first frame update

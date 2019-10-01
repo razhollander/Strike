@@ -10,6 +10,7 @@ public class JoystickBoost : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     [SerializeField] private RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
     [SerializeField] private Player player = null;
+    [SerializeField] private VehicleBehaviour.WheelVehicle wheelV;
     private RectTransform baseRect = null;
     private Canvas canvas;
     private Camera cam;
@@ -42,9 +43,9 @@ public class JoystickBoost : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     private void SetPlayerParameters()
     {
+        wheelV.steerValue = (handle.anchoredPosition.x - handleStartPos.x) / maxX;
         player.rotation = (handle.anchoredPosition.x -handleStartPos.x) / maxX;
         player.driftPower = (handle.anchoredPosition.y - handleStartPos.y) / (minY -handleStartPos.y);
-        Debug.Log("y: " + player.driftPower + ", x: " + player.rotation);
     }
 
     private void SetHandle(Vector2 deltaFromCenter)
