@@ -99,6 +99,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4003169796402466264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959202422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4212533638059826392
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +270,7 @@ MonoBehaviour:
   health: 100
   player: {fileID: 0}
   healthBar: {fileID: 1953021342}
+  isInVaccumRange: 0
 --- !u!33 &6517813901476527142
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -360,10 +373,6 @@ PrefabInstance:
     - target: {fileID: 22486214, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 132408, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
       propertyPath: colorMode
@@ -469,8 +478,18 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 132408, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+--- !u!1 &1959202422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 119886, guid: 34017cf12560c804bb2f669f00c7af91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1959189048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1972487934 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22486214, guid: 34017cf12560c804bb2f669f00c7af91,

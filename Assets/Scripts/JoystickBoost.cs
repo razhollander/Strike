@@ -44,8 +44,7 @@ public class JoystickBoost : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     private void SetPlayerParameters()
     {
         wheelV.steerValue = (handle.anchoredPosition.x - handleStartPos.x) / maxX;
-        player.rotation = (handle.anchoredPosition.x -handleStartPos.x) / maxX;
-        player.driftPower = (handle.anchoredPosition.y - handleStartPos.y) / (minY -handleStartPos.y);
+       
     }
 
     private void SetHandle(Vector2 deltaFromCenter)
