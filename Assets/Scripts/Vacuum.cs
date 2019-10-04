@@ -4,16 +4,17 @@ using UnityEngine;
 using DG.Tweening;
 public class Vacuum : MonoBehaviour
 {
-    [SerializeField] GameObject AirParticals;
-    [SerializeField] Transform VacuumPoint;
-    [SerializeField] Transform VacuumHead;
-
+    [SerializeField] GameObject airParticals;
+    [SerializeField] Transform vacuumPoint;
+    [SerializeField] Transform vacuumHead;
+    [SerializeField] Transform radiusCenter;
     [SerializeField] float suckingPower = 2;
     [SerializeField] float vacuumRadius = 10;
     [SerializeField] float pullingSpeed = 1;
     [SerializeField] ParticleSystem sparksParticles;
 
-    Vector2 vacuumPos;
+    //Vector2 vacuumPointV2;
+    Vector2 radiusCenterV2;
     private Enemy EnemyBeingSucked;
 
     private Tween rotationTweener;
@@ -26,10 +27,11 @@ public class Vacuum : MonoBehaviour
     bool isInSwallowAnimation = false;
     float swallowAnimationDuration = 0.25f;
 
-    void Start()
+    private void Awake()
     {
+       // vacuumPointV2= new Vector2(vacuumPoint.position.x, vacuumPoint.position.z);
+        radiusCenterV2 = new Vector2(radiusCenter.position.x, radiusCenter.position.z);
         StartSelfRotation();
-        
     }
     private void StartSelfRotation()
     {
@@ -39,7 +41,9 @@ public class Vacuum : MonoBehaviour
     {
         if (!isInSwallowAnimation)
         {
-            vacuumPos = new Vector2(VacuumPoint.position.x, VacuumPoint.position.z);
+            //vacuumPointV2.Set(vacuumPoint.position.x, vacuumPoint.position.z);
+            radiusCenterV2.Set(radiusCenter.position.x, radiusCenter.position.z);
+
             if (EnemyBeingSucked == null)
             {
                 if (lookForClosestEnemy)
@@ -49,7 +53,7 @@ public class Vacuum : MonoBehaviour
             }
             else
             {
-                if (!IsEnemyInRadius(EnemyBeingSucked, vacuumPos))
+                if (!IsEnemyInRadius(EnemyBeingSucked, radiusCenterV2))
                 {
                     StopSuckingEnemy();
                 }
@@ -61,24 +65,25 @@ public class Vacuum : MonoBehaviour
         Enemy[] allEnemies = GameObject.FindObjectsOfType<Enemy>();
         foreach (Enemy currentEnemy in allEnemies)
         {
-            if (IsEnemyInRadius(currentEnemy, vacuumPos))
+            if (IsEnemyInRadius(currentEnemy, radiusCenterV2))
             {
                 StartSuckingEnemy(currentEnemy);
                 return;
             }
         }
     }
-    private bool CheckForClosestEnemy()
+    private void CheckForClosestEnemy()
     {
         lookForClosestEnemy = false;
         Enemy[] allEnemies = GameObject.FindObjectsOfType<Enemy>();
         Enemy closestEnemy = null;
         float closestDistance = float.MaxValue;
-
+        Vector2 enemyPos = Vector2.zero;
+        float distanceToEnemy = 0;
         foreach (Enemy currentEnemy in allEnemies)
         {
-            Vector2 enemyPos = new Vector2(currentEnemy.transform.position.x, currentEnemy.transform.position.z);
-            float distanceToEnemy = (enemyPos - vacuumPos).sqrMagnitude;
+            enemyPos.Set(currentEnemy.transform.position.x, currentEnemy.transform.position.z);
+            distanceToEnemy = (enemyPos - radiusCenterV2).sqrMagnitude;
             if (distanceToEnemy < Mathf.Pow(vacuumRadius, 2) && distanceToEnemy < closestDistance)
             {
                 closestDistance = distanceToEnemy;
@@ -88,18 +93,22 @@ public class Vacuum : MonoBehaviour
         if (closestEnemy != null)
         {
             StartSuckingEnemy(closestEnemy);
-            return true;
         }
-        return false;
+        else
+        {
+            radiusCenter.gameObject.SetActive(true);
+            airParticals.SetActive(false);
+        }
     }
     private void StartSuckingEnemy(Enemy enemy)
     {
         EnemyBeingSucked = enemy;
         ShakeEnemy(enemy);
-        headShake =VacuumHead.DOShakeRotation(1, 4, 15, 90, false).SetEase(Ease.Linear).SetLoops(-1);
+        headShake =vacuumHead.DOShakeRotation(1, 4, 15, 90, false).SetEase(Ease.Linear).SetLoops(-1);
         suckCoroutine = StartCoroutine(SuckEnemy());
         rotationTweener.Kill();
-        AirParticals.SetActive(true);
+        airParticals.SetActive(true);
+        radiusCenter.gameObject.SetActive(false);
     }
     private void ShakeEnemy(Enemy enemy)
     {
@@ -125,15 +134,15 @@ public class Vacuum : MonoBehaviour
         Vector3 rotationVec = new Vector3(x, y, z);
 
         float prevDistance = 0;
-        float distance = Vector3.Distance(EnemyBeingSucked.transform.position, VacuumPoint.position);
+        float distance = Vector3.Distance(EnemyBeingSucked.transform.position, vacuumPoint.position);
         float minDisance = 0.75f;
 
         while (distance > minDisance)
         {
             EnemyBeingSucked.transform.Rotate(rotationVec * Time.deltaTime, Space.Self);
-            EnemyBeingSucked.transform.position += (VacuumPoint.position - EnemyBeingSucked.transform.position).normalized * pullingSpeed * Time.deltaTime;
+            EnemyBeingSucked.transform.position += (vacuumPoint.position - EnemyBeingSucked.transform.position).normalized * pullingSpeed * Time.deltaTime;
             prevDistance = distance;
-            distance = Vector3.Distance(EnemyBeingSucked.transform.position, VacuumPoint.position);
+            distance = Vector3.Distance(EnemyBeingSucked.transform.position, vacuumPoint.position);
             if (prevDistance < distance && distance > minDisance)
             {
                 distance = 0;
@@ -156,11 +165,11 @@ public class Vacuum : MonoBehaviour
     }
     private void DoSwallowFX()
     {
-        AirParticals.SetActive(false);
+        airParticals.SetActive(false);
         isInSwallowAnimation = true;
         sparksParticles.Play();
         swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;
-        VacuumHead.DOPunchRotation((VacuumHead.right + VacuumHead.forward) * 10, swallowAnimationDuration).OnComplete(EndSwallowAnimation);
+        vacuumHead.DOPunchRotation((vacuumHead.right + vacuumHead.forward) * 10, swallowAnimationDuration).OnComplete(EndSwallowAnimation);
     }
     private void EndSwallowAnimation()
     {
@@ -171,7 +180,7 @@ public class Vacuum : MonoBehaviour
 
     private void LookForNewEnemy()
     {
-        AirParticals.SetActive(false);
+
         shakeTweener.Restart();
         shakeTweener.Kill();
         headShake.Restart();

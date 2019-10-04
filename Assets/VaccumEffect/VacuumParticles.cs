@@ -47,7 +47,7 @@ public class VacuumParticles : MonoBehaviour {
         float uD;
         for (int i=0; i<numParts; i++) {
             // Destroy particles that pass the origin
-            if (particles[i].position.z <= 0) {
+            if (particles[i].position.z <= 0|| particles[i].position.x <= -2|| particles[i].position.x >= 2) {
                 particles[i].remainingLifetime = 0;
                 continue;
             }
