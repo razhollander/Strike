@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class Vacuum : MonoBehaviour
+public class Vacuum_Old : MonoBehaviour
 {
     [SerializeField] GameObject airParticals;
     [SerializeField] Transform vacuumPoint;
@@ -23,7 +23,7 @@ public class Vacuum : MonoBehaviour
     private Coroutine suckCoroutine;
     private Coroutine pullCoroutine;
 
-    //bool lookForClosestEnemy = false;
+    bool lookForClosestEnemy = false;
     bool isInSwallowAnimation = false;
     public bool vaccumButtonPressed { get; set; }
     float swallowAnimationDuration = 0.25f;
@@ -42,33 +42,64 @@ public class Vacuum : MonoBehaviour
     {
         if (!isInSwallowAnimation && vaccumButtonPressed)
         {
+            //vacuumPointV2.Set(vacuumPoint.position.x, vacuumPoint.position.z);
+            radiusCenterV2.Set(radiusCenter.position.x, radiusCenter.position.z);
+
             if (EnemyBeingSucked == null)
             {
-                Enemy closestEnemy = CheckForClosestEnemy();
-                if (closestEnemy != null)
+                if (lookForClosestEnemy)
+                    CheckForClosestEnemy();
+                else
+                    SuckEnemyIfInRadius();
+            }
+            else
+            {
+                if (!IsEnemyInRadius(EnemyBeingSucked))
                 {
-                    StartSuckingEnemy(closestEnemy);
+                    StopSuckingEnemy();
                 }
             }
         }
     }
-    private Enemy CheckForClosestEnemy()
+    private void SuckEnemyIfInRadius()
     {
+        Enemy[] allEnemies = GameObject.FindObjectsOfType<Enemy>();
+        foreach (Enemy currentEnemy in allEnemies)
+        {
+            if (IsEnemyInRadius(currentEnemy))
+            {
+                StartSuckingEnemy(currentEnemy);
+                return;
+            }
+        }
+    }
+    private void CheckForClosestEnemy()
+    {
+        lookForClosestEnemy = false;
         Enemy[] allEnemies = GameObject.FindObjectsOfType<Enemy>();
         Enemy closestEnemy = null;
         float closestDistance = float.MaxValue;
+        Vector2 enemyPos = Vector2.zero;
         float distanceToEnemy = 0;
-        radiusCenterV2.Set(radiusCenter.position.x, radiusCenter.position.z);
         foreach (Enemy currentEnemy in allEnemies)
         {
-            if (IsEnemyInRadius(currentEnemy, out distanceToEnemy))
-                if (distanceToEnemy < closestDistance)
-                {
-                    closestDistance = distanceToEnemy;
-                    closestEnemy = currentEnemy;
-                }
+            enemyPos.Set(currentEnemy.transform.position.x, currentEnemy.transform.position.z);
+            distanceToEnemy = (enemyPos - radiusCenterV2).sqrMagnitude;
+            if (distanceToEnemy < Mathf.Pow(vacuumRadius, 2) && distanceToEnemy < closestDistance)
+            {
+                closestDistance = distanceToEnemy;
+                closestEnemy = currentEnemy;
+            }
         }
-        return closestEnemy;
+        if (closestEnemy != null)
+        {
+            StartSuckingEnemy(closestEnemy);
+        }
+        else
+        {
+            radiusCenter.gameObject.SetActive(true);
+            airParticals.SetActive(false);
+        }
     }
     private void StartSuckingEnemy(Enemy enemy)
     {
@@ -78,7 +109,7 @@ public class Vacuum : MonoBehaviour
         suckCoroutine = StartCoroutine(SuckEnemy());
         rotationTweener.Kill();
         airParticals.SetActive(true);
-        //radiusCenter.gameObject.SetActive(false);
+        radiusCenter.gameObject.SetActive(false);
     }
     private void ShakeEnemy(Enemy enemy)
     {
@@ -86,21 +117,10 @@ public class Vacuum : MonoBehaviour
     }
     private IEnumerator SuckEnemy()
     {
-        Vector3 lookatVec = new Vector3(EnemyBeingSucked.transform.position.x, transform.position.y, EnemyBeingSucked.transform.position.z);
-        float tempDistance = 0;
         while (EnemyBeingSucked.health > 0)
         {
-            radiusCenterV2.Set(radiusCenter.position.x, radiusCenter.position.z);
-            if (vaccumButtonPressed && IsEnemyInRadius(EnemyBeingSucked, out tempDistance))
-            {
-                lookatVec.Set(EnemyBeingSucked.transform.position.x, transform.position.y, EnemyBeingSucked.transform.position.z);
-                transform.LookAt(lookatVec, Vector3.up);
-                EnemyBeingSucked.SetHealth(-suckingPower * Time.deltaTime);
-            }
-            else
-            {
-                StopSuckingEnemy();
-            }
+            transform.LookAt(new Vector3(EnemyBeingSucked.transform.position.x, transform.position.y, EnemyBeingSucked.transform.position.z), Vector3.up);
+            EnemyBeingSucked.SetHealth(-suckingPower * Time.deltaTime);
             yield return null;
         }
         StartCoroutine(PullEnemy());
@@ -146,8 +166,8 @@ public class Vacuum : MonoBehaviour
     }
     private void DoSwallowFX()
     {
-        isInSwallowAnimation = true;
         airParticals.SetActive(false);
+        isInSwallowAnimation = true;
         sparksParticles.Play();
         swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;
         vacuumHead.DOPunchRotation((vacuumHead.right + vacuumHead.forward) * 10, swallowAnimationDuration).OnComplete(EndSwallowAnimation);
@@ -156,45 +176,52 @@ public class Vacuum : MonoBehaviour
     {
         isInSwallowAnimation = false;
         sparksParticles.Stop();
-        Reset();
+        LookForNewEnemy();
     }
-    private void Reset()
+
+    private void LookForNewEnemy()
     {
         shakeTweener.Restart();
         shakeTweener.Kill();
         headShake.Restart();
         headShake.Kill();
         EnemyBeingSucked = null;
-        //radiusCenter.gameObject.SetActive(true);
-        airParticals.SetActive(false);
         StartSelfRotation();
+        lookForClosestEnemy = true;
     }
     public void StopSuckingEnemy()
     {
+        vaccumButtonPressed = false;
         EnemyBeingSucked.ResetHealth();
         StopCoroutine(suckCoroutine);
-        Reset();
+        LookForNewEnemy();
     }
-    private bool IsEnemyInRadius(Enemy enemy, out float sqrMagnitudeDistance)
+    public void VaccumButtonReleased()
+    {
+        vaccumButtonPressed = false;
+        if (EnemyBeingSucked != null)
+        {
+            EnemyBeingSucked.ResetHealth();
+            radiusCenter.gameObject.SetActive(true);
+            airParticals.SetActive(false);
+        }
+        StopCoroutine(suckCoroutine);
+        LookForNewEnemy();
+    }
+
+    //public void log()
+    //{
+    //    print("Hi");
+    //}
+    private bool IsEnemyInRadius(Enemy enemy)
     {
         Vector2 enemyPos = new Vector2(enemy.transform.position.x, enemy.transform.position.z);
-        sqrMagnitudeDistance = (enemyPos - radiusCenterV2).sqrMagnitude;
-        if (sqrMagnitudeDistance < Mathf.Pow(vacuumRadius, 2))
+        float distanceToEnemy = (enemyPos - radiusCenterV2).sqrMagnitude;
+        if (distanceToEnemy < Mathf.Pow(vacuumRadius, 2))
         {
             return true;
         }
         return false;
     }
 
-    //public void VaccumButtonPressed()
-    //{
-    //    radiusCenter.gameObject.SetActive(true);
-    //    vaccumButtonPressed = true;
-    //}
-    //public void VaccumButtonReleased()
-    //{
-    //    radiusCenter.gameObject.SetActive(false);
-    //    vaccumButtonPressed = false;
-
-    //}
 }

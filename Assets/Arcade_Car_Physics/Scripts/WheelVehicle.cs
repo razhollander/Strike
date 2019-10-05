@@ -241,11 +241,13 @@ namespace VehicleBehaviour {
                 }
                 // Boost
                 boosting = (GetInput(boostInput) > 0.5f);
+                boosting = false;
                 // Turn
                 steering = turnInputCurve.Evaluate(steerValue) * steerAngle;
                 // Dirft
 
                 drift = GetInput(driftInput) > 0 && _rb.velocity.sqrMagnitude > 100;
+                drift = false;
                 // Jump
                 jumping = GetInput(jumpInput) != 0;
             }
