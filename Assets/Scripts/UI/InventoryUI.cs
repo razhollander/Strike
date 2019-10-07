@@ -1,0 +1,75 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
+public class InventoryUI : MonoBehaviour
+{
+    public Ease ease;
+
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private Canvas mainCanvas;
+    [SerializeField] private Button templateButton;
+    private static List<InventoryObjectUI> inventoryObjectUIList;
+    public static InventoryUI instance;
+    // Start is called before the first frame update
+    void Awake()
+    {
+        instance = this;
+        inventoryObjectUIList = new List<InventoryObjectUI>();
+        PopulateInventory();
+    }
+
+    void PopulateInventory()
+    {
+        foreach (InventoryObject inventoryObject in inventory.inventoryObjectList)
+        {
+            Button newButton = Instantiate(templateButton);
+            newButton.transform.SetParent(transform);
+            newButton.transform.Find("Image").GetComponent<Image>().sprite = inventoryObject.sprite;
+
+            InventoryObjectUI currIOUI = newButton.transform.GetComponent<InventoryObjectUI>();
+            //currIOUI.text = newButton.transform.Find("Text").GetComponent<Text>();
+            currIOUI.inventoryObject = inventoryObject;
+            currIOUI.UpdateText();
+            currIOUI.button = newButton;
+            inventoryObjectUIList.Add(currIOUI);
+            
+        }
+    }
+    public void StartAddEffect(SuckableobjectType suckableobjectType, Vector3 startPos)
+    {
+       StartCoroutine(StartAddEffectCoursotin(suckableobjectType, startPos));
+    }
+    private IEnumerator StartAddEffectCoursotin(SuckableobjectType suckableobjectType, Vector3 startPos)
+    {
+
+        InventoryObjectUI objectUI = GetInventoryObjectUI(suckableobjectType);
+        Image img = Instantiate(objectUI.transform.Find("Image").GetComponent<Image>());
+        Vector3 endPos = Vector3.zero;
+        
+        img.transform.SetParent(objectUI.transform.Find("Image").transform);
+        img.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(startPos);
+        img.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        float waitForSeceonds = 0.5f;
+        img.transform.DOScale(1, waitForSeceonds).SetEase(Ease.OutExpo);
+        img.transform.DOLocalMove(endPos, waitForSeceonds).SetEase(ease);
+        yield return new WaitForSeconds(waitForSeceonds);
+        Destroy(img.gameObject);
+        objectUI.Add();
+    }
+    private void EndAddEffect()
+    {
+
+    }
+    // Update is called once per frame
+    //void ButtonClicked(SuckableobjectType suckableObjectType)
+    //{
+
+    //}
+    public static InventoryObjectUI GetInventoryObjectUI(SuckableobjectType suckableobjectType)
+    {
+        return inventoryObjectUIList.Find(x => x.inventoryObject.suckableObjectType == suckableobjectType);
+    }
+}

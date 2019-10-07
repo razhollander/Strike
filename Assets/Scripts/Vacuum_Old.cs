@@ -159,11 +159,12 @@ public class Vacuum_Old : MonoBehaviour
     }
     private void FinishPullingEnemy()
     {
-        EnemyBeingSucked.Collected();
+        //EnemyBeingSucked.Collected();
         headShake.Restart();
         headShake.Kill();
         DoSwallowFX();
     }
+
     private void DoSwallowFX()
     {
         airParticals.SetActive(false);
