@@ -22,6 +22,7 @@ namespace VehicleBehaviour {
     #endif
         // If isPlayer is false inputs are ignored
         [SerializeField] bool isPlayer = true;
+        [SerializeField] float constSpeed;
         public bool IsPlayer { get{ return isPlayer; } set{ isPlayer = value; } }
 
         // Input names to read using GetAxis
@@ -237,7 +238,7 @@ namespace VehicleBehaviour {
                 if (throttleInput != "" && throttleInput != null)
                 {
                     throttle = GetInput(throttleInput) - GetInput(brakeInput);
-                    throttle = _rb.velocity.sqrMagnitude < 50 ? 1 : 0;
+                    throttle = _rb.velocity.sqrMagnitude < constSpeed ? 1 : 0;
                 }
                 // Boost
                 boosting = (GetInput(boostInput) > 0.5f);

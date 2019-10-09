@@ -6,7 +6,7 @@ public class SuckableObject: MonoBehaviour
 {
     [SerializeField]
     private SuckableobjectType suckableobjectType;
-    bool isBeingSucked = false;
+    [System.NonSerialized] public bool isBeingSucked = false;
     public void Collected()
     {
         InventoryUI.instance.StartAddEffect(suckableobjectType,transform.position);

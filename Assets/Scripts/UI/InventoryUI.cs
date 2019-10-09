@@ -28,7 +28,7 @@ public class InventoryUI : MonoBehaviour
             Button newButton = Instantiate(templateButton);
             newButton.transform.SetParent(transform);
             newButton.transform.Find("Image").GetComponent<Image>().sprite = inventoryObject.sprite;
-
+            newButton.gameObject.SetActive(true);
             InventoryObjectUI currIOUI = newButton.transform.GetComponent<InventoryObjectUI>();
             //currIOUI.text = newButton.transform.Find("Text").GetComponent<Text>();
             currIOUI.inventoryObject = inventoryObject;

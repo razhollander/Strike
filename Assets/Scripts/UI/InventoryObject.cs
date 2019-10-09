@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryObject : ScriptableObject
 {
     public SuckableobjectType suckableObjectType;
-    public GameObject objectShot;
+    public ObjectShot objectShot;
     public int count = 0;
     public Sprite sprite;
 

@@ -9,13 +9,17 @@ public class InventoryObjectUI : MonoBehaviour
     public InventoryObject inventoryObject;
     public Text text;
     public Button button;
-    public void Add()
+    private Tween punchTweener;
+    public void Add(int counter=1)
     {
-        inventoryObject.count++;
-        text.transform.DOPunchScale(text.transform.up,0.2f);
+        inventoryObject.count+= counter;
+        punchTweener.Restart();
+        punchTweener.Kill();
+        punchTweener = text.transform.DOPunchScale(text.transform.up,0.2f);
         UpdateText();
 
     }
+
     public void UpdateText()
     {
         text.text = "x" + inventoryObject.count;
