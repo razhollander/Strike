@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuckableObject: MonoBehaviour
+public class SuckableObject: PooledMonobehaviour
 {
     [SerializeField]
     private SuckableobjectType suckableobjectType;

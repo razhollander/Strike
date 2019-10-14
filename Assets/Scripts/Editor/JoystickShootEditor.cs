@@ -6,29 +6,30 @@ using UnityEditor;
 [CustomEditor(typeof(JoystickShoot))]
 public class JoystickShootEditor : JoystickEditor
 {
-    private SerializedProperty shooterObject;
+    private SerializedProperty shooterVacuum;
     private SerializedProperty selectedInventoryObject;
+    private SerializedProperty slowTimeDuration;
+    private SerializedProperty handlerRadiusToShoot;
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        shooterObject = serializedObject.FindProperty("shooterObject");
+        shooterVacuum = serializedObject.FindProperty("shooterVacuum");
         selectedInventoryObject = serializedObject.FindProperty("selectedInventoryObject");
-        //axisOptions = serializedObject.FindProperty("axisOptions");
-        //snapX = serializedObject.FindProperty("snapX");
-        //background = serializedObject.FindProperty("background");
-        //handle = serializedObject.FindProperty("handle");
+        slowTimeDuration = serializedObject.FindProperty("slowTimeDuration");
+        handlerRadiusToShoot = serializedObject.FindProperty("handlerRadiusToShoot");
+
     }
     protected override void DrawValues()
     {
         base.DrawValues();
-        EditorGUILayout.PropertyField(shooterObject, new GUIContent("Shooter", "The Objects That Shoots"));
+        EditorGUILayout.PropertyField(shooterVacuum, new GUIContent("shooterVacuum", "The Objects That Shoots"));
         EditorGUILayout.PropertyField(selectedInventoryObject, new GUIContent("InventoryObjectUI", "The ObjectType to be shot"));
+        EditorGUILayout.PropertyField(slowTimeDuration, new GUIContent("slowTimeDuration", "The time it takes the slowMotion to get to max"));
+        EditorGUILayout.PropertyField(handlerRadiusToShoot, new GUIContent("handlerRadiusToShoot", "The % (0-1) the handler need to be from the center to shoot"));
+
     }
-    //public override void OnInspectorGUI()
-    //{
-    //    base.OnInspectorGUI();
 
 
-    //}
+
 }

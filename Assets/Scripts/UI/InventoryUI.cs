@@ -11,6 +11,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private Canvas mainCanvas;
     [SerializeField] private Button templateButton;
+
     private static List<InventoryObjectUI> inventoryObjectUIList;
     public static InventoryUI instance;
     // Start is called before the first frame update
@@ -27,10 +28,11 @@ public class InventoryUI : MonoBehaviour
         {
             Button newButton = Instantiate(templateButton);
             newButton.transform.SetParent(transform);
+            
             newButton.transform.Find("Image").GetComponent<Image>().sprite = inventoryObject.sprite;
             newButton.gameObject.SetActive(true);
             InventoryObjectUI currIOUI = newButton.transform.GetComponent<InventoryObjectUI>();
-            //currIOUI.text = newButton.transform.Find("Text").GetComponent<Text>();
+            currIOUI.image = newButton.transform.Find("Image").GetComponent<Image>();
             currIOUI.inventoryObject = inventoryObject;
             currIOUI.UpdateText();
             currIOUI.button = newButton;
@@ -46,10 +48,10 @@ public class InventoryUI : MonoBehaviour
     {
 
         InventoryObjectUI objectUI = GetInventoryObjectUI(suckableobjectType);
-        Image img = Instantiate(objectUI.transform.Find("Image").GetComponent<Image>());
+        Image img = Instantiate(objectUI.image);
         Vector3 endPos = Vector3.zero;
         
-        img.transform.SetParent(objectUI.transform.Find("Image").transform);
+        img.transform.SetParent(objectUI.transform);
         img.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(startPos);
         img.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         float waitForSeceonds = 0.5f;

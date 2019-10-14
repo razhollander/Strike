@@ -7,7 +7,7 @@ public class Vacuum : MonoBehaviour
 {
     [SerializeField] GameObject airParticals;
     [SerializeField] protected Transform vacuumPoint;
-    [SerializeField] Transform vacuumHead;
+    [SerializeField] protected Transform vacuumHead;
     [SerializeField] Transform radiusCenter;
     [SerializeField] float suckingPower = 2;
     [SerializeField] float vacuumRadius = 10;
@@ -174,6 +174,7 @@ public class Vacuum : MonoBehaviour
     }
     private void DoSwallowFX()
     {
+        rotationTweener.Kill();
         airParticals.SetActive(false);
         sparksParticles.Play();
         swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;

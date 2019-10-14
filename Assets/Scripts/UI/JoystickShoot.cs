@@ -3,47 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using UnityEngine.Rendering.PostProcessing;
+using DG.Tweening;
 public class JoystickShoot : Joystick
 {
     public InventoryObjectUI selectedInventoryObject;
-    [SerializeField] private ShooterVacuum shooterObject;
-
+    [SerializeField] private ShooterVacuum shooterVacuum;
+    private PostProcessVolume volume;
+    Vignette vignette;
     public static JoystickShoot instance;
     bool isMouseHeld = false;
+    public float slowTimeDuration = 0.5f;
+    public float handlerRadiusToShoot = 1;
     private void Awake()
     {
         instance = this;
+        volume = Camera.main.GetComponent<PostProcessVolume>();
+        volume.profile.TryGetSettings<Vignette>(out vignette);
+    }
+    private void SetSlowMotion(bool active)
+    {
+        if (active)
+        {
+            DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 0.34f, slowTimeDuration);
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0.5f, slowTimeDuration);
+        }
+        else
+        {
+            DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 0, slowTimeDuration);
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, slowTimeDuration);
+        }
     }
     private void LateUpdate()
     {
         if(isMouseHeld)
-            shooterObject.Aim(input);
+                  shooterVacuum.Aim(input);
+        if (input.sqrMagnitude > Mathf.Pow(handlerRadiusToShoot, 2))
+            shooterVacuum.SetArrow(true);
+        else
+            shooterVacuum.SetArrow(false);
+
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
-        Time.timeScale = 0.5f;
+        SetSlowMotion(true);
         isMouseHeld = true;
-        shooterObject.StartAiming(input);
+        shooterVacuum.StartAiming(input);
         base.OnPointerDown(eventData);
     }
     public override void OnPointerUp(PointerEventData eventData)
     {
-        Time.timeScale = 1;
+        SetSlowMotion(false);
         isMouseHeld = false;
-        if (input.magnitude >= 0.95 && selectedInventoryObject != null)
+        if (input.magnitude >= handlerRadiusToShoot && selectedInventoryObject != null)
         {
             input.Normalize();
             selectedInventoryObject.Add(-1);
-            shooterObject.Shoot(Instantiate(selectedInventoryObject.inventoryObject.objectShot), input);
+            shooterVacuum.Shoot(selectedInventoryObject.inventoryObject.objectShot.Get<ObjectShot>(true), input);
         }
         else
-            shooterObject.StopAiming();
+            shooterVacuum.StopAiming();
         base.OnPointerUp(eventData);
     }
-    public void SelectObject(InventoryObjectUI inventoryObject)
+    public void SelectObject(InventoryObjectUI inventoryObjectUI)
     {
-        selectedInventoryObject = inventoryObject;
-        handle.GetComponent<Image>().sprite = inventoryObject.inventoryObject.sprite;
+        selectedInventoryObject = inventoryObjectUI;
+        handle.GetComponent<Image>().sprite = inventoryObjectUI.inventoryObject.sprite;
+        shooterVacuum.SetArrow(inventoryObjectUI.inventoryObject.arrowObject);
     }
 }

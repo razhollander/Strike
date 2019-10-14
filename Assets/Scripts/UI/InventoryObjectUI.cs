@@ -7,8 +7,9 @@ using DG.Tweening;
 public class InventoryObjectUI : MonoBehaviour
 {
     public InventoryObject inventoryObject;
-    public Text text;
+    public Image image;
     public Button button;
+    [SerializeField] private Text text;
     private Tween punchTweener;
     public void Add(int counter=1)
     {
@@ -17,7 +18,6 @@ public class InventoryObjectUI : MonoBehaviour
         punchTweener.Kill();
         punchTweener = text.transform.DOPunchScale(text.transform.up,0.2f);
         UpdateText();
-
     }
 
     public void UpdateText()

@@ -10,9 +10,12 @@ public class ShooterVacuum : Vacuum
     [SerializeField] private float arrowLengthProportion = 1;
     [SerializeField] private float rayRadius = 0.5f;
     [SerializeField] private float arrowLerpAmount;
+    [SerializeField] private float punchShootValue = 1;
+    [SerializeField] private float shootAnimationDuration=0.5f;
     SpriteRenderer arrowSpriteRenderer;
     float arrowDefaultHeight;
     RaycastHit rayhit;
+    Tween shootTween;
     // Start is called before the first frame update
     public void StartAiming(Vector2 aimDirection)
     {
@@ -23,6 +26,18 @@ public class ShooterVacuum : Vacuum
         arrow.SetActive(true);
         Aim(aimDirection);
 
+    }
+    public void SetArrow(bool isActive)
+    {
+        arrow.SetActive(isActive);
+    }
+    public void SetArrow(ArrowObject arrowObject)
+    {
+        SpriteRenderer spriteRenderer = arrow.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = arrowObject.sprite;
+        spriteRenderer.size = new Vector2(arrowObject.width, spriteRenderer.size.y);
+        //if (arrowObject.isHasChildSprite)
+        //    arrowObject.childSprite
     }
     private void Start()
     {
@@ -52,9 +67,13 @@ public class ShooterVacuum : Vacuum
         objectShot.transform.position = vacuumPoint.position;
         objectShot.Shoot(direction);
         StopAiming();
+        DoShootFX();
     }
     private void DoShootFX()
     {
+        shootTween.Restart();
+        shootTween.Kill();
+        shootTween = vacuumHead.DOPunchScale(Vector3.one * punchShootValue, shootAnimationDuration);
         //airParticals.SetActive(false);
         //sparksParticles.Play();
         //swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;

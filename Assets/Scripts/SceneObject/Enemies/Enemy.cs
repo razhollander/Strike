@@ -9,20 +9,25 @@ public class Enemy : SuckableObject
     public float health;
     public SimpleHealthBar healthBar;
     private float maxHealth=100;
+    private float HealthLimit = 100;
     public bool CanBeSucked()
     {
         return canBeSucked;
     }
-    void Start()
+    void Awake()
     {
         maxHealth = health;
+        HealthLimit = maxHealth;
         //health = maxHealth; 
     }
     
-    public void SetHealth(float value, bool isRelative=true)
+    public void SetHealth(float value, bool isRelative=true, bool isUpdateHealthLimit=false)
     {
         health = isRelative ? health + value : value;
         health = health >= 0 ? health : 0;
+        health = Mathf.Clamp(health, 0, HealthLimit);
+        if (isUpdateHealthLimit)
+            HealthLimit = health;
         healthBar.UpdateBar(health, maxHealth);
     }
     public void ResetHealth()
