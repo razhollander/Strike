@@ -15,6 +15,6 @@ MonoBehaviour:
   suckableObjectType: 1
   objectShot: {fileID: 2080343370489885677, guid: fdd8336936c3bb94f9404378eaf96f7d,
     type: 3}
-  count: -47
+  count: 0
   sprite: {fileID: 21300000, guid: c00a2c854d02b094499b20b55cf577bc, type: 3}
   arrowObject: {fileID: 11400000, guid: 9671c6ab2b99f28489e353404fc11575, type: 2}

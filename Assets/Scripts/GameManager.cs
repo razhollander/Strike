@@ -11,13 +11,15 @@ public class GameManager : MonoBehaviour
     public float minDis, maxDis;
     public float waitForSummonSceonds = 3;
     public float forwardExtra = 1;
+    
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         instance = this;
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         StartCoroutine(SummonEnemies());
-        //sceneObjects = new List<GameObject>();
+
+        
     }
     IEnumerator SummonEnemies()
     {
@@ -25,7 +27,6 @@ public class GameManager : MonoBehaviour
         {
             GameObject go = Instantiate(sceneObjects[0]);
             float x = Random.Range(-maxDis, maxDis);
-            //float y = Random.Range(-maxDis, maxDis);
 
             if (x < 0 && x > -minDis)
                 x = -minDis;
@@ -33,16 +34,9 @@ public class GameManager : MonoBehaviour
                 if (x > 0 && x < minDis)
                 x = minDis;
 
-            //if (y < 0 && y > -minDis)
-            //    y = -minDis;
-            //else
-            //if (y > 0 && y < minDis)
-            //            y = minDis;
-
-            Vector3 vec =player.transform.right*x;
-            Debug.Log(vec);
+            Vector3 vec = player.transform.right * x;
+            vec += MeshHandler.GetMeshHeight(go)/2 * Vector3.up;
             go.transform.position =player.transform.forward* forwardExtra + vec + player.transform.position;
-            Debug.Log("Summon");
             go.transform.SetParent(enemiesParent.transform);
             yield return new WaitForSeconds(waitForSummonSceonds);
         }

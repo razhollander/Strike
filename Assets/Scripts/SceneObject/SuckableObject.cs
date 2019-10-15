@@ -5,18 +5,25 @@ using UnityEngine;
 public class SuckableObject: PooledMonobehaviour
 {
     [SerializeField]
-    private SuckableobjectType suckableobjectType;
+    protected SuckableobjectType suckableobjectType;
+    public static int age = 0;
     [System.NonSerialized] public bool isBeingSucked = false;
     public void Collected()
     {
+
         InventoryUI.instance.StartAddEffect(suckableobjectType,transform.position);
         Destroy(gameObject);
+        suckableobjectType = SuckableobjectType.firePin;
+        
+    }
+    private void Start()
+    {
     }
 }
 public enum SuckableobjectType
 {
-    bowlingBall,
-    normalPin,
-    firePin,
-    powerUp
+    bowlingBall=0,
+    normalPin=1,
+    firePin=2,
+    powerUp=3
 }

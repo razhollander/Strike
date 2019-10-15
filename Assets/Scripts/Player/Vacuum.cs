@@ -56,6 +56,7 @@ public class Vacuum : MonoBehaviour
     }
     protected void StartSelfRotation()
     {
+        print("StartSelfRotation");
         rotationTweener = transform.DORotate(new Vector3(0, 360, 0), 1, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
     void Update()
@@ -66,11 +67,12 @@ public class Vacuum : MonoBehaviour
             {
                 SuckableObject closestEnemy = CheckForClosestEnemy();
                 if (closestEnemy != null)
-                { 
+                {
                     StartSuckingEnemy(closestEnemy);
                 }
             }
         }
+        Debug.Log(rotationTweener.active);
     }
     private SuckableObject CheckForClosestEnemy()
     {
@@ -120,7 +122,7 @@ public class Vacuum : MonoBehaviour
                 {
                     lookatVec.Set(ObjectBeingSucked.transform.position.x, transform.position.y, ObjectBeingSucked.transform.position.z);
                     transform.LookAt(lookatVec, Vector3.up);
-                    if(enemyBeingSucked.CanBeSucked())
+                    if (enemyBeingSucked.CanBeSucked())
                         enemyBeingSucked.SetHealth(-suckingPower * Time.deltaTime);
                 }
                 else
@@ -167,10 +169,12 @@ public class Vacuum : MonoBehaviour
     }
     private void FinishPullingEnemy()
     {
+
         ObjectBeingSucked.Collected();
         headShake.Restart();
         headShake.Kill();
         DoSwallowFX();
+
     }
     private void DoSwallowFX()
     {
@@ -178,6 +182,7 @@ public class Vacuum : MonoBehaviour
         airParticals.SetActive(false);
         sparksParticles.Play();
         swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;
+        Debug.Log("Stop "+ swallowAnimationDuration);
         vacuumHead.DOPunchRotation((vacuumHead.right + vacuumHead.forward) * 10, swallowAnimationDuration).OnComplete(EndSwallowAnimation);
     }
     private void EndSwallowAnimation()
@@ -215,7 +220,7 @@ public class Vacuum : MonoBehaviour
         }
         return false;
     }
-    
+
     //public void VaccumButtonPressed()
     //{
     //    radiusCenter.gameObject.SetActive(true);

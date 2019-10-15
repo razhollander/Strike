@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2367794016340903677}
-  m_LocalRotation: {x: -0.4789476, y: -0.5202012, z: -0.52020115, w: 0.47894752}
+  m_LocalRotation: {x: -0.47894606, y: -0.5202025, z: -0.5202025, w: 0.47894606}
   m_LocalPosition: {x: 2.24, y: 1.63, z: -9.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7324731862992334636}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -94.729004}
 --- !u!54 &2367794016340903673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75,7 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f9fa693450ba44ea42744280502435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suckableType: 0
+  initialPoolSize: 10
+  suckableobjectType: 0
 --- !u!1001 &2367794015870190646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +144,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -94.729004
       objectReference: {fileID: 0}
+    - target: {fileID: -5178661895559278292, guid: 5ed29caea2919a241b2c27346b68019b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -581195821847472809, guid: ca0b5ba1aae8cea43970ba819a77920a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ed29caea2919a241b2c27346b68019b, type: 3}
 --- !u!4 &7324731862992334636 stripped

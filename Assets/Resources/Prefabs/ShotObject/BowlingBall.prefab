@@ -4849,7 +4849,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3573381353784998823}
-  m_Mesh: {fileID: 4711208715938537054, guid: 5ed29caea2919a241b2c27346b68019b, type: 3}
+  m_Mesh: {fileID: -581195821847472809, guid: ca0b5ba1aae8cea43970ba819a77920a, type: 3}
 --- !u!23 &3002745794949926779
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4965,7 +4965,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPoolSize: 5
   damage: 100
-  timeUntilDestroyed: 0.1
   destroyFX: {fileID: 123878412}
   myRenderer: {fileID: 3002745794949926779}
   myCollider: {fileID: 4807274288990265440}

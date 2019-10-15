@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Reflection;
+using System;
 public class Enemy : SuckableObject
 {
     [SerializeField]
@@ -10,17 +11,24 @@ public class Enemy : SuckableObject
     public SimpleHealthBar healthBar;
     private float maxHealth=100;
     private float HealthLimit = 100;
+    public int Numbder = 0;
     public bool CanBeSucked()
     {
         return canBeSucked;
     }
+
     void Awake()
     {
         maxHealth = health;
         HealthLimit = maxHealth;
-        //health = maxHealth; 
     }
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            SetHealth(0, false, true);
+        }
+    }
     public void SetHealth(float value, bool isRelative=true, bool isUpdateHealthLimit=false)
     {
         health = isRelative ? health + value : value;
@@ -34,7 +42,8 @@ public class Enemy : SuckableObject
     {
         SetHealth(maxHealth, false);
     }
-
- 
-
+    protected void SetCenterOfMass()
+    {
+        GetComponentInChildren<Rigidbody>().centerOfMass = Vector3.down;
+    }
 }

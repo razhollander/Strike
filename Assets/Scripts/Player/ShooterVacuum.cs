@@ -21,11 +21,9 @@ public class ShooterVacuum : Vacuum
     {
         if(ObjectBeingSucked != null && !isInPulling)
              StopSuckingEnemy();
-        else
-            rotationTweener.Kill();
+        rotationTweener.Kill();
         arrow.SetActive(true);
         Aim(aimDirection);
-
     }
     public void SetArrow(bool isActive)
     {
@@ -82,6 +80,7 @@ public class ShooterVacuum : Vacuum
     public void StopAiming()
     {
         arrow.SetActive(false);
+        if(!isInPulling)
         StartSelfRotation();
 
     }
