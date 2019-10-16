@@ -6,11 +6,12 @@ using DG.Tweening;
 
 public class ObjectShot : PooledMonobehaviour
 {
+    [Header ("ObjectShot")]
     [SerializeField] protected float damage;
     [SerializeField] private ParticleSystem destroyFX;
     [SerializeField] private Renderer myRenderer;
     [SerializeField] private Collider myCollider;
-    [SerializeField] private Rigidbody myRigidbody;
+    [SerializeField] protected Rigidbody myRigidbody;
     public float speed=10;
 
     protected delegate IEnumerator OnCollisionDelegate(Enemy enemy);

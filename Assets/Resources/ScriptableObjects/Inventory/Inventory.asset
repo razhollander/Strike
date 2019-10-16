@@ -15,3 +15,4 @@ MonoBehaviour:
   inventoryObjectList:
   - {fileID: 11400000, guid: 27f6e8517fced914b851488c0de665d9, type: 2}
   - {fileID: 11400000, guid: 4af98b68738ca0846a8bee8149ac92e7, type: 2}
+  - {fileID: 11400000, guid: 6266f332d32dacc43885386e2e99309a, type: 2}

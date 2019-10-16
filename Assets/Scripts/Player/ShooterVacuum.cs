@@ -16,7 +16,6 @@ public class ShooterVacuum : Vacuum
     float arrowDefaultHeight;
     RaycastHit rayhit;
     Tween shootTween;
-    // Start is called before the first frame update
     public void StartAiming(Vector2 aimDirection)
     {
         if(ObjectBeingSucked != null && !isInPulling)
@@ -84,5 +83,4 @@ public class ShooterVacuum : Vacuum
         StartSelfRotation();
 
     }
-    // Update is called once per frame
 }

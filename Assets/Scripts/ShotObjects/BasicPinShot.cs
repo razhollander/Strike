@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class BasicPinShot : ObjectShot
 {
-    Tween rotationTweener;
+    protected Tween rotationTweener;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,11 +19,13 @@ public class BasicPinShot : ObjectShot
     }
     protected void DoSelfRotate()
     {
+        rotationTweener.Kill();
         rotationTweener = transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
-    private IEnumerator PinCollisionFunc(Enemy enemy)
+    protected virtual IEnumerator PinCollisionFunc(Enemy enemy)
     {
         enemy.SetHealth(-damage, true, true);
+        rotationTweener.Kill();
         StartCoroutine(DestroySelf());
         yield return null;
     }

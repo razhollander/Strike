@@ -34,7 +34,7 @@ public class JoystickShoot : Joystick
             DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, slowTimeDuration);
         }
     }
-    private void LateUpdate()
+    private void Update()
     {
         if(isMouseHeld)
                   shooterVacuum.Aim(input);

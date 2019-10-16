@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     private GameObject player;
-    private Rigidbody rigidBody;
+    [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private float speed=1;
     // Start is called before the first frame update
     void Awake()
@@ -21,6 +21,6 @@ public class FollowPlayer : MonoBehaviour
     //}
     void Update()
     {
-        transform.position+= (player.transform.position - transform.position) * speed;
+        transform.position+= (player.transform.position - transform.position).normalized * speed*Time.deltaTime;
     }
 }
