@@ -23,9 +23,11 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator SummonEnemies()
     {
+        List<float> probabilities = new List<float> { 4, 10, 4 };
         while (true)
         {
-            GameObject go = Instantiate(sceneObjects[0]);
+            int index = RandomFromDistribution.RandomChoiceFollowingDistribution(probabilities);
+            GameObject go = Instantiate(sceneObjects[index]);
             float x = Random.Range(-maxDis, maxDis);
 
             if (x < 0 && x > -minDis)
