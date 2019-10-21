@@ -11,7 +11,7 @@ public class Enemy : SuckableObject
     public SimpleHealthBar healthBar;
     private float maxHealth=100;
     private float HealthLimit = 100;
-    public int Numbder = 0;
+    //public int Number = 0;
     public bool CanBeSucked()
     {
         return canBeSucked;

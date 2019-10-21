@@ -25,5 +25,6 @@ public enum SuckableobjectType
     bowlingBall=0,
     normalPin=1,
     firePin=2,
-    powerUp=3
+    electricPin = 3,
+    powerUp =4
 }
