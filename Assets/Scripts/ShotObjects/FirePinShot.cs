@@ -9,7 +9,6 @@ public class FirePinShot : BasicPinShot
     [SerializeField] private float explosionForce;
     [SerializeField] private float upForce;
 
-    //[SerializeField] private float explosionRadius;
 
     protected override IEnumerator PinCollisionFunc(Enemy enemy)
     {
@@ -21,16 +20,12 @@ public class FirePinShot : BasicPinShot
     private void Explode()
     {
         Vector3 explosionPos = transform.position;
-        //print("Explode");
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-        //List<Rigidbody> rigidBodies = new List<Rigidbody>();
         Rigidbody rb;
         foreach (Collider collider in colliders)
         {
-            //SuckableObject suckableObject = collider.transform.GetComponent<SuckableObject>()
             if (collider.transform.GetComponent<SuckableObject>() != null)
             {
-               // if()
                 rb = collider.transform.GetComponent<Rigidbody>();
                 if (rb != null)
                     rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius, upForce, ForceMode.Impulse);
@@ -41,7 +36,6 @@ public class FirePinShot : BasicPinShot
             }
 
         }
-        //myRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         StartCoroutine(DestroySelf());
 
     }

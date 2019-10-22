@@ -20,7 +20,7 @@ public class BasicPinShot : ObjectShot
     protected void DoSelfRotate()
     {
         rotationTweener.Kill();
-        rotationTweener = transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
+        rotationTweener = myRenderer.gameObject.transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.WorldAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
     protected virtual IEnumerator PinCollisionFunc(Enemy enemy)
     {

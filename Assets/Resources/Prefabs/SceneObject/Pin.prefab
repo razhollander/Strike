@@ -259,7 +259,6 @@ MonoBehaviour:
   canBeSucked: 1
   health: 100
   healthBar: {fileID: 1953021342}
-  Numbder: 0
 --- !u!114 &-7233009536556429776
 MonoBehaviour:
   m_ObjectHideFlags: 0

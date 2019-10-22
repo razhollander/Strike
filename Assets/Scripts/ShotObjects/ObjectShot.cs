@@ -6,18 +6,18 @@ using DG.Tweening;
 
 public class ObjectShot : PooledMonobehaviour
 {
-    [Header ("ObjectShot")]
+    [Header("ObjectShot")]
     [SerializeField] protected float damage;
     [SerializeField] private ParticleSystem destroyFX;
-    [SerializeField] private Renderer myRenderer;
+    [SerializeField] protected Renderer myRenderer;
     [SerializeField] private Collider myCollider;
     [SerializeField] protected Rigidbody myRigidbody;
-    public float speed=10;
+    public float speed = 10;
 
     protected delegate IEnumerator OnCollisionDelegate(Enemy enemy);
     protected OnCollisionDelegate onCollisionFunc;
     protected float scaleUpTime = 0.5f;
-    
+
     protected virtual void OnEnable()
     {
         SetComponents(true);
@@ -27,7 +27,9 @@ public class ObjectShot : PooledMonobehaviour
     {
         transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         transform.DOScale(1, scaleUpTime);
-        GetComponent<Rigidbody>().AddForce(new Vector3(direction.x, 0, direction.y) * speed, ForceMode.VelocityChange);
+        Vector3 dir = new Vector3(direction.x, 0, direction.y);
+        transform.LookAt(transform.position+ dir, Vector3.up);
+        GetComponent<Rigidbody>().AddForce(dir * speed, ForceMode.VelocityChange);
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -41,17 +43,18 @@ public class ObjectShot : PooledMonobehaviour
                 StartCoroutine(DestroySelf());
         }
     }
-    protected IEnumerator DestroySelf()
+    protected IEnumerator DestroySelf(float delay = 0)
     {
-        if(destroyFX!=null)
+        if (destroyFX != null)
         {
-            SetComponents(false);
+            delay = delay > destroyFX.main.duration ? delay : destroyFX.main.duration;
             destroyFX.Play();
-            yield return new WaitForSeconds(destroyFX.main.duration);
         }
+        SetComponents(false);
+        yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
     }
-    private void SetComponents(bool isEnabled)
+    protected virtual void SetComponents(bool isEnabled)
     {
         //Renderer[] rendererArr =  GetComponentsInChildren<Renderer>();
         //for (int i = 0; i < rendererArr.Length; i++)
@@ -64,6 +67,6 @@ public class ObjectShot : PooledMonobehaviour
     }
     private void Reset()
     {
-        
+
     }
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public float minDis, maxDis;
     public float waitForSummonSceonds = 3;
     public float forwardExtra = 1;
-    
+    [SerializeField] List<float> probabilities;
     // Start is called before the first frame update
     void Start()
     { 
@@ -19,11 +19,11 @@ public class GameManager : MonoBehaviour
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         StartCoroutine(SummonEnemies());
 
-        
+        //probabilities = new List<float> { 4, 10, 4 };
+
     }
     IEnumerator SummonEnemies()
     {
-        List<float> probabilities = new List<float> { 4, 10, 4 };
         while (true)
         {
             int index = RandomFromDistribution.RandomChoiceFollowingDistribution(probabilities);
