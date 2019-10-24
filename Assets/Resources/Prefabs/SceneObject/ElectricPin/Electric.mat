@@ -48,6 +48,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_1CBF482F_Texture:
+        m_Texture: {fileID: 2800000, guid: 1b4b64a685620fe44a040d8f65830d72, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_E5D539D2_Texture:
+        m_Texture: {fileID: 2800000, guid: fd9b48c5f209aaa498e3b32703894bb1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_F4B20030_Texture:
+        m_Texture: {fileID: 2800000, guid: bb9329ee95f2a3f4ea0e27960f5a1124, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_FB55A0D9_Texture:
+        m_Texture: {fileID: 2800000, guid: 942abe2b64eca714581dcef5a13248f5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -70,6 +86,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _ParalexOffset: -0.05
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -81,9 +98,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_68E79879: {r: 1.3503854, g: 0.27073258, b: 1.723664, a: 1}
+    - Vector2_428DA44B: {r: 0, g: -0.05, b: 0, a: 0}
     - Vector2_8F8A01ED: {r: 0, g: 0.02, b: 0, a: 0}
     - Vector2_C15CB343: {r: 1, g: 1, b: 1, a: 1}
     - Vector2_D55D595E: {r: 0.2, g: 0.2, b: 0.2, a: 0.2}
+    - Vector3_801AB30C: {r: 0, g: -0.05, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

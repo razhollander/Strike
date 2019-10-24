@@ -43,7 +43,7 @@ public class ObjectShot : PooledMonobehaviour
                 StartCoroutine(DestroySelf());
         }
     }
-    protected IEnumerator DestroySelf(float delay = 0)
+    protected virtual IEnumerator DestroySelf(float delay = 0)
     {
         if (destroyFX != null)
         {
@@ -56,17 +56,9 @@ public class ObjectShot : PooledMonobehaviour
     }
     protected virtual void SetComponents(bool isEnabled)
     {
-        //Renderer[] rendererArr =  GetComponentsInChildren<Renderer>();
-        //for (int i = 0; i < rendererArr.Length; i++)
-        //{
-        //    rendererArr[i].enabled = isEnabled;
-        //}
         myRenderer.enabled = isEnabled;
         myCollider.enabled = isEnabled;
         myRigidbody.isKinematic = !isEnabled;
     }
-    private void Reset()
-    {
 
-    }
 }

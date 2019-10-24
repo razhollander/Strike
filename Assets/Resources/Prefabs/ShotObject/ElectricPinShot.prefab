@@ -4947,7 +4947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 10
-  damage: 50
+  damage: 60
   destroyFX: {fileID: 4712613108501043382}
   myRenderer: {fileID: 4360058706657132940}
   myCollider: {fileID: 4030376307724046135}
@@ -4957,7 +4957,7 @@ MonoBehaviour:
   electricStrike: {fileID: 4662284925714804199, guid: 79668434014b91e40aee33730e87df56,
     type: 3}
   trail: {fileID: 6570496492820658292}
-  EffectDuration: 0.5
+  damageSubtracted: 0.85
 --- !u!1 &6570496492820658292
 GameObject:
   m_ObjectHideFlags: 0
