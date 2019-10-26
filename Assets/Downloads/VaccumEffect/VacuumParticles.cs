@@ -32,7 +32,7 @@ public class VacuumParticles : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
+	void Update () {
         if (shapeZ != shape.position.z || shapeRad != shape.radius) {
             shape.position = Vector3.forward * shapeZ;
             shape.radius = shapeRad;

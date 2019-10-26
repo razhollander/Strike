@@ -27,7 +27,6 @@ public class Vacuum : MonoBehaviour
     protected bool isInPulling = false;
     public bool vaccumButtonPressed { get; set; }
     float swallowAnimationDuration = 0.25f;
-
     private void Awake()
     {
         // vacuumPointV2= new Vector2(vacuumPoint.position.x, vacuumPoint.position.z);
@@ -43,7 +42,6 @@ public class Vacuum : MonoBehaviour
         entryUp.eventID = EventTriggerType.PointerUp;
         entryUp.callback.AddListener((data) => { OnButtonUp(); });
         trigger.triggers.Add(entryUp);
-
         StartSelfRotation();
     }
     private void OnButtonDown()
@@ -186,9 +184,9 @@ public class Vacuum : MonoBehaviour
     {
         isInPulling = false;
         sparksParticles.Stop();
-        Reset();
+        ResetParameters();
     }
-    private void Reset()
+    private void ResetParameters()
     {
         shakeTweener.Restart();
         shakeTweener.Kill();
@@ -205,7 +203,7 @@ public class Vacuum : MonoBehaviour
         Enemy enemyBeingSucked = (Enemy)ObjectBeingSucked;
         enemyBeingSucked.ResetHealth();
         StopCoroutine(suckCoroutine);
-        Reset();
+        ResetParameters();
     }
     private bool IsEnemyInRadius(SuckableObject enemy, out float sqrMagnitudeDistance)
     {
