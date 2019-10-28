@@ -111,7 +111,7 @@ public class Vacuum : MonoBehaviour
         if (ObjectBeingSucked is Enemy)
         {
             Enemy enemyBeingSucked = (Enemy)ObjectBeingSucked;
-            while (enemyBeingSucked.health > 0)
+            while (enemyBeingSucked.Health > 0)
             {
                 radiusCenterV2.Set(radiusCenter.position.x, radiusCenter.position.z);
                 if (vaccumButtonPressed && IsEnemyInRadius(ObjectBeingSucked, out tempDistance))

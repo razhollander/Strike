@@ -58,7 +58,7 @@ public class ElectricPinShot : BasicPinShot
                         if (enemiesAlreadyHitList.Find(x => x == enemyInRadius) == null)
                         {
                             ElectricStrike currElectricStrike = electricStrike.Get<ElectricStrike>(true);
-                            ParticleSystem lightningParticle = currElectricStrike.lightningParticle;
+                            ParticleSystem lightningParticle = currElectricStrike.particle;
                             //electricStrikeParticlesList.Add(lightningParticle);
                             Vector3 enemyInRadiusPos = enemyInRadius.transform.position;
                             currElectricStrike.transform.position = currEnemyPos;

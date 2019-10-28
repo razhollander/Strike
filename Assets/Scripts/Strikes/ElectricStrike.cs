@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricStrike : PooledMonobehaviour
+public class ElectricStrike : BasicParticleStrike
 {
-    public ParticleSystem lightningParticle;
-    [SerializeField] private float duration;
-
-    private void OnEnable()
+    protected override float TimeToBeDestroyed
     {
-        StartCoroutine(DisableThis());
-    }
-    private IEnumerator DisableThis()
-    {
-        yield return null;
-        yield return new WaitForSeconds(lightningParticle.main.startLifetime.constantMax/ lightningParticle.main.simulationSpeed+ lightningParticle.main.startDelay.constant);
-        lightningParticle.Stop();
-        var main = lightningParticle.main;
-        main.startDelay = 0;
-        gameObject.SetActive(false);
+        get
+        {
+            return particle.main.startLifetime.constantMax / particle.main.simulationSpeed + particle.main.startDelay.constant;
+        }
     }
 
-}   
+
+}

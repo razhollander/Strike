@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject enemiesParent;
     public static GameManager instance;
-    public List<GameObject> sceneObjects;
+    public List<SuckableObject> sceneObjects;
     public GameObject player;
     public float minDis, maxDis;
     public float waitForSummonSceonds = 3;
@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             int index = RandomFromDistribution.RandomChoiceFollowingDistribution(probabilities);
-            GameObject go = Instantiate(sceneObjects[index]);
+            GameObject go;
+            go = sceneObjects[index].Duplicate().gameObject;
             float x = Random.Range(-maxDis, maxDis);
 
             if (x < 0 && x > -minDis)
@@ -37,15 +38,19 @@ public class GameManager : MonoBehaviour
                 x = minDis;
 
             Vector3 vec = player.transform.right * x;
-            vec += MeshHandler.GetMeshHeight(go)/2 * Vector3.up;
-            go.transform.position =player.transform.forward* forwardExtra + vec + player.transform.position;
+            vec += MeshHandler.GetMeshHeight(go) / 2 * Vector3.up;
+            go.transform.position = player.transform.forward * forwardExtra + vec + player.transform.position;
             go.transform.SetParent(enemiesParent.transform);
             yield return new WaitForSeconds(waitForSummonSceonds);
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
 
+    //}
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

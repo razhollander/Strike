@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4123940414940039545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059806395081394903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1059806396190394005
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,18 +111,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4123940414940039545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059806395081394903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3801281400593979513
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,11 +199,11 @@ GameObject:
   m_Component:
   - component: {fileID: 951997158543898833}
   - component: {fileID: 2901526785762248631}
-  - component: {fileID: 8985540234292083573}
   - component: {fileID: 1525031885087836817}
   - component: {fileID: 6108813454403500167}
   - component: {fileID: 1059806395368114833}
   - component: {fileID: 3520471330072737884}
+  - component: {fileID: -1333460337638321598}
   m_Layer: 9
   m_Name: ElectricPin
   m_TagString: Untagged
@@ -243,23 +243,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8985540234292083573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6383348922328753371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8d5201af5ff3dd42a235fe9363beb53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialPoolSize: 10
-  suckableobjectType: 3
-  canBeSucked: 1
-  health: 150
-  healthBar: {fileID: 1059806395075672383}
 --- !u!114 &1525031885087836817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +293,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 8583559191739154550, guid: 693e765323804aa46a6814d74e2c2d28, type: 3}
+--- !u!114 &-1333460337638321598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383348922328753371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124e5fc191dea504fbfc65d4d042d368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPoolSize: 10
+  suckableobjectType: 3
+  canBeSucked: 1
+  health: 150
+  healthBar: {fileID: 5283024183978813726}
+  maxHealth: 150
 --- !u!1001 &1059806395081318041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -515,9 +516,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1059806395081318041}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1059806395075672383 stripped
+--- !u!114 &5283024183978813726 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91,
+  m_CorrespondingSourceObject: {fileID: 5180303731695597447, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 1059806395081318041}
   m_PrefabAsset: {fileID: 0}

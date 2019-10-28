@@ -6,19 +6,32 @@ public class SuckableObject: PooledMonobehaviour
 {
     [SerializeField]
     protected SuckableobjectType suckableobjectType;
-    public static int age = 0;
     [System.NonSerialized] public bool isBeingSucked = false;
+    private Vector3 BeginLocalScale;
     public void Collected()
     {
 
         InventoryUI.instance.StartAddEffect(suckableobjectType,transform.position);
-        Destroy(gameObject);
-        suckableobjectType = SuckableobjectType.firePin;
+        gameObject.SetActive(false);
+        isBeingSucked = false;
         
     }
-    private void Start()
+    private void Awake()
     {
+        BeginLocalScale = transform.localScale;
     }
+    protected virtual void OnEnable()
+    {
+        transform.localScale = BeginLocalScale;
+        transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+    }
+    public virtual SuckableObject Duplicate()
+    {
+        return this.Get<SuckableObject>();
+    }
+
 }
 public enum SuckableobjectType
 {

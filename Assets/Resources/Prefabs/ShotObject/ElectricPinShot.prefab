@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2825625745105515727}
   - component: {fileID: 4712613108501043382}
   - component: {fileID: 5383063315375390213}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: DestroyFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4886,7 +4886,7 @@ GameObject:
   - component: {fileID: 7271904049534298684}
   - component: {fileID: 1758770492892534028}
   - component: {fileID: 5738178836867507735}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ElectricPinShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4946,7 +4946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8821f6ccb2a01aa4b893bdb80c162f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPoolSize: 10
+  initialPoolSize: 2
   damage: 60
   destroyFX: {fileID: 4712613108501043382}
   myRenderer: {fileID: 4360058706657132940}
@@ -4954,7 +4954,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 7271904049534298684}
   speed: 15
   electricRadius: 7
-  electricStrike: {fileID: 4662284925714804199, guid: 79668434014b91e40aee33730e87df56,
+  electricStrike: {fileID: 2958363731298327361, guid: 79668434014b91e40aee33730e87df56,
     type: 3}
   trail: {fileID: 6570496492820658292}
   damageSubtracted: 0.85
@@ -4969,7 +4969,7 @@ GameObject:
   - component: {fileID: 6573846577935095428}
   - component: {fileID: 6478771013344968364}
   - component: {fileID: 6480189765411271814}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: ElectricityTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9784,7 +9784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1803149099014965732}
   - component: {fileID: 4030376307724046135}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9830,7 +9830,7 @@ GameObject:
   - component: {fileID: 3300701038035020280}
   - component: {fileID: 8376276653147384238}
   - component: {fileID: 4360058706657132940}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

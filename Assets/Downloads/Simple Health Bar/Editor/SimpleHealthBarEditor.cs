@@ -15,9 +15,9 @@ public class SimpleHealthBarEditor : Editor
 	AnimBool ImageAssigned, ImageUnassigned;
 	AnimBool ImageFilledWarning;
 	SerializedProperty barImage;
-
-	// ----->>> COLOR //
-	AnimBool ImageColorWarning;
+    SerializedProperty barImageBG;
+    // ----->>> COLOR //
+    AnimBool ImageColorWarning;
 	SerializedProperty colorMode, barColor, barGradient;
 
 	// ----->>> TEXT //
@@ -124,7 +124,9 @@ public class SimpleHealthBarEditor : Editor
 		// ----- < BAR IMAGE > ----- //
 		EditorGUI.BeginChangeCheck();
 		EditorGUILayout.PropertyField( barImage, new GUIContent( "Bar Image", "The image component to be used for this bar." ) );
-		if( EditorGUI.EndChangeCheck() )
+        EditorGUILayout.PropertyField(barImageBG, new GUIContent("Bar Image BackGround", "The BackGround image component to be used for this bar."));
+
+        if ( EditorGUI.EndChangeCheck() )
 		{
 			serializedObject.ApplyModifiedProperties();
 			if( targ.barImage != null && targ.barImage.type != Image.Type.Filled )
@@ -337,8 +339,7 @@ public class SimpleHealthBarEditor : Editor
 					targ.barImage.enabled = false;
 					targ.UpdateBar( testValue, 100.0f );
 					targ.barImage.enabled = true;
-
-					EditorUtility.SetDirty( targ.barImage );
+                    EditorUtility.SetDirty( targ.barImage );
 				}
 			}
 			// ----- < END TEST VALUE > ----- //
@@ -358,9 +359,10 @@ public class SimpleHealthBarEditor : Editor
 		ImageUnassigned = new AnimBool( GetImageUnassigned() );
 		ImageFilledWarning = new AnimBool( GetBarImageWarning() );
 		barImage = serializedObject.FindProperty( "barImage" );
+        barImageBG = serializedObject.FindProperty("barImageBG");
 
-		// ----->>> COLOR //
-		ImageColorWarning = new AnimBool( GetColorWarning() );
+        // ----->>> COLOR //
+        ImageColorWarning = new AnimBool( GetColorWarning() );
 		colorMode = serializedObject.FindProperty( "colorMode" );
 		barColor = serializedObject.FindProperty( "barColor" );
 		barGradient = serializedObject.FindProperty( "barGradient" );

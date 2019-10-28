@@ -2,14 +2,17 @@
 /* SimpleHealthBar.cs */
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 [ExecuteInEditMode]
 [AddComponentMenu( "UI/Simple Health Bar/Simple Health Bar" )]
 public class SimpleHealthBar : MonoBehaviour
 {	
 	// COLOR OPTIONS //
 	public Image barImage;
-	public enum ColorMode
+    public Image barImageBG;
+    public float lerpTime=0.2f;
+    Tween lerpBG;
+    public enum ColorMode
 	{
 		Single,
 		Gradient
@@ -127,7 +130,8 @@ public class SimpleHealthBar : MonoBehaviour
 
 		// Then just apply the target fill amount.
 		barImage.fillAmount = targetFill;
-
+        lerpBG.Kill();
+        lerpBG = DOTween.To(() => barImageBG.fillAmount, x => barImageBG.fillAmount = x, targetFill, lerpTime);
 		// Call the functions for the options.
 		UpdateOptions();
 	}

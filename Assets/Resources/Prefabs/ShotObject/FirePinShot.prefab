@@ -9452,7 +9452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 633033903485527192}
   - component: {fileID: 4643206830402451007}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9498,7 +9498,7 @@ GameObject:
   - component: {fileID: 3233784595390979046}
   - component: {fileID: 3233784595390979040}
   - component: {fileID: 3233784595390979041}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9576,7 +9576,7 @@ GameObject:
   - component: {fileID: 3657609424188480661}
   - component: {fileID: 5638759766644433829}
   - component: {fileID: 2779831481994683840}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePinShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

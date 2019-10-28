@@ -9,20 +9,26 @@ public class Enemy : SuckableObject
 {
     [SerializeField]
     private bool canBeSucked = true;
-    public float health;
+    public float maxHealth;
+    protected float health;
     public SimpleHealthBar healthBar;
-    private float maxHealth = 100;
-    private float HealthLimit = 100;
+    private float HealthLimit;
+    
     //public int Number = 0;
     public bool CanBeSucked()
     {
         return canBeSucked;
     }
-
-    void Awake()
+    public float Health
     {
-        maxHealth = health;
+        get { return health; }
+    }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        health = maxHealth;
         HealthLimit = maxHealth;
+        SetHealth(maxHealth);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -54,5 +60,10 @@ public class Enemy : SuckableObject
     protected void SetCenterOfMass()
     {
         GetComponentInChildren<Rigidbody>().centerOfMass = Vector3.down;
+    }
+
+    public override SuckableObject Duplicate()
+    {
+        return this.Get<Enemy>();
     }
 }

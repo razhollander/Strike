@@ -47,7 +47,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4818,7 +4818,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -19068,11 +19068,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5712586507535275926}
   - component: {fileID: 7653102630084225264}
-  - component: {fileID: 4522192686950732850}
   - component: {fileID: 6294628328102618582}
   - component: {fileID: 1637021144919578560}
   - component: {fileID: 5531602572877391318}
   - component: {fileID: 8262479636383553307}
+  - component: {fileID: 952234884823912838}
   m_Layer: 9
   m_Name: IcePin
   m_TagString: Untagged
@@ -19112,23 +19112,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4522192686950732850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938576920105175964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8d5201af5ff3dd42a235fe9363beb53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialPoolSize: 10
-  suckableobjectType: 4
-  canBeSucked: 1
-  health: 150
-  healthBar: {fileID: 5531602572043409016}
 --- !u!114 &6294628328102618582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19179,6 +19162,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 8583559191739154550, guid: 693e765323804aa46a6814d74e2c2d28, type: 3}
+--- !u!114 &952234884823912838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938576920105175964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ed848bb720aea44bde30fcec6f0744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPoolSize: 10
+  suckableobjectType: 4
+  canBeSucked: 1
+  maxHealth: 150
+  healthBar: {fileID: 801660487933494873}
 --- !u!1 &5531602571014793682
 GameObject:
   m_ObjectHideFlags: 0
@@ -19573,9 +19573,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5531602572053754334}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5531602572043409016 stripped
+--- !u!114 &801660487933494873 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91,
+  m_CorrespondingSourceObject: {fileID: 5180303731695597447, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 5531602572053754334}
   m_PrefabAsset: {fileID: 0}

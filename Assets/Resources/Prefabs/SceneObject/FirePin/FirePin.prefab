@@ -50,7 +50,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4907,7 +4907,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4965,7 +4965,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -14404,11 +14404,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2403759829486359643}
   - component: {fileID: 299975043619760957}
-  - component: {fileID: 5827376130183026687}
   - component: {fileID: 4127534627430458907}
   - component: {fileID: 8695096230235804685}
   - component: {fileID: 2510970949147911707}
   - component: {fileID: 2069061594678908118}
+  - component: {fileID: -538705331832918242}
   m_Layer: 9
   m_Name: FirePin
   m_TagString: Untagged
@@ -14448,24 +14448,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5827376130183026687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8429547238079121489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8d5201af5ff3dd42a235fe9363beb53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialPoolSize: 10
-  suckableobjectType: 2
-  canBeSucked: 1
-  health: 200
-  healthBar: {fileID: 2510970949981951413}
-  Numbder: 0
 --- !u!114 &4127534627430458907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14516,6 +14498,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 8583559191739154550, guid: 693e765323804aa46a6814d74e2c2d28, type: 3}
+--- !u!114 &-538705331832918242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8429547238079121489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13c0597849106f47accbbe07e29b565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPoolSize: 10
+  suckableobjectType: 2
+  canBeSucked: 1
+  maxHealth: 200
+  healthBar: {fileID: 7294951831431087508}
 --- !u!1 &8549252032702117763
 GameObject:
   m_ObjectHideFlags: 0
@@ -14621,7 +14620,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -19353,6 +19352,14 @@ PrefabInstance:
       propertyPath: barGradient.m_NumColorKeys
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11467028, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: m_Color.b
+      value: 0.02520442
+      objectReference: {fileID: 0}
+    - target: {fileID: 198710, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 22486214, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19437,14 +19444,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 11467028, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: m_Color.b
-      value: 0.02520442
-      objectReference: {fileID: 0}
-    - target: {fileID: 198710, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 11459380, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
       propertyPath: m_Color.r
       value: 0.9962081
@@ -19483,9 +19482,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2510970949970539027}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2510970949981951413 stripped
+--- !u!114 &7294951831431087508 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91,
+  m_CorrespondingSourceObject: {fileID: 5180303731695597447, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 2510970949970539027}
   m_PrefabAsset: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7796122991104491376}
   - component: {fileID: 1918046104696842495}
   - component: {fileID: 8841950137628457108}
-  - component: {fileID: 4662284925714804199}
+  - component: {fileID: 2958363731298327361}
   m_Layer: 0
   m_Name: ElectricStrike
   m_TagString: Untagged
@@ -4874,7 +4874,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &4662284925714804199
+--- !u!114 &2958363731298327361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4887,5 +4887,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 30
-  lightningParticle: {fileID: 1918046104696842495}
-  duration: 1
+  particle: {fileID: 1918046104696842495}

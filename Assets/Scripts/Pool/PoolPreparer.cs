@@ -11,7 +11,7 @@ public class PoolPreparer : MonoBehaviour
     //[SerializeField]
     //private int initialPoolSize = 100;
 
-    private void Awake()
+    private void Start()
     {
         foreach (var prefab in prefabs)
         {
