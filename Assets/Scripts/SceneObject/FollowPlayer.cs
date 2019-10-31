@@ -6,8 +6,9 @@ public class FollowPlayer : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] private Rigidbody rigidBody;
-    [SerializeField] private float speed=1;
+    [SerializeField] private float speed = 1;
     Vector3 playerPos;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,7 +28,7 @@ public class FollowPlayer : MonoBehaviour
     //}
     void Update()
     {
-        transform.position+= (player.transform.position - transform.position).normalized * speed*Time.deltaTime;
+        transform.position += (player.transform.position - transform.position).normalized * speed * Time.deltaTime;
         playerPos.Set(player.transform.position.x, transform.position.y, player.transform.position.z);
     }
 }

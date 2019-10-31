@@ -245,7 +245,7 @@ MonoBehaviour:
   initialPoolSize: 10
   suckableobjectType: 1
   canBeSucked: 1
-  health: 100
+  maxHealth: 100
   healthBar: {fileID: 5875452044582598617}
 --- !u!114 &-7233009536556429776
 MonoBehaviour:
