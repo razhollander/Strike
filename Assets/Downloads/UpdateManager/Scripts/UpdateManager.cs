@@ -16,9 +16,11 @@
 public class UpdateManager : MonoBehaviour
 {
 	private static UpdateManager instance;
-
+    [SerializeField]
 	private int regularUpdateArrayCount = 0;
+    [SerializeField]
 	private int fixedUpdateArrayCount = 0;
+    [SerializeField]
 	private int lateUpdateArrayCount = 0;
 	private OverridableMonoBehaviour[] regularArray = new OverridableMonoBehaviour[0];
 	private OverridableMonoBehaviour[] fixedArray = new OverridableMonoBehaviour[0];

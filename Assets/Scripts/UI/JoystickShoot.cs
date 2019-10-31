@@ -15,8 +15,9 @@ public class JoystickShoot : Joystick
     bool isMouseHeld = false;
     public float slowTimeDuration = 0.5f;
     public float handlerRadiusToShoot = 1;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         instance = this;
         volume = Camera.main.GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings<Vignette>(out vignette);
@@ -34,7 +35,7 @@ public class JoystickShoot : Joystick
             DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, slowTimeDuration);
         }
     }
-    private void Update()
+    public override void UpdateMe()
     {
         if(isMouseHeld)
                   shooterVacuum.Aim(input);

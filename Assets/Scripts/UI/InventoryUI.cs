@@ -14,7 +14,6 @@ public class InventoryUI : MonoBehaviour
 
     private static List<InventoryObjectUI> inventoryObjectUIList;
     public static InventoryUI instance;
-    // Start is called before the first frame update
     void Awake()
     {
         instance = this;
@@ -65,11 +64,6 @@ public class InventoryUI : MonoBehaviour
     {
 
     }
-    // Update is called once per frame
-    //void ButtonClicked(SuckableobjectType suckableObjectType)
-    //{
-
-    //}
     public static InventoryObjectUI GetInventoryObjectUI(SuckableobjectType suckableobjectType)
     {
         return inventoryObjectUIList.Find(x => x.inventoryObject.suckableObjectType == suckableobjectType);

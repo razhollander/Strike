@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleSystemVacuum : MonoBehaviour
+public class ParticleSystemVacuum : OverridableMonoBehaviour
 {
     ParticleSystem[] particleSystems;
 
@@ -27,7 +27,7 @@ public class ParticleSystemVacuum : MonoBehaviour
         for (int i = 0; i < simulationTimes.Length; i++) { simulationTimes[i] = 0.0f; }
         particleSystems[0].Simulate(startTime, true, false, true);
     }
-    void Update()
+    public override void UpdateMe()
     {
         particleSystems[0].Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); for (int i = particleSystems.Length - 1; i >= 0; i--)
         {

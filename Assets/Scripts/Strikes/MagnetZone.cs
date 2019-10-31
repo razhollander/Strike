@@ -6,7 +6,6 @@ public class MagnetZone : MonoBehaviour
 {
     [SerializeField] float radius;
     [SerializeField] float power;
-    // Start is called before the first frame update
     void Start()
     {
         

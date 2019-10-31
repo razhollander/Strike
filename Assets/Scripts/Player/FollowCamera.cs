@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowCamera : MonoBehaviour
+public class FollowCamera : OverridableMonoBehaviour
 {
     [SerializeField] Transform target;
 
@@ -13,8 +13,7 @@ public class FollowCamera : MonoBehaviour
     [Range(0, 10)]
     [SerializeField] float lerpPositionMultiplier = 1f;
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public override void FixedUpdateMe()
     {
         Vector3 tPos = target.position + offset+target.forward*rotationOffset;
         transform.position = Vector3.Lerp(transform.position, tPos, Time.fixedDeltaTime * lerpPositionMultiplier);

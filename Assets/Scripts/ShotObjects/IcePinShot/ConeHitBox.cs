@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConeHitBox : MonoBehaviour
+public class ConeHitBox : OverridableMonoBehaviour
 {
     IcePinShot icePinShot;
     List<Enemy> enemies;
     static Vector3 beginScale;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         beginScale = transform.localScale;
     }
     private void OnEnable()
     {
         enemies = new List<Enemy>();
     }
-    private void Update()
+    public override void UpdateMe()
     {
         transform.localScale = beginScale * 1 / transform.parent.localScale.x;
     }

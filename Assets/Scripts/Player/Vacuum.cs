@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
-public class Vacuum : MonoBehaviour
+public class Vacuum : OverridableMonoBehaviour
 {
     [SerializeField] GameObject airParticals;
     [SerializeField] protected Transform vacuumPoint;
@@ -27,8 +27,9 @@ public class Vacuum : MonoBehaviour
     protected bool isInPulling = false;
     public bool vaccumButtonPressed { get; set; }
     float swallowAnimationDuration = 0.25f;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // vacuumPointV2= new Vector2(vacuumPoint.position.x, vacuumPoint.position.z);
         radiusCenterV2 = new Vector2(radiusCenter.position.x, radiusCenter.position.z);
         EventTrigger trigger = vacuumButton.GetComponent<EventTrigger>();
@@ -57,7 +58,7 @@ public class Vacuum : MonoBehaviour
         rotationTweener.Kill();
         rotationTweener = transform.DORotate(new Vector3(0, 360, 0), 1, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
-    void Update()
+    public override void UpdateMe()
     {
         if (!isInPulling && vaccumButtonPressed)
         {

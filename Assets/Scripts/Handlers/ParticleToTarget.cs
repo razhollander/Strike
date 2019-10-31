@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParticleToTarget : MonoBehaviour
+public class ParticleToTarget : OverridableMonoBehaviour
 {
     public Transform Target;
     public float speed = 1;
@@ -11,8 +11,9 @@ public class ParticleToTarget : MonoBehaviour
 
     int count;
 
-    void Start()
+    protected override void Awake()
     {
+        base.Awake();
         if (system == null)
             system = GetComponent<ParticleSystem>();
 
@@ -23,7 +24,7 @@ public class ParticleToTarget : MonoBehaviour
 
     }
 
-    void Update()
+    public override void UpdateMe()
     {
 
         count = system.GetParticles(particles);

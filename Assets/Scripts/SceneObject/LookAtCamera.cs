@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookAtCamera : MonoBehaviour
+public class LookAtCamera : OverridableMonoBehaviour
 {
 
-    // Update is called once per frame
-    void LateUpdate()
+    public override void LateUpdateMe()
     {
         transform.LookAt(Camera.main.transform);
     }

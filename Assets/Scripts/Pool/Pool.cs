@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Pool : MonoBehaviour
+public class Pool : OverridableMonoBehaviour
 {
     private static Dictionary<PooledMonobehaviour, Pool> pools = new Dictionary<PooledMonobehaviour, Pool>();
 
@@ -48,7 +48,7 @@ public class Pool : MonoBehaviour
         }
     }
 
-    private void Update()
+    public override void UpdateMe()
     {
         MakeDisabledObjectsChildren();
     }

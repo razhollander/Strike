@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public float waitForSummonSceonds = 3;
     public float forwardExtra = 1;
     [SerializeField] List<float> probabilities;
-    // Start is called before the first frame update
     void Start()
     { 
         instance = this;
@@ -44,11 +43,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(waitForSummonSceonds);
         }
     }
-    //// Update is called once per frame
-    //void Update()
-    //{
 
-    //}
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

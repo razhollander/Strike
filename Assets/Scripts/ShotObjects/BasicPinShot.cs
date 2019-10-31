@@ -7,7 +7,6 @@ public class BasicPinShot : ObjectShot
 {
     protected Tween rotationTweener;
 
-    // Start is called before the first frame update
     void Awake()
     {
         onCollisionFunc = PinCollisionFunc;

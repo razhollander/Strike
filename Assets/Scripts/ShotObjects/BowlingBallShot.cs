@@ -8,7 +8,6 @@ public class BowlingBallShot : ObjectShot
     Tween rotationTweener;
     [SerializeField] private int EnemyHit = 3;
     private List<GameObject> enemiesHit;
-    // Start is called before the first frame update
     void Awake()
     {
         onCollisionFunc = BowlingBallCollisionFunc;
