@@ -10,6 +10,6 @@ public class InventoryObject : ScriptableObject
     public int count = 0;
     public Sprite sprite;
     public ArrowObject arrowObject;
-
+    public int score;
 
 }

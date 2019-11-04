@@ -18,3 +18,4 @@ MonoBehaviour:
   count: 0
   sprite: {fileID: 21300000, guid: 4357153077d7db848b297a112c45a788, type: 3}
   arrowObject: {fileID: 11400000, guid: 9f84633e211c3794b8c68dcde5c3589c, type: 2}
+  score: 10

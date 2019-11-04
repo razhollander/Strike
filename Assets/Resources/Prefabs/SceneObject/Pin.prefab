@@ -99,6 +99,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2611234596422577360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616209857393284112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateWhenDisabled: 0
 --- !u!1 &4212533638059826392
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +257,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPoolSize: 10
   suckableobjectType: 1
+  scoreValue: 0
   canBeSucked: 1
+  followPlayer: {fileID: -7233009536556429776}
   maxHealth: 100
   healthBar: {fileID: 5875452044582598617}
 --- !u!114 &-7233009536556429776
@@ -259,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba10dc40e1026844d95bf8f6404e472a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateWhenDisabled: 0
   rigidBody: {fileID: 0}
   speed: 1
 --- !u!33 &6517813901476527142
@@ -394,6 +410,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+--- !u!1 &1616209857393284112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 119886, guid: 34017cf12560c804bb2f669f00c7af91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1616209857393229918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1616209857407327384 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22486214, guid: 34017cf12560c804bb2f669f00c7af91,

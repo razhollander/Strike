@@ -3,14 +3,17 @@
 public class OverridableMonoBehaviour : MonoBehaviour
 {
 	[SerializeField]
-	protected bool updateWhenDisabled = true;
+	protected bool updateWhenDisabled = false;
 	public bool UpdateWhenDisabled { get { return updateWhenDisabled; } }
 
 	protected virtual void Awake()
 	{
 		UpdateManager.AddItem(this);
 	}
-
+    //protected virtual void OnDisable()
+    //{
+    //    updateWhenDisabled = false;
+    //}
 	/// <summary>
 	/// If your class uses the Awake function, please use  protected override void Awake() instead.
 	/// Also don't forget to call OverridableMonoBehaviour.Awake(); first.

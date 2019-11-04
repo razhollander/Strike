@@ -2,24 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
+
 public class GameManager : MonoBehaviour
 {
-    public GameObject enemiesParent;
+    [SerializeField] private GameObject enemiesParent;
     public static GameManager instance;
-    public List<SuckableObject> sceneObjects;
-    public GameObject player;
-    public float minDis, maxDis;
-    public float waitForSummonSceonds = 3;
-    public float forwardExtra = 1;
+    [SerializeField] private List<SuckableObject> sceneObjects;
     [SerializeField] List<float> probabilities;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float minDis, maxDis;
+    [SerializeField] private float waitForSummonSceonds = 3;
+    [SerializeField] private float forwardExtra = 1;
+    [SerializeField] Text scoreText;
+    [SerializeField] float speed;
+
+    private int score;
+    
+    
     void Start()
     { 
         instance = this;
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         StartCoroutine(SummonEnemies());
-
-        //probabilities = new List<float> { 4, 10, 4 };
-
     }
     IEnumerator SummonEnemies()
     {
@@ -47,5 +53,36 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void AddScore(int addedScore)
+    {
+        StartCoroutine(AddScoreCoroutine(addedScore));
+       
+    }
+    private void UpdateScore(int addedScore)
+    {
+        score += addedScore;
+        scoreText.text = "Score: " + score;
+    }
+    private IEnumerator AddScoreCoroutine(int score)
+    {
+        // float timePerAdd = scoreAnimationTime / (float)score;
+        int scoreToAddThisFrame;
+        int scoreLeftToAdd = score;
+        while (scoreLeftToAdd != 0)
+        { 
+            scoreToAddThisFrame = Mathf.CeilToInt(Time.deltaTime * score * speed);
+            if (scoreToAddThisFrame < scoreLeftToAdd)
+            {
+                UpdateScore(scoreToAddThisFrame);
+                scoreLeftToAdd -= scoreToAddThisFrame;
+            }
+            else
+            {
+                UpdateScore(scoreLeftToAdd);
+                scoreLeftToAdd -= scoreLeftToAdd;
+            }
+            yield return null;
+        }
     }
 }

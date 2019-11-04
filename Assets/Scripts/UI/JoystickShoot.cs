@@ -22,6 +22,10 @@ public class JoystickShoot : Joystick
         volume = Camera.main.GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings<Vignette>(out vignette);
     }
+    float try1(float x)
+    {
+        return slowTimeDuration = x;
+    }
     private void SetSlowMotion(bool active)
     {
         if (active)

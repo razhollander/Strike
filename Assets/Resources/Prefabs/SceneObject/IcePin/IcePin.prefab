@@ -19068,10 +19068,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5712586507535275926}
   - component: {fileID: 7653102630084225264}
-  - component: {fileID: 6294628328102618582}
   - component: {fileID: 1637021144919578560}
   - component: {fileID: 5531602572877391318}
   - component: {fileID: 8262479636383553307}
+  - component: {fileID: 6294628328102618582}
   - component: {fileID: 952234884823912838}
   m_Layer: 9
   m_Name: IcePin
@@ -19112,20 +19112,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6294628328102618582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938576920105175964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba10dc40e1026844d95bf8f6404e472a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidBody: {fileID: 7653102630084225264}
-  speed: 2
 --- !u!33 &1637021144919578560
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19162,6 +19148,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 8583559191739154550, guid: 693e765323804aa46a6814d74e2c2d28, type: 3}
+--- !u!114 &6294628328102618582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938576920105175964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba10dc40e1026844d95bf8f6404e472a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateWhenDisabled: 0
+  rigidBody: {fileID: 7653102630084225264}
+  speed: 2
 --- !u!114 &952234884823912838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19176,9 +19177,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPoolSize: 10
   suckableobjectType: 4
+  scoreValue: 0
   canBeSucked: 1
+  followPlayer: {fileID: 6294628328102618582}
   maxHealth: 150
   healthBar: {fileID: 801660487933494873}
+  trailEffect: {fileID: 126462305762443133}
 --- !u!1 &5531602571014793682
 GameObject:
   m_ObjectHideFlags: 0
@@ -19290,6 +19294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateWhenDisabled: 0
 --- !u!1 &8552861522568738622
 GameObject:
   m_ObjectHideFlags: 0
@@ -19380,74 +19385,6 @@ PrefabInstance:
       value: Fancy Bar
       objectReference: {fileID: 0}
     - target: {fileID: 119886, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: colorMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key0.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key0.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key1.g
-      value: 0.9815198
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key1.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key2.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key2.b
-      value: 0.02520442
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key3.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.key3.b
-      value: 0.02520442
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.ctime0
-      value: 21627
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.ctime1
-      value: 43253
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.ctime2
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.ctime3
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: barGradient.m_NumColorKeys
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11467028, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
-      propertyPath: m_Color.b
-      value: 0.02520442
-      objectReference: {fileID: 0}
-    - target: {fileID: 198710, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -19550,6 +19487,74 @@ PrefabInstance:
     - target: {fileID: 11459380, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: colorMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key1.g
+      value: 0.9815198
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key2.b
+      value: 0.02520442
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key3.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.key3.b
+      value: 0.02520442
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.ctime0
+      value: 21627
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.ctime1
+      value: 43253
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.ctime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429798, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: barGradient.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467028, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: m_Color.b
+      value: 0.02520442
+      objectReference: {fileID: 0}
+    - target: {fileID: 198710, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 132408, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
       propertyPath: m_Layer

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SuckableObject: PooledMonobehaviour
 {
-    [SerializeField]
-    protected SuckableobjectType suckableobjectType;
+
+    [SerializeField] protected SuckableobjectType suckableobjectType;
+    [SerializeField] int scoreValue;
+    [SerializeField] protected Renderer childRenderer;
     [System.NonSerialized] public bool isBeingSucked = false;
     private Vector3 BeginLocalScale;
     public void Collected()
     {
-
         InventoryUI.instance.StartAddEffect(suckableobjectType,transform.position);
         gameObject.SetActive(false);
         isBeingSucked = false;
