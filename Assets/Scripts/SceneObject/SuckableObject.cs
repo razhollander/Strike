@@ -2,32 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuckableObject: PooledMonobehaviour
+public class SuckableObject : PooledMonobehaviour
 {
 
     [SerializeField] protected SuckableobjectType suckableobjectType;
     [SerializeField] int scoreValue;
-    [SerializeField] protected Renderer childRenderer;
-    [System.NonSerialized] public bool isBeingSucked = false;
+    [SerializeField] protected Renderer thisRenderer;
+    [SerializeField] protected Collider thisCollider;
+    [SerializeField] protected Rigidbody thisRigidBody;
+
+    [System.NonSerialized] private bool isBeingSucked = false;
     private Vector3 BeginLocalScale;
+
+    public bool IsBeingSucked { get => isBeingSucked; set => isBeingSucked = value; }
+
+    public void DisableCollider()
+    {
+        thisCollider.enabled = false;
+    }
+
     public void Collected()
     {
-        InventoryUI.instance.StartAddEffect(suckableobjectType,transform.position);
+        InventoryUI.instance.StartAddEffect(suckableobjectType, transform.position);
         gameObject.SetActive(false);
         isBeingSucked = false;
-        
+
     }
     private void Awake()
     {
         BeginLocalScale = transform.localScale;
+        thisRigidBody.centerOfMass = Vector3.zero;
     }
     protected virtual void OnEnable()
     {
-        transform.localScale = BeginLocalScale;
-        transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        ResetTransform();
 
     }
+    protected void ResetTransform()
+    {
+        transform.localScale = BeginLocalScale;
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        thisRigidBody.velocity = Vector3.zero;
+        //thisRigidBody.inertiaTensorRotation = Quaternion.Euler(0, 0, 0);
+        //thisRigidBody.inertiaTensor = Vector3.zero;
+
+        thisRigidBody.angularVelocity = Vector3.zero;
+    }
+    protected virtual void MakeActive(bool isActive)
+    {
+        thisCollider.enabled = isActive;
+        thisRenderer.enabled = isActive;
+    }
+
     public virtual SuckableObject Duplicate()
     {
         return this.Get<SuckableObject>();
@@ -36,10 +62,10 @@ public class SuckableObject: PooledMonobehaviour
 }
 public enum SuckableobjectType
 {
-    bowlingBall=0,
-    normalPin=1,
-    firePin=2,
+    bowlingBall = 0,
+    normalPin = 1,
+    firePin = 2,
     electricPin = 3,
-    IcePin=4,
-    powerUp =5
+    IcePin = 4,
+    powerUp = 5
 }

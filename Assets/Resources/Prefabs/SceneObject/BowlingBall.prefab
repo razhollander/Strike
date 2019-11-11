@@ -77,6 +77,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPoolSize: 10
   suckableobjectType: 0
+  scoreValue: 0
+  thisRenderer: {fileID: 5458682732473248227}
+  thisCollider: {fileID: 2367794016340903672}
+  thisRigidBody: {fileID: 2367794016340903673}
 --- !u!1001 &2367794015870190646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,6 +159,12 @@ PrefabInstance:
 --- !u!4 &7324731862992334636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 5ed29caea2919a241b2c27346b68019b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2367794015870190646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5458682732473248227 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 5ed29caea2919a241b2c27346b68019b,
     type: 3}
   m_PrefabInstance: {fileID: 2367794015870190646}
   m_PrefabAsset: {fileID: 0}

@@ -11,13 +11,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField] private List<SuckableObject> sceneObjects;
     [SerializeField] List<float> probabilities;
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
     [SerializeField] private float minDis, maxDis;
     [SerializeField] private float waitForSummonSceonds = 3;
     [SerializeField] private float forwardExtra = 1;
     [SerializeField] Text scoreText;
     [SerializeField] float speed;
-
+    [SerializeField] bool isSpawn;
     private int score;
     
     
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator SummonEnemies()
     {
-        while (true)
+        while (isSpawn)
         {
             int index = RandomFromDistribution.RandomChoiceFollowingDistribution(probabilities);
             GameObject go;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
                 x = minDis;
 
             Vector3 vec = player.transform.right * x;
-            vec += MeshHandler.GetMeshHeight(go) / 2 * Vector3.up;
+            vec += MeshHandler.GetMeshHeight(sceneObjects[index].gameObject) / 2 * Vector3.up;
             go.transform.position = player.transform.forward * forwardExtra + vec + player.transform.position;
             go.transform.SetParent(enemiesParent.transform);
             yield return new WaitForSeconds(waitForSummonSceonds);

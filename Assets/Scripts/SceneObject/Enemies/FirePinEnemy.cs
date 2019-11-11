@@ -23,5 +23,19 @@ public class FirePinEnemy : Enemy
     {
         base.OnEnable();
         trailEffect.Play();
+        StartCoroutine(SpawnInDelay());
+    }
+    private IEnumerator SpawnInDelay()
+    {
+        MakeActive(false);
+        yield return new WaitForSeconds(spawnTimeDelay);
+        MakeActive(true);
+        trailEffect.Play();
+
+    }
+    protected override void MakeActive(bool isActive)
+    {
+        thisRenderer.gameObject.SetActive(isActive);
+        base.MakeActive(isActive);
     }
 }

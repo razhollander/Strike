@@ -7,6 +7,7 @@ public class FollowPlayer : OverridableMonoBehaviour
     private GameObject player;
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private float speed = 1;
+    Vector3 lookAtVector;
     Vector3 playerPos;
 
     protected override void Awake()
@@ -19,7 +20,8 @@ public class FollowPlayer : OverridableMonoBehaviour
     }
     private void OnEnable()
     {
-        transform.LookAt(playerPos, Vector3.up);
+        //lookAtVector = new 
+        //transform.LookAt(playerPos, Vector3.up);
     }
     //void FixedUpdate()
     //{

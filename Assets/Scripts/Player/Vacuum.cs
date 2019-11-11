@@ -67,7 +67,7 @@ public class Vacuum : OverridableMonoBehaviour
                 SuckableObject closestEnemy = CheckForClosestEnemy();
                 if (closestEnemy != null)
                 {
-                    StartSuckingEnemy(closestEnemy);
+                    StartSuckingObject(closestEnemy);
                 }
             }
         }
@@ -81,7 +81,7 @@ public class Vacuum : OverridableMonoBehaviour
         radiusCenterV2.Set(radiusCenter.position.x, radiusCenter.position.z);
         foreach (SuckableObject currentEnemy in allEnemies)
         {
-            if (!currentEnemy.isBeingSucked)
+            if (!currentEnemy.IsBeingSucked)
                 if (IsEnemyInRadius(currentEnemy, out distanceToEnemy))
                     if (distanceToEnemy < closestDistance)
                     {
@@ -91,19 +91,19 @@ public class Vacuum : OverridableMonoBehaviour
         }
         return closestEnemy;
     }
-    private void StartSuckingEnemy(SuckableObject suckedObject)
+    private void StartSuckingObject(SuckableObject suckedObject)
     {
         ObjectBeingSucked = suckedObject;
-        ObjectBeingSucked.isBeingSucked = true;
-        ShakeEnemy(suckedObject);
+        ObjectBeingSucked.IsBeingSucked = true;
+        ShakeObject(suckedObject);
         headShake = vacuumHead.DOShakeRotation(1, 4, 15, 90, false).SetEase(Ease.Linear).SetLoops(-1);
         suckCoroutine = StartCoroutine(SuckObject());
         rotationTweener.Kill();
         airParticals.SetActive(true);
     }
-    private void ShakeEnemy(SuckableObject enemy)
+    private void ShakeObject(SuckableObject suckedObject)
     {
-        shakeTweener = enemy.transform.DOShakeRotation(4, 10, 6, 70, false).SetEase(Ease.Linear).SetLoops(-1);
+        shakeTweener = suckedObject.transform.DOShakeRotation(4, 10, 6, 70, false).SetEase(Ease.Linear).SetLoops(-1);
     }
     private IEnumerator SuckObject()
     {
@@ -129,9 +129,9 @@ public class Vacuum : OverridableMonoBehaviour
                 yield return null;
             }
         }
-        StartCoroutine(PullEnemy());
+        StartCoroutine(PullObject());
     }
-    IEnumerator PullEnemy()
+    IEnumerator PullObject()
     {
         isInPulling = true;
         shakeTweener.Kill();
@@ -144,6 +144,7 @@ public class Vacuum : OverridableMonoBehaviour
         float prevDistance = 0;
         float distance = Vector3.Distance(ObjectBeingSucked.transform.position, vacuumPoint.position);
         float minDisance = 0.75f;
+        ObjectBeingSucked.DisableCollider();
 
         while (distance > minDisance)
         {
@@ -162,9 +163,9 @@ public class Vacuum : OverridableMonoBehaviour
             }
             yield return null;
         }
-        FinishPullingEnemy();
+        FinishPullingObject();
     }
-    private void FinishPullingEnemy()
+    private void FinishPullingObject()
     {
 
         ObjectBeingSucked.Collected();
@@ -193,7 +194,7 @@ public class Vacuum : OverridableMonoBehaviour
         shakeTweener.Kill();
         headShake.Restart();
         headShake.Kill();
-        ObjectBeingSucked.isBeingSucked = false;
+        ObjectBeingSucked.IsBeingSucked = false;
         ObjectBeingSucked = null;
         //radiusCenter.gameObject.SetActive(true);
         airParticals.SetActive(false);

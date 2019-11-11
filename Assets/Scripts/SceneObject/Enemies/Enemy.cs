@@ -8,13 +8,19 @@ public class Enemy : SuckableObject
 {
     [SerializeField]
     private bool canBeSucked = true;
-    [SerializeField] FollowPlayer followPlayer;
+    [SerializeField] protected FollowPlayer thisFollowPlayer;
+
     public float maxHealth;
+    [SerializeField] protected float spawnTimeDelay = 0.2f;
+    [SerializeField] private float healthCanvasTime=3;
+    [SerializeField] private GameObject healthCanvas;
+    private Coroutine healthCanvasTimeCoroutine;
     protected float health;
     public SimpleHealthBar healthBar;
     private float HealthLimit;
     private float timeToDie = 3;
     protected event Action OnStartDying;
+    
     //public int Number = 0;
     public virtual void Start()
     {
@@ -31,7 +37,7 @@ public class Enemy : SuckableObject
     protected override void OnEnable()
     {
         base.OnEnable();
-        followPlayer.enabled = true;
+        thisFollowPlayer.enabled = true;
         health = maxHealth;
         HealthLimit = maxHealth;
         SetHealth(maxHealth);
@@ -40,24 +46,42 @@ public class Enemy : SuckableObject
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            OnStartDying.Invoke();
+            OnStartDying();
         }
     }
     private void StartDying()
     {
+        print("Die");
         StartCoroutine(StartDyingCoroutine());
     }
     private IEnumerator StartDyingCoroutine()
     {
         SetHealth(0, false, true);
-        followPlayer.enabled = false;
-        yield return 3;
+        thisFollowPlayer.enabled = false;
         yield return new WaitForSeconds(timeToDie);
-        gameObject.SetActive(false);
+        if(!IsBeingSucked)
+             gameObject.SetActive(false);
     }
+ 
     public void SetHealth(float value, bool isRelative = true, bool isUpdateHealthLimit = false, float delay = 0)
     {
+        if (value < 0)
+        {
+            if (healthCanvasTimeCoroutine != null)
+                StopCoroutine(healthCanvasTimeCoroutine);
+            healthCanvasTimeCoroutine = StartCoroutine(HealthCanvasShow());
+        }
         StartCoroutine(SetHealthDelayed(value, isRelative, isUpdateHealthLimit, delay));
+    }
+    private IEnumerator HealthCanvasShow()
+    {
+        healthCanvas.SetActive(true);
+        yield return new WaitForSeconds(healthCanvasTime);
+        healthCanvas.SetActive(false);
+    }
+    public void ResetHealth()
+    {
+        SetHealth(maxHealth, false);
     }
     private IEnumerator SetHealthDelayed(float value, bool isRelative, bool isUpdateHealthLimit, float delay)
     {
@@ -70,16 +94,25 @@ public class Enemy : SuckableObject
             HealthLimit = health;
         healthBar.UpdateBar(health, maxHealth);
     }
-    public void ResetHealth()
-    {
-        SetHealth(maxHealth, false);
-    }
-    protected void SetCenterOfMass()
-    {
-        GetComponentInChildren<Rigidbody>().centerOfMass = Vector3.down;
-    }
+    //protected void SetCenterOfMass()
+    //{
+    //    GetComponentInChildren<Rigidbody>().centerOfMass = Vector3.down;
+    //}
     public override SuckableObject Duplicate()
     {
         return this.Get<Enemy>();
+    }
+    private IEnumerator SpawnInDelay()
+    {
+        MakeActive(false);
+        yield return new WaitForSeconds(spawnTimeDelay);
+        MakeActive(true);
+    }
+    protected override void MakeActive(bool isActive)
+    {
+        thisCollider.enabled = isActive;
+        thisFollowPlayer.enabled = isActive;
+        thisRenderer.enabled=isActive;
+        thisRigidBody.useGravity = isActive;
     }
 }
