@@ -13,7 +13,7 @@ public class ElectricPinShot : BasicPinShot
     [Range(0,0.99f)]
     [SerializeField] float damageSubtracted;
     //[SerializeField] float EffectDuration;
-
+    [SerializeField] float forceHitPower;
     Queue<EnemyHit> enemyHitQueue;
     List<Enemy> enemiesAlreadyHitList;
     //List<ParticleSystem> electricStrikeParticlesList;
@@ -41,6 +41,7 @@ public class ElectricPinShot : BasicPinShot
         enemiesAlreadyHitList = new List<Enemy>();
         enemyHitQueue.Enqueue(new EnemyHit(enemy,0));
         enemiesAlreadyHitList.Add(enemy);
+        Vector3 force;
         while (enemyHitQueue.Count>0)
         {
             EnemyHit currEnemyHit = enemyHitQueue.Dequeue();
@@ -67,9 +68,11 @@ public class ElectricPinShot : BasicPinShot
                             main.startSpeed = Vector3.Distance(currEnemyPos, enemyInRadiusPos);
                             float delay = currEnemyHit.numInQueue;/// main.simulationSpeed;
                             main.startDelay = delay;
+                            force = currElectricStrike.transform.forward * forceHitPower;
                             lightningParticle.Play();
                             float dealtDamage = Mathf.Clamp( -damage*Mathf.Pow(damageSubtracted,(currEnemyHit.numInQueue + 1)),-damage,0);
                             enemyInRadius.SetHealth(dealtDamage, true, true ,(currEnemyHit.numInQueue+1) / main.simulationSpeed);
+                            enemyInRadius.AddForce(force, currEnemyHit.numInQueue / main.simulationSpeed);
 
                             enemyHitQueue.Enqueue(new EnemyHit(enemyInRadius, currEnemyHit.numInQueue+1));
                             enemiesAlreadyHitList.Add(enemyInRadius);

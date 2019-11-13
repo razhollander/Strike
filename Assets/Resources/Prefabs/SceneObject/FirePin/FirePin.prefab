@@ -62266,14 +62266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13c0597849106f47accbbe07e29b565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPoolSize: 10
+  initialPoolSize: 2
   suckableobjectType: 2
   scoreValue: 0
   thisRenderer: {fileID: 1876730175668415561}
   thisCollider: {fileID: 2069061594678908118}
+  thisRigidBody: {fileID: 299975043619760957}
   canBeSucked: 1
   thisFollowPlayer: {fileID: 4127534627430458907}
-  thisRigidBody: {fileID: 299975043619760957}
   maxHealth: 200
   spawnTimeDelay: 1
   healthCanvasTime: 3

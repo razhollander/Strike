@@ -9,10 +9,11 @@ public class PooledMonobehaviour : MonoBehaviour
     public int InitialPoolSize { get { return initialPoolSize; } }
 
     public event Action OnDestroyEvent;
-    public event Func<bool> OnEnableEvent;
+    //public event Func<bool> OnEnableEvent;
 
     protected virtual void OnDisable()
     {
+
         if (OnDestroyEvent != null)
             OnDestroyEvent();
 

@@ -9644,7 +9644,7 @@ MonoBehaviour:
   myCollider: {fileID: 4643206830402451007}
   myRigidbody: {fileID: 3657609424188480661}
   speed: 20
-  explosionRadius: 5
+  explosionRadius: 10
   explosionForce: 3
   upForce: 1
 --- !u!1001 &3517474442692070451
@@ -9658,11 +9658,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BigExplosion
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304566832695480561, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6175407481121863183, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
@@ -9717,6 +9712,11 @@ PrefabInstance:
     - target: {fileID: 6175407481121863183, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304566832695480561, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6304165540696715395, guid: ae7f01daf906786459d65e930c823443,

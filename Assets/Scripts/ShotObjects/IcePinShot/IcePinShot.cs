@@ -10,6 +10,7 @@ public class IcePinShot : BasicPinShot
     [SerializeField] ConeHitBox hitBox;
     //[SerializeField] ParticleSystem IceSparks;
     [SerializeField] IceStrike iceStrike;
+    [SerializeField] float forceHitPower;
     List<Enemy> enemiesList;
     static Vector3 hitBoxSize;
 
@@ -22,16 +23,17 @@ public class IcePinShot : BasicPinShot
     }
     private void IceStrike()
     {
+        Vector3 force = myRigidbody.velocity.normalized * forceHitPower;
         foreach (Enemy enemy in hitBox.GetEnemiesInBounds())
         {
             enemy.SetHealth(-damage, true, true);
+            enemy.AddForce(force);
             IceStrike currIceStrike = iceStrike.Get<IceStrike>(true);
             currIceStrike.transform.position = enemy.transform.position;
+            currIceStrike.transform.SetParent(enemy.transform);
             currIceStrike.particle.Play();
         }
-        //do Global FX
-        //do FX Foreach Pin
-        //each pin get hit
+        CameraHandler.instance.ShakeCamera(0.5f, 0.2f);
         StartCoroutine(DestroySelf());
     }
 

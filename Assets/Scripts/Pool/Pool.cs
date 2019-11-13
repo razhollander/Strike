@@ -14,7 +14,6 @@ public class Pool : OverridableMonoBehaviour
     {
         if (pools.ContainsKey(prefab))
             return pools[prefab];
-
         var pool = new GameObject("Pool-" + (prefab as Component).name).AddComponent<Pool>();
         pool.prefab = prefab;
 
@@ -31,7 +30,6 @@ public class Pool : OverridableMonoBehaviour
         }
 
         var pooledObject = objects.Dequeue();
-
         return pooledObject as T;
     }
 

@@ -19,12 +19,14 @@ public class Enemy : SuckableObject
     public SimpleHealthBar healthBar;
     private float HealthLimit;
     private float timeToDie = 3;
-    protected event Action OnStartDying;
-    
+    protected event Action dieEvent;
+    protected event Action startDyingEvent;
+
     //public int Number = 0;
-    public virtual void Start()
+    protected override void Awake()
     {
-        OnStartDying += StartDying;
+        base.Awake();
+        startDyingEvent += StartDying;
     }
     public bool CanBeSucked()
     {
@@ -40,18 +42,18 @@ public class Enemy : SuckableObject
         thisFollowPlayer.enabled = true;
         health = maxHealth;
         HealthLimit = maxHealth;
+        healthCanvas.SetActive(false);
         SetHealth(maxHealth);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            OnStartDying();
+            startDyingEvent();
         }
     }
     private void StartDying()
     {
-        print("Die");
         StartCoroutine(StartDyingCoroutine());
     }
     private IEnumerator StartDyingCoroutine()
@@ -73,6 +75,19 @@ public class Enemy : SuckableObject
         }
         StartCoroutine(SetHealthDelayed(value, isRelative, isUpdateHealthLimit, delay));
     }
+    public void AddForce(Vector3 force)
+    {
+        thisRigidBody.AddForce(force, ForceMode.Force);
+    }
+    public void AddForce(Vector3 force,float delay)
+    {
+        StartCoroutine(AddForceDelay(force, delay));
+    }
+    private IEnumerator AddForceDelay(Vector3 force,float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        thisRigidBody.AddForce(force, ForceMode.Force);
+    }
     private IEnumerator HealthCanvasShow()
     {
         healthCanvas.SetActive(true);
@@ -93,6 +108,10 @@ public class Enemy : SuckableObject
         if (isUpdateHealthLimit)
             HealthLimit = health;
         healthBar.UpdateBar(health, maxHealth);
+        if (health<=0)
+        {
+
+        }
     }
     //protected void SetCenterOfMass()
     //{

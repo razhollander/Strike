@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
         while (isSpawn)
         {
             int index = RandomFromDistribution.RandomChoiceFollowingDistribution(probabilities);
-            GameObject go;
-            go = sceneObjects[index].Duplicate().gameObject;
+            SuckableObject spawnedObject;
+            spawnedObject = sceneObjects[index].Duplicate();
             float x = Random.Range(-maxDis, maxDis);
 
             if (x < 0 && x > -minDis)
@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
 
             Vector3 vec = player.transform.right * x;
             vec += MeshHandler.GetMeshHeight(sceneObjects[index].gameObject) / 2 * Vector3.up;
-            go.transform.position = player.transform.forward * forwardExtra + vec + player.transform.position;
-            go.transform.SetParent(enemiesParent.transform);
+            spawnedObject.transform.position = player.transform.forward * forwardExtra + vec + player.transform.position;
+            spawnedObject.transform.SetParent(enemiesParent.transform);
             yield return new WaitForSeconds(waitForSummonSceonds);
         }
     }

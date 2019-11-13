@@ -11,7 +11,13 @@ public class ElectricPinEnemy : Enemy
     [SerializeField] float radius = 10;
     [SerializeField] [Range(0, 20)] float minAttackCounter;
     [SerializeField] [Range(0, 20)] float maxAttackCounter;
-
+    private Coroutine attackCoroutine;
+    protected override void Awake()
+    {
+        base.Awake();
+        pulledEvent += StopAttack;
+        startDyingEvent += StopAttack;
+    }
     public override SuckableObject Duplicate()
     {
         return this.Get<ElectricPinEnemy>();
@@ -20,21 +26,21 @@ public class ElectricPinEnemy : Enemy
     {
         base.OnEnable();
         StartCoroutine(SpawnInDelay());
+        StartCoroutine(AttackCountdown());
     }
     private IEnumerator SpawnInDelay()
     {
         MakeActive(false);
         yield return new WaitForSeconds(spawnTimeDelay);
         MakeActive(true);
-        StartCoroutine(AttackCountdown());
 
     }
     private IEnumerator AttackCountdown()
     {
        float time= Random.Range(minAttackCounter, maxAttackCounter);
         yield return new WaitForSeconds(time);
-        if (!IsBeingSucked)
-            StartCoroutine(Attack());
+        if (!IsBeingSucked&&health>0)
+            attackCoroutine= StartCoroutine(Attack());
         else
             StartCoroutine(AttackCountdown());
 
@@ -42,7 +48,7 @@ public class ElectricPinEnemy : Enemy
     private IEnumerator Attack()
     {
         thisFollowPlayer.enabled = false;
-        ResetTransform();
+        //ResetTransform();
         prepareAttack.Play();
         yield return new WaitForSeconds(attackDelay);
         if (health > 0)
@@ -51,11 +57,11 @@ public class ElectricPinEnemy : Enemy
             Vector2 thisPos = MathHandler.Vector3ToVector2(transform.position);
             if (Vector2.Distance(thisPos, playerPos) < radius)
             {
-                Debug.Log("Hit");
+                //Debug.Log("Hit");
             }
             else
             {
-                Debug.Log("Didnt Hit");
+                //Debug.Log("Didnt Hit");
 
             }
             yield return new WaitForSeconds(0.5f);
@@ -64,6 +70,12 @@ public class ElectricPinEnemy : Enemy
             StartCoroutine(AttackCountdown());
 
         }
-
+    }
+    public void StopAttack()
+    {
+        prepareAttack.Stop();
+        prepareAttack.Clear();
+        if(attackCoroutine!=null)
+            StopCoroutine(attackCoroutine);
     }
 }

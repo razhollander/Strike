@@ -93,6 +93,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: BowlingBall
       objectReference: {fileID: 0}
+    - target: {fileID: -5178661895559278292, guid: 5ed29caea2919a241b2c27346b68019b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -581195821847472809, guid: ca0b5ba1aae8cea43970ba819a77920a,
+        type: 3}
     - target: {fileID: -4216859302048453862, guid: 5ed29caea2919a241b2c27346b68019b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -148,12 +154,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -94.729004
       objectReference: {fileID: 0}
-    - target: {fileID: -5178661895559278292, guid: 5ed29caea2919a241b2c27346b68019b,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -581195821847472809, guid: ca0b5ba1aae8cea43970ba819a77920a,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ed29caea2919a241b2c27346b68019b, type: 3}
 --- !u!4 &7324731862992334636 stripped

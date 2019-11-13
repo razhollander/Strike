@@ -1,26 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class SuckableObject : PooledMonobehaviour
 {
 
     [SerializeField] protected SuckableobjectType suckableobjectType;
     [SerializeField] int scoreValue;
-    [SerializeField] protected Renderer thisRenderer;
+    [SerializeField] public Renderer thisRenderer;
     [SerializeField] protected Collider thisCollider;
     [SerializeField] protected Rigidbody thisRigidBody;
 
     [System.NonSerialized] private bool isBeingSucked = false;
     private Vector3 BeginLocalScale;
-
+    protected event Action pulledEvent;
     public bool IsBeingSucked { get => isBeingSucked; set => isBeingSucked = value; }
 
     public void DisableCollider()
     {
         thisCollider.enabled = false;
     }
-
+    public void GetPulled()
+    {
+        pulledEvent();
+    }
     public void Collected()
     {
         InventoryUI.instance.StartAddEffect(suckableobjectType, transform.position);
@@ -28,10 +31,11 @@ public class SuckableObject : PooledMonobehaviour
         isBeingSucked = false;
 
     }
-    private void Awake()
+    protected virtual void Awake()
     {
         BeginLocalScale = transform.localScale;
         thisRigidBody.centerOfMass = Vector3.zero;
+        pulledEvent += DisableCollider;
     }
     protected virtual void OnEnable()
     {

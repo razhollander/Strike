@@ -10,10 +10,10 @@ public class FirePinEnemy : Enemy
     {
         return this.Get<FirePinEnemy>();
     }
-    public override void Start()
+    protected override void Awake()
     {
-        base.Start();
-        OnStartDying += EndTrailEffect;
+        base.Awake();
+        startDyingEvent += EndTrailEffect;
     }
     private void EndTrailEffect()
     {

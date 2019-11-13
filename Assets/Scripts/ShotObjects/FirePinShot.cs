@@ -36,6 +36,7 @@ public class FirePinShot : BasicPinShot
             }
 
         }
+        CameraHandler.instance.ShakeCamera();
         StartCoroutine(DestroySelf());
 
     }

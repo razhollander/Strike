@@ -4958,6 +4958,7 @@ MonoBehaviour:
     type: 3}
   trail: {fileID: 6570496492820658292}
   damageSubtracted: 0.85
+  forceHitPower: 15
 --- !u!1 &6570496492820658292
 GameObject:
   m_ObjectHideFlags: 0

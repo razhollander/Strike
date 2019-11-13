@@ -103,7 +103,7 @@ public class Vacuum : OverridableMonoBehaviour
     }
     private void ShakeObject(SuckableObject suckedObject)
     {
-        shakeTweener = suckedObject.transform.DOShakeRotation(4, 10, 6, 70, false).SetEase(Ease.Linear).SetLoops(-1);
+        shakeTweener = suckedObject.thisRenderer.transform.DOShakeRotation(4, 10, 6, 70, false).SetEase(Ease.Linear).SetLoops(-1);
     }
     private IEnumerator SuckObject()
     {
@@ -144,8 +144,7 @@ public class Vacuum : OverridableMonoBehaviour
         float prevDistance = 0;
         float distance = Vector3.Distance(ObjectBeingSucked.transform.position, vacuumPoint.position);
         float minDisance = 0.75f;
-        ObjectBeingSucked.DisableCollider();
-
+        ObjectBeingSucked.GetPulled();
         while (distance > minDisance)
         {
             ObjectBeingSucked.transform.Rotate(rotationVec * Time.deltaTime, Space.Self);

@@ -33384,6 +33384,7 @@ MonoBehaviour:
   hitBox: {fileID: 3569777260256049573}
   iceStrike: {fileID: 574407368039568224, guid: f91650fb98bb1704d88304f42a979a5c,
     type: 3}
+  forceHitPower: 15
 --- !u!1 &3212921843523511987
 GameObject:
   m_ObjectHideFlags: 0
@@ -42940,6 +42941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa31edbd64599a447abbd4811ec9308e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateWhenDisabled: 0
 --- !u!23 &2566637591849611023
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -11,10 +11,10 @@ public class IcePinEnemy : Enemy
     {
         return this.Get<IcePinEnemy>();
     }
-    public override void Start()
+    protected override void Awake()
     {
-        base.Start();
-        OnStartDying += EndTrailEffect;
+        base.Awake();
+        startDyingEvent += EndTrailEffect;
     }
     private void EndTrailEffect()
     {
