@@ -6,6 +6,7 @@ public class IcePinEnemy : Enemy
 {
     [Header("IcePin")]
     [SerializeField] private ParticleSystem trailEffect;
+    [SerializeField] private ParticleSystem attackCircleEffect;
 
     public override SuckableObject Duplicate()
     {
@@ -14,11 +15,14 @@ public class IcePinEnemy : Enemy
     protected override void Awake()
     {
         base.Awake();
-        startDyingEvent += EndTrailEffect;
+        startDyingEvent += EndEffects;
+        pulledEvent += EndEffects;
     }
-    private void EndTrailEffect()
+    private void EndEffects()
     {
         trailEffect.Stop();
+        attackCircleEffect.Stop();
+        attackCircleEffect.Clear();
     }
     protected override void OnEnable()
     {
@@ -32,6 +36,7 @@ public class IcePinEnemy : Enemy
         yield return new WaitForSeconds(spawnTimeDelay);
         MakeActive(true);
         trailEffect.Play();
+        attackCircleEffect.Play();
 
     }
     protected override void MakeActive(bool isActive)

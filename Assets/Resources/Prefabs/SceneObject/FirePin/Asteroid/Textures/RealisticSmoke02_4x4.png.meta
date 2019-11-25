@@ -1,0 +1,859 @@
+fileFormatVersion: 2
+guid: afd749523c666fd4e815b9ebecf1689e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9090675069228162962
+    second: RealisticSmoke02_4x4_0
+  - first:
+      213: -1755086648971668296
+    second: RealisticSmoke02_4x4_1
+  - first:
+      213: -633264771732135929
+    second: RealisticSmoke02_4x4_2
+  - first:
+      213: 4098679750846593898
+    second: RealisticSmoke02_4x4_3
+  - first:
+      213: 4911572971186954114
+    second: RealisticSmoke02_4x4_4
+  - first:
+      213: -8616962963034557862
+    second: RealisticSmoke02_4x4_5
+  - first:
+      213: 9140110808450091837
+    second: RealisticSmoke02_4x4_6
+  - first:
+      213: 353052744806727383
+    second: RealisticSmoke02_4x4_7
+  - first:
+      213: 8646681406077117581
+    second: RealisticSmoke02_4x4_8
+  - first:
+      213: 7785542681561744909
+    second: RealisticSmoke02_4x4_9
+  - first:
+      213: -6536130953420917549
+    second: RealisticSmoke02_4x4_10
+  - first:
+      213: -2925101620839419122
+    second: RealisticSmoke02_4x4_11
+  - first:
+      213: 8180843377188525492
+    second: RealisticSmoke02_4x4_12
+  - first:
+      213: 1741291234026130599
+    second: RealisticSmoke02_4x4_13
+  - first:
+      213: -8911557293265304965
+    second: RealisticSmoke02_4x4_14
+  - first:
+      213: 6428821020666218686
+    second: RealisticSmoke02_4x4_15
+  - first:
+      213: -2780558995082688442
+    second: RealisticSmoke02_4x4_16
+  - first:
+      213: 849848897113196289
+    second: RealisticSmoke02_4x4_17
+  - first:
+      213: 3822996520234832182
+    second: RealisticSmoke02_4x4_18
+  - first:
+      213: -4602261334031242081
+    second: RealisticSmoke02_4x4_19
+  - first:
+      213: -8608253419095005635
+    second: RealisticSmoke02_4x4_20
+  - first:
+      213: 3175751283750205183
+    second: RealisticSmoke02_4x4_21
+  - first:
+      213: 765779078248019993
+    second: RealisticSmoke02_4x4_22
+  - first:
+      213: 5783767343067497247
+    second: RealisticSmoke02_4x4_23
+  - first:
+      213: 3021992931627350897
+    second: RealisticSmoke02_4x4_24
+  - first:
+      213: 3351662575134436420
+    second: RealisticSmoke02_4x4_25
+  - first:
+      213: -7377573810843408674
+    second: RealisticSmoke02_4x4_26
+  - first:
+      213: -2968724251140192753
+    second: RealisticSmoke02_4x4_27
+  - first:
+      213: 8709591570828256596
+    second: RealisticSmoke02_4x4_28
+  - first:
+      213: 4929316457180515173
+    second: RealisticSmoke02_4x4_29
+  - first:
+      213: 3260441576073259247
+    second: RealisticSmoke02_4x4_30
+  - first:
+      213: 3133369940417965113
+    second: RealisticSmoke02_4x4_31
+  - first:
+      213: 943135713678484980
+    second: RealisticSmoke02_4x4_32
+  - first:
+      213: 1476042864350990816
+    second: RealisticSmoke02_4x4_33
+  - first:
+      213: 7107321571806778337
+    second: RealisticSmoke02_4x4_34
+  - first:
+      213: 2954510389817131831
+    second: RealisticSmoke02_4x4_35
+  - first:
+      213: -7224408822048953644
+    second: RealisticSmoke02_4x4_36
+  - first:
+      213: 8126580382186942516
+    second: RealisticSmoke02_4x4_37
+  - first:
+      213: -262192725566007048
+    second: RealisticSmoke02_4x4_38
+  - first:
+      213: 5165014294318956746
+    second: RealisticSmoke02_4x4_39
+  - first:
+      213: 224489437596990842
+    second: RealisticSmoke02_4x4_40
+  - first:
+      213: -691624201305713734
+    second: RealisticSmoke02_4x4_41
+  - first:
+      213: 1948642386267591680
+    second: RealisticSmoke02_4x4_42
+  - first:
+      213: 1104741505364981857
+    second: RealisticSmoke02_4x4_43
+  - first:
+      213: -936759110428630947
+    second: RealisticSmoke02_4x4_44
+  - first:
+      213: -8403903337932576777
+    second: RealisticSmoke02_4x4_45
+  - first:
+      213: -1239262309851260630
+    second: RealisticSmoke02_4x4_46
+  - first:
+      213: -4718730905638922587
+    second: RealisticSmoke02_4x4_47
+  - first:
+      213: 8721341722831502037
+    second: RealisticSmoke02_4x4_48
+  - first:
+      213: -4571237045245514034
+    second: RealisticSmoke02_4x4_49
+  - first:
+      213: -1408063960409454009
+    second: RealisticSmoke02_4x4_50
+  - first:
+      213: -704851115052866332
+    second: RealisticSmoke02_4x4_51
+  - first:
+      213: 7824981173436873710
+    second: RealisticSmoke02_4x4_52
+  - first:
+      213: 3145180647872934975
+    second: RealisticSmoke02_4x4_53
+  - first:
+      213: 4507317539132547561
+    second: RealisticSmoke02_4x4_54
+  - first:
+      213: -5639671988209417850
+    second: RealisticSmoke02_4x4_55
+  - first:
+      213: -310914531733925982
+    second: RealisticSmoke02_4x4_56
+  - first:
+      213: 6885627791708461180
+    second: RealisticSmoke02_4x4_57
+  - first:
+      213: 1107983799520040299
+    second: RealisticSmoke02_4x4_58
+  - first:
+      213: -8993492899780218169
+    second: RealisticSmoke02_4x4_59
+  - first:
+      213: 7198619829192055375
+    second: RealisticSmoke02_4x4_60
+  - first:
+      213: 4509423252340095478
+    second: RealisticSmoke02_4x4_61
+  - first:
+      213: 3206999427206030733
+    second: RealisticSmoke02_4x4_62
+  - first:
+      213: -6144040939133167546
+    second: RealisticSmoke02_4x4_63
+  - first:
+      213: 8637082621254376325
+    second: RealisticSmoke02_4x4_64
+  - first:
+      213: 3050619452224835871
+    second: RealisticSmoke02_4x4_65
+  - first:
+      213: -4059420102954827064
+    second: RealisticSmoke02_4x4_66
+  - first:
+      213: 7884517968665527884
+    second: RealisticSmoke02_4x4_67
+  - first:
+      213: 319453130908769136
+    second: RealisticSmoke02_4x4_68
+  - first:
+      213: 749881855816756364
+    second: RealisticSmoke02_4x4_69
+  - first:
+      213: -6772081964401618132
+    second: RealisticSmoke02_4x4_70
+  - first:
+      213: -3797972841811473049
+    second: RealisticSmoke02_4x4_71
+  - first:
+      213: 7562086138293449780
+    second: RealisticSmoke02_4x4_72
+  - first:
+      213: -8816274127616257135
+    second: RealisticSmoke02_4x4_73
+  - first:
+      213: -6040487678704865516
+    second: RealisticSmoke02_4x4_74
+  - first:
+      213: -1224287624519911885
+    second: RealisticSmoke02_4x4_75
+  - first:
+      213: -4110591721446825717
+    second: RealisticSmoke02_4x4_76
+  - first:
+      213: -77518914326905559
+    second: RealisticSmoke02_4x4_77
+  - first:
+      213: 487035011266214658
+    second: RealisticSmoke02_4x4_78
+  - first:
+      213: 8310273204447856384
+    second: RealisticSmoke02_4x4_79
+  - first:
+      213: -482692400105064600
+    second: RealisticSmoke02_4x4_80
+  - first:
+      213: -5650790103415996310
+    second: RealisticSmoke02_4x4_81
+  - first:
+      213: 3433054986994026473
+    second: RealisticSmoke02_4x4_82
+  - first:
+      213: -6239606588007991838
+    second: RealisticSmoke02_4x4_83
+  - first:
+      213: 7854746600625587342
+    second: RealisticSmoke02_4x4_84
+  - first:
+      213: -4666046431373654914
+    second: RealisticSmoke02_4x4_85
+  - first:
+      213: -4537193806383519958
+    second: RealisticSmoke02_4x4_86
+  - first:
+      213: -8643154095060749248
+    second: RealisticSmoke02_4x4_87
+  - first:
+      213: -5097703406463130993
+    second: RealisticSmoke02_4x4_88
+  - first:
+      213: 3756621445915769706
+    second: RealisticSmoke02_4x4_89
+  - first:
+      213: 6750148529513864807
+    second: RealisticSmoke02_4x4_90
+  - first:
+      213: 1868686580502489655
+    second: RealisticSmoke02_4x4_91
+  - first:
+      213: -7646630466089081056
+    second: RealisticSmoke02_4x4_92
+  - first:
+      213: 4420161190972195127
+    second: RealisticSmoke02_4x4_93
+  - first:
+      213: -6306958286366400481
+    second: RealisticSmoke02_4x4_94
+  - first:
+      213: 2196533227505880511
+    second: RealisticSmoke02_4x4_95
+  - first:
+      213: -6065943211136331617
+    second: RealisticSmoke02_4x4_96
+  - first:
+      213: -3200183411787993100
+    second: RealisticSmoke02_4x4_97
+  - first:
+      213: 4583090170577253356
+    second: RealisticSmoke02_4x4_98
+  - first:
+      213: 928776606088762507
+    second: RealisticSmoke02_4x4_99
+  - first:
+      213: -4134096297063123510
+    second: RealisticSmoke02_4x4_100
+  - first:
+      213: -5955947770193716129
+    second: RealisticSmoke02_4x4_101
+  - first:
+      213: -6511806555141221250
+    second: RealisticSmoke02_4x4_102
+  - first:
+      213: 8593875199162052692
+    second: RealisticSmoke02_4x4_103
+  - first:
+      213: -2819640240436002047
+    second: RealisticSmoke02_4x4_104
+  - first:
+      213: -3208941318370461083
+    second: RealisticSmoke02_4x4_105
+  - first:
+      213: -4732705055636616276
+    second: RealisticSmoke02_4x4_106
+  - first:
+      213: 7326218682684338317
+    second: RealisticSmoke02_4x4_107
+  - first:
+      213: -5767807808412756686
+    second: RealisticSmoke02_4x4_108
+  - first:
+      213: 2949774431114018731
+    second: RealisticSmoke02_4x4_109
+  - first:
+      213: -1606631635135673570
+    second: RealisticSmoke02_4x4_110
+  - first:
+      213: -3577309385801393305
+    second: RealisticSmoke02_4x4_111
+  - first:
+      213: -4664818080720967467
+    second: RealisticSmoke02_4x4_112
+  - first:
+      213: -4319496267362671357
+    second: RealisticSmoke02_4x4_113
+  - first:
+      213: 2065703159628036944
+    second: RealisticSmoke02_4x4_114
+  - first:
+      213: 748983737039911224
+    second: RealisticSmoke02_4x4_115
+  - first:
+      213: -2174826624134445824
+    second: RealisticSmoke02_4x4_116
+  - first:
+      213: -4827714927193273878
+    second: RealisticSmoke02_4x4_117
+  - first:
+      213: 5080839773323064749
+    second: RealisticSmoke02_4x4_118
+  - first:
+      213: 8778217929304135312
+    second: RealisticSmoke02_4x4_119
+  - first:
+      213: 8887564855930470704
+    second: RealisticSmoke02_4x4_120
+  - first:
+      213: -7760049681383330412
+    second: RealisticSmoke02_4x4_121
+  - first:
+      213: -3928671249737089102
+    second: RealisticSmoke02_4x4_122
+  - first:
+      213: -7695850901125404852
+    second: RealisticSmoke02_4x4_123
+  - first:
+      213: 1678008445240235040
+    second: RealisticSmoke02_4x4_124
+  - first:
+      213: -7266004675288721503
+    second: RealisticSmoke02_4x4_125
+  - first:
+      213: -6633672590934507941
+    second: RealisticSmoke02_4x4_126
+  - first:
+      213: -6029498113095932103
+    second: RealisticSmoke02_4x4_127
+  - first:
+      213: 267753289415178053
+    second: RealisticSmoke02_4x4_128
+  - first:
+      213: -7458122481838045652
+    second: RealisticSmoke02_4x4_129
+  - first:
+      213: 3107348980357527258
+    second: RealisticSmoke02_4x4_130
+  - first:
+      213: -7324332181945941485
+    second: RealisticSmoke02_4x4_131
+  - first:
+      213: -2776666489398052293
+    second: RealisticSmoke02_4x4_132
+  - first:
+      213: -2339979639504887732
+    second: RealisticSmoke02_4x4_133
+  - first:
+      213: 6157826179231155218
+    second: RealisticSmoke02_4x4_134
+  - first:
+      213: -220554819255620192
+    second: RealisticSmoke02_4x4_135
+  - first:
+      213: -1481450305562947046
+    second: RealisticSmoke02_4x4_136
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: -1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f853bac9f94caa84bbfc8fddce015781
+      internalID: -9090675069228162962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 3000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f256129a17f973d409ce4a74619319b0
+      internalID: -1755086648971668296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_2
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 3000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 188d8b998437ae542a7ef02a726da950
+      internalID: -633264771732135929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_3
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 3000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a27de7c6142bf5488a72df6a7f66ebf
+      internalID: 4098679750846593898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23b3dd91de14db14895a1081cff3c25f
+      internalID: 4911572971186954114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444662efeaffce14d8953653813c62f8
+      internalID: -8616962963034557862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_6
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a29b431e6f5c7bf4c851bf3cb867ba1f
+      internalID: 9140110808450091837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_7
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 2000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16b299f0bb8d4049be7f0d2a69bb2a6
+      internalID: 353052744806727383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9662872127d823649a8ea44159b23014
+      internalID: 8646681406077117581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_9
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0e19366ef95fa44c91d69f215174fd3
+      internalID: 7785542681561744909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d20d8a04f088eb42b8aea7221d952ce
+      internalID: -6536130953420917549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_11
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1000
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 663050c2e5ff5784382eb171979eacf2
+      internalID: -2925101620839419122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f725cea2a2a02ad47b1842538fd46bc2
+      internalID: 8180843377188525492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_13
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d8900cdc2750e146bc5260d151a27ed
+      internalID: 1741291234026130599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_14
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e0351f50cf1f3a43bea193bd91ba855
+      internalID: -8911557293265304965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RealisticSmoke02_4x4_15
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f6b7775feb0c841b0b99733e906279
+      internalID: 6428821020666218686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 46685eaef39ab3443b50f9812440a511
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

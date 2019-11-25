@@ -370,12 +370,11 @@ MonoBehaviour:
   healthCanvasTime: 3
   healthCanvas: {fileID: 1059806396190394005}
   healthBar: {fileID: 5283024183978813726}
+  minAttackTimer: 5
+  maxAttackTimer: 10
   prepareAttack: {fileID: 7279209313070323570}
-  attackEffect: {fileID: 0}
   attackDelay: 4
   radius: 10
-  minAttackCounter: 1
-  maxAttackCounter: 1.4
 --- !u!114 &4630746786140002173
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricPinEnemy : Enemy
+public class ElectricPinEnemy : AttackingEnemy
 {
     [Header("ElectricPin")]
     [SerializeField] ParticleSystem prepareAttack;
-    [SerializeField] ParticleSystem attackEffect;
     [SerializeField] float attackDelay = 4;
     [SerializeField] float radius = 10;
-    [SerializeField] [Range(0, 20)] float minAttackCounter;
-    [SerializeField] [Range(0, 20)] float maxAttackCounter;
-    private Coroutine attackCoroutine;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,17 +32,7 @@ public class ElectricPinEnemy : Enemy
         MakeActive(true);
 
     }
-    private IEnumerator AttackCountdown()
-    {
-       float time= Random.Range(minAttackCounter, maxAttackCounter);
-        yield return new WaitForSeconds(time);
-        if (!IsBeingSucked&&health>0)
-            attackCoroutine= StartCoroutine(Attack());
-        else
-            StartCoroutine(AttackCountdown());
-
-    }
-    private IEnumerator Attack()
+    protected override IEnumerator Attack()
     {
         thisFollowPlayer.enabled = false;
         //ResetTransform();
@@ -71,11 +58,10 @@ public class ElectricPinEnemy : Enemy
 
         }
     }
-    public void StopAttack()
+    public override void StopAttack()
     {
         prepareAttack.Stop();
         prepareAttack.Clear();
-        if(attackCoroutine!=null)
-            StopCoroutine(attackCoroutine);
+        base.StopAttack();
     }
 }
