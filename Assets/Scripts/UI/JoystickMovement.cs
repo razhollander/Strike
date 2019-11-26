@@ -9,7 +9,7 @@ public class JoystickMovement : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     [SerializeField] private RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
-    [SerializeField] private Player player = null;
+    //[SerializeField] private Player player = null;
     [SerializeField] private VehicleBehaviour.WheelVehicle wheelV;
     private RectTransform baseRect = null;
     private Canvas canvas;
