@@ -390,6 +390,7 @@ MonoBehaviour:
   updateWhenDisabled: 0
   rigidBody: {fileID: 2901526785762248631}
   speed: 1
+  checkForCollisionBuffer: 10
 --- !u!114 &2689561156090565273
 MonoBehaviour:
   m_ObjectHideFlags: 0

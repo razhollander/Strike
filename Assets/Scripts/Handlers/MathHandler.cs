@@ -8,4 +8,18 @@ public static class MathHandler
     {
         return new Vector2(vec.x, vec.z);
     }
+    public static Vector3 Vector2ToVector3(Vector2 vec, float yUp)
+    {
+        return new Vector3(vec.x, yUp ,vec.y);
+    }
+    public static Vector3 Vector2ToVector3(Vector2 vec)
+    {
+        return new Vector3(vec.x, 0, vec.y);
+    }
+    public static Vector3 RotateVectorByAngle(Vector3 vec, float angleInDegrees)//angle in degrees anti clockwise
+    {
+        float angleInRadians = angleInDegrees * Mathf.PI / 180;
+        
+        return new Vector3(vec.x * Mathf.Cos(angleInRadians) - vec.z * Mathf.Sin(angleInRadians), vec.y, vec.z * Mathf.Cos(angleInRadians) + vec.x * Mathf.Sin(angleInRadians));
+    }
 }

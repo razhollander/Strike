@@ -6,7 +6,7 @@ public class OnParticleHit : MonoBehaviour
 {
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Hit");
+        //Debug.Log("Hit");
     }
 
 }

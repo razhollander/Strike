@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text scoreText;
     [SerializeField] float speed;
     [SerializeField] bool isSpawn;
+    
     private int score;
     
     
