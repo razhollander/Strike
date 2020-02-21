@@ -54,10 +54,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradesPanelObject: {fileID: 0}
   _costText: {fileID: 3515249964220578610}
+  _TitleText: {fileID: 3515249963453349690}
   _buyButton: {fileID: 3515249964919852233}
   _stockParent: {fileID: 3515249964566864223}
   _stockImage: {fileID: 6802552726869551782, guid: 98120bf9b8c51f54b9bc2bd6d189a085,
     type: 3}
+  _boughtColor: {r: 0.1573993, g: 1, b: 0, a: 1}
   _leftStockBGSprite: {fileID: 21300000, guid: c5f906b3b6cf0b942bc7a6d14f812b9e, type: 3}
   _middleStockBGSprite: {fileID: 21300000, guid: 1057da46a21546f489d0f5bf28fe3058,
     type: 3}
@@ -581,13 +583,13 @@ MonoBehaviour:
   StartAlpha: 1
   AllowMultipleClicks: 1
   ButtonCategory: Shop
-  ButtonName: Back
+  ButtonName: Buy
   ClickMode: 0
   DeselectButtonAfterClick: 0
   DisableButtonBetweenClicksInterval: 0.2
   DoubleClickRegisterInterval: 0.2
   InputData:
-    EnableAlternateInputs: 1
+    EnableAlternateInputs: 0
     InputMode: 2
     KeyCode: 13
     KeyCodeAlt: 32
@@ -1459,7 +1461,7 @@ MonoBehaviour:
           m_Calls:
           - m_Target: {fileID: -7919765481153345423}
             m_MethodName: Upgrade
-            m_Mode: 6
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1473,8 +1475,8 @@ MonoBehaviour:
       GameEvents: []
       SoundData:
         SoundSource: 0
-        DatabaseName: General
-        SoundName: No Sound
+        DatabaseName: Example Clicks
+        SoundName: Pop Up Ding
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized

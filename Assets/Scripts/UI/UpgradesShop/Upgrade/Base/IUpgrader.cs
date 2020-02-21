@@ -5,5 +5,5 @@ using System;
 
 public interface IUpgrader
 {
-    void Upgrade(int newUpgradeLevel);
+    void Upgrade(int newUpgradeLevel, UpgradeStockBase stockData);
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,19 +18,30 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text scoreText;
     [SerializeField] float speed;
     [SerializeField] bool isSpawn;
-    
+    [SerializeField] UpgradesShopView upgradesShopView;
     public UpgradesManager UpgradesManager;
     public static GameManager instance;
-    
+
+    public event Action OnGameLoad;
+    public event Action OnGamePlayStart;
+
     private int score;
     
     
     void Awake()
     { 
         instance = this;
-        UpgradesManager = new UpgradesManager();
+        UpgradesManager = new UpgradesManager(upgradesShopView);
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-        StartCoroutine(SummonEnemies());
+        OnGamePlayStart += ()=> StartCoroutine(SummonEnemies());
+    }
+    public void PlayGame()
+    {
+        OnGamePlayStart();
+    }
+    void Start()
+    {
+        OnGameLoad.Invoke();
     }
     IEnumerator SummonEnemies()
     {
@@ -38,7 +50,7 @@ public class GameManager : MonoBehaviour
             int index = RandomFromDistribution.RandomChoiceFollowingDistribution(probabilities);
             SuckableObject spawnedObject;
             spawnedObject = sceneObjects[index].Duplicate();
-            float x = Random.Range(-maxDis, maxDis);
+            float x = UnityEngine.Random.Range(-maxDis, maxDis);
 
             if (x < 0 && x > -minDis)
                 x = -minDis;

@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class UpgradesManager
 {
-    // Start is called before the first frame update
-    Dictionary<eUpgradeType,IUpgrader> Upgraders;
-
-    public UpgradesManager()
+    private Dictionary<eUpgradeType,IUpgrader> _upgraders;
+    public UpgradesManager(UpgradesShopView upgradesShopView)
     {
-        Upgraders = new Dictionary<eUpgradeType, IUpgrader>();
-        //var upgraders = Object.FindObjectsOfTypeIncludingAssets(typeof(IUpgrader));
-        //Debug.Log(upgraders.Length);
-        Upgraders.Add(eUpgradeType.Power, new PowerUpgrader());
-        Upgraders.Add(eUpgradeType.Speed, new PowerUpgrader());
-        Upgraders.Add(eUpgradeType.Vacuums, new PowerUpgrader());
+        _upgraders = new Dictionary<eUpgradeType, IUpgrader>();
+        _upgraders.Add(eUpgradeType.Power, new PowerUpgrader());
+        _upgraders.Add(eUpgradeType.Speed, new SpeedUpgrader());
+
+        GameManager.instance.OnGameLoad+= upgradesShopView.CreateShop;
     }
     public IUpgrader GetUpgrade(eUpgradeType upgradeType)
     {
-        return Upgraders[upgradeType];
+        return _upgraders[upgradeType];
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedUpgrader : IUpgrader
 {
-    public void Upgrade(int newUpgradeLevel)
+    public void Upgrade(int newUpgradeLevel, UpgradeStockBase stockData)
     {
     }
 }

@@ -5,35 +5,51 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UpgradePanel : MonoBehaviour
 {
+    const string DEFAULT_COST_TEXT = "-";
+
     [SerializeField] private UpgradesPanelObject _upgradesPanelObject;
     [SerializeField] private TextMeshProUGUI _costText;
+    [SerializeField] private TextMeshProUGUI _TitleText;
+
     [SerializeField] private Button _buyButton;
     [SerializeField] private Transform _stockParent;
     [SerializeField] private Image _stockImage;
+    [SerializeField] private Color _boughtColor;
 
     [SerializeField] private Sprite _leftStockBGSprite;
     [SerializeField] private Sprite _middleStockBGSprite;
     [SerializeField] private Sprite _rightStockBGSprite;
     [SerializeField] private Sprite _soloStockBGSprite;
 
+    List<Image> stocksImages;
     private IUpgrader _upgrader;
 
-    public void Populate(UpgradesPanelObject upgradesPanelObject, IUpgrader upgrader)
+    public void SetPanel(UpgradesPanelObject upgradesPanelObject, IUpgrader upgrader)
     {
+        stocksImages = new List<Image>();
         _upgradesPanelObject = upgradesPanelObject;
         _upgrader = upgrader;
+        _TitleText.text = upgradesPanelObject.Name;
 
         CreateStocksView();
 
+        //if(_upgradesPanelObject.CurrentUpgradeLevel>= _upgradesPanelObject.UpgradeStocks.Count)
+        //{
+        //    DisablePanel();
+        //    _costText.text = "";
+        //    return;
+        //}
+
         for (int i = 0; i < _upgradesPanelObject.CurrentUpgradeLevel; i++)
         {
-            Upgrade(true);
+            if(i<_upgradesPanelObject.UpgradeStocks.Count)
+                OnEnableUpgrade(i);
         }
     }
+
     private void CreateStocksView()
     {
         var stocks = _upgradesPanelObject.UpgradeStocks;
-        Debug.Log(stocks.Count);
         var numOfStocks = stocks.Count;
         Image stockImage;
 
@@ -45,12 +61,15 @@ public class UpgradePanel : MonoBehaviour
         if (numOfStocks == 1)
         {
             stockImage = Instantiate(_stockImage, _stockParent);
+            stockImage.sprite = _soloStockBGSprite;
+            stocksImages.Add(stockImage);
             return;
         }
 
         for (int i = 0; i < numOfStocks; i++)
         {
             stockImage = Instantiate(_stockImage, _stockParent);
+
             if (i==0)
             {
                 stockImage.sprite = _leftStockBGSprite;
@@ -67,28 +86,59 @@ public class UpgradePanel : MonoBehaviour
                 }
             }
 
+            stocksImages.Add(stockImage);
         }
 
     }
-    public void Upgrade(bool isFree=false)
+    private void OnEnableUpgrade(int currUpgradeLevel = 0)
     {
-        //TODO: check if cost is less than player money
-        UpgradeStockBase currentUpgradeStock = _upgradesPanelObject.UpgradeStocks[_upgradesPanelObject.CurrentUpgradeLevel];
-        _upgrader.Upgrade(_upgradesPanelObject.CurrentUpgradeLevel);
-        
-        //Update UI
-        if (_upgradesPanelObject.CurrentUpgradeLevel >= _upgradesPanelObject.UpgradeStocks.Count)
+        UpgradeStockBase currentUpgradeStock = _upgradesPanelObject.UpgradeStocks[currUpgradeLevel];
+        string costText = DEFAULT_COST_TEXT;
+            
+        _upgrader.Upgrade(currUpgradeLevel, currentUpgradeStock);
+        stocksImages[currUpgradeLevel].color = _boughtColor;
+        currUpgradeLevel++;
+
+        if (currUpgradeLevel < _upgradesPanelObject.UpgradeStocks.Count)
         {
-            DisablePanel();
+            costText = _upgradesPanelObject.UpgradeStocks[currUpgradeLevel].Cost.ToString();
         }
         else
         {
-            if (!isFree)
+            DisablePanel();
+        }
+
+        _costText.text = costText;
+    }
+    public void Upgrade()
+    {
+        //TODO: check if cost is less than player money
+        int currUpgradeLevel = _upgradesPanelObject.CurrentUpgradeLevel;
+        UpgradeStockBase currentUpgradeStock = _upgradesPanelObject.UpgradeStocks[currUpgradeLevel];
+        string costText = DEFAULT_COST_TEXT;
+
+        //Update UI
+        if (currUpgradeLevel >= _upgradesPanelObject.UpgradeStocks.Count)
+        {
+            return;
+        }
+        else
+        {
+            stocksImages[currUpgradeLevel].color = _boughtColor;
+            _upgrader.Upgrade(currUpgradeLevel, currentUpgradeStock);
+            GameManager.instance.player.PlayerObject.Money -= currentUpgradeStock.Cost;
+            _upgradesPanelObject.CurrentUpgradeLevel++;
+            currUpgradeLevel++;
+            if (currUpgradeLevel < _upgradesPanelObject.UpgradeStocks.Count)
             {
-                GameManager.instance.player.PlayerObject.Money -= currentUpgradeStock.Cost;
-                _upgradesPanelObject.CurrentUpgradeLevel++;
+                costText = _upgradesPanelObject.UpgradeStocks[currUpgradeLevel].Cost.ToString();
             }
-            _costText.text = _upgradesPanelObject.UpgradeStocks[_upgradesPanelObject.CurrentUpgradeLevel].Cost.ToString();
+            else
+            {
+                DisablePanel();
+            }
+
+            _costText.text = costText;
         }
     }
     private void DisablePanel()

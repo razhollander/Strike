@@ -8,12 +8,12 @@ public class UpgradesShopView : MonoBehaviour
     [SerializeField] Transform _upgradesPanelsParent;
     [SerializeField] UpgradePanel _upgradePanel;
 
-    void Start()
+    public void CreateShop()
     {
         foreach (var upgradePanel in _upgradesShop.UpgradesPanelObjects)
         {
             var currUpgradePanel = Instantiate(_upgradePanel, _upgradesPanelsParent);
-            currUpgradePanel.Populate(upgradePanel, GameManager.instance.UpgradesManager.GetUpgrade(upgradePanel.EUpgradeType));
-        }   
+            currUpgradePanel.SetPanel(upgradePanel, GameManager.instance.UpgradesManager.GetUpgrade(upgradePanel.EUpgradeType));
+        }
     }
 }

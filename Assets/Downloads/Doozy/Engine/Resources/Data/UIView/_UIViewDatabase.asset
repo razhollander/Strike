@@ -15,10 +15,14 @@ MonoBehaviour:
   DatabaseType: 2
   CategoryNames:
   - Custom
+  - BeforeGame
   - Example
   - General
-  - BeforeGame
+  - InGame
+  - Settings
   Categories:
   - {fileID: 11400000, guid: 5073256589872d0488e572265661d331, type: 2}
   - {fileID: 11400000, guid: b01e98f4801f7124ba39e1dac4debf90, type: 2}
   - {fileID: 11400000, guid: 34c9c351199e1e94ebe557e055114086, type: 2}
+  - {fileID: 11400000, guid: affe9c510963d174783e185a2648b15f, type: 2}
+  - {fileID: 11400000, guid: e8c42c02fd1881842bc59b32b2215297, type: 2}

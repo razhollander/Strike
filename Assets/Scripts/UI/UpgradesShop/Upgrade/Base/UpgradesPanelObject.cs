@@ -6,6 +6,7 @@ using System;
 [CreateAssetMenu(fileName = "UpgradesPanel", menuName = "Upgrades/UpgradesPanel")]
 public class UpgradesPanelObject : ScriptableObject
 {
+    public string Name;
     public int CurrentUpgradeLevel;
     public List<UpgradeStockBase> UpgradeStocks;
     public eUpgradeType EUpgradeType;
