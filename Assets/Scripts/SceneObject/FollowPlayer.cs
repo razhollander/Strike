@@ -5,63 +5,70 @@ using UnityEngine;
 public class FollowPlayer : OverridableMonoBehaviour
 {
     
-    private const float CHECK_FOR_COLLISION_BUFFER =15;
+    private const float CHECK_FOR_COLLISION_BUFFER =20;
     private const float ANGLE_DELTA_DIR = 3;
-
+    private const float RAY_HEIGHT_ABOVE_GROUND = 0.5f;
+    private const int MAX_ANGLE = 360;
     private GameObject player;
-    [SerializeField] private Rigidbody rigidBody;
-    [SerializeField] private float speed = 1;
-
+    [SerializeField] private float _speed = 1;
+    float _rayRadius;
     Vector3 playerPos;
-    LayerMask layermaskIgnored;
+    Vector3 moveDelta;
+    Vector3 _rayDir;
+    Vector3 _rayOrigin;
+    RaycastHit _rayhit;
+    LayerMask _layermaskIgnored;
+    private float _timeDeltaTime;
+    private Vector3 _dirRight;
+    private Vector3 _dirLeft;
+
     protected override void Awake()
     {
         base.Awake();
-        rigidBody = GetComponentInChildren<Rigidbody>();
         player = FindObjectOfType<VehicleBehaviour.WheelVehicle>().gameObject;
         playerPos = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-        layermaskIgnored = ~((1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Player")));
+        _layermaskIgnored = ~((1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Player")));
+        _rayRadius = transform.localScale.x;
+        _rayOrigin = new Vector3(transform.position.x, RAY_HEIGHT_ABOVE_GROUND, transform.position.z);
     }
 
     public override void UpdateMe()
     {
+        MoveTowardsPlayer();
+    }
+    private void MoveTowardsPlayer()
+    {
+        _timeDeltaTime = Time.deltaTime;
         playerPos.Set(player.transform.position.x, transform.position.y, player.transform.position.z);
-        Vector3 moveDelta = (playerPos - transform.position).normalized * speed * Time.deltaTime;
-        float rayRadius = transform.localScale.x;
-        Vector3 rayDir = moveDelta * CHECK_FOR_COLLISION_BUFFER * speed* rayRadius;
-        Vector3 rayOrigin =new Vector3(transform.position.x, 0.5f, transform.position.z);
-        RaycastHit rayhit;
-        //Debug.DrawRay(rayOrigin, rayDir);
-        if (Physics.SphereCast(rayOrigin, rayRadius, rayDir, out rayhit, rayDir.magnitude, layermaskIgnored))
+        moveDelta = (playerPos - transform.position).normalized * _speed * _timeDeltaTime;
+        _rayDir = moveDelta * CHECK_FOR_COLLISION_BUFFER * _speed * _rayRadius;
+        _rayOrigin.Set(transform.position.x, RAY_HEIGHT_ABOVE_GROUND, transform.position.z);
+
+        if (Physics.SphereCast(_rayOrigin, _rayRadius, _rayDir, out _rayhit, _rayDir.magnitude, _layermaskIgnored))
         {
-            moveDelta = GetDirNotColliding(rayOrigin, rayDir, rayRadius).normalized * speed * Time.deltaTime;
+            moveDelta = GetDirNotColliding(_rayOrigin, _rayDir).normalized * _speed * _timeDeltaTime;
         }
 
         transform.position += moveDelta;
     }
-    private Vector3 GetDirNotColliding(Vector3 origin,Vector3 dir,float scale)
+    private Vector3 GetDirNotColliding(Vector3 origin,Vector3 dir)
     {
-        Vector3 dirRight= dir;
-        Vector3 dirLeft= dir;
-
+        _dirRight= dir;
+        _dirLeft= dir;
         float magntiude = dir.magnitude;
 
-        RaycastHit rayhit;
-
-        for (int i = 0; i < 360/ANGLE_DELTA_DIR; i++)
+        for (int i = 0; i < MAX_ANGLE/ANGLE_DELTA_DIR; i++)
         {
-            dirRight = MathHandler.RotateVectorByAngle(dirRight, -ANGLE_DELTA_DIR);
-            dirLeft = MathHandler.RotateVectorByAngle(dirLeft, ANGLE_DELTA_DIR);
+            _dirRight = MathHandler.RotateVectorByAngle(_dirRight, -ANGLE_DELTA_DIR);
+            _dirLeft = MathHandler.RotateVectorByAngle(_dirLeft, ANGLE_DELTA_DIR);
 
-            //Debug.DrawRay(origin, dirRight,Color.red);
-            if (!Physics.SphereCast(origin, scale, dirRight, out rayhit, magntiude, layermaskIgnored))
+            if (!Physics.SphereCast(origin, _rayRadius, _dirRight, out _rayhit, magntiude, _layermaskIgnored))
             {
-                return dirRight;
+                return _dirRight;
             }
-            Debug.DrawRay(origin, dirLeft, Color.red);
-            if (!Physics.SphereCast(origin, scale, dirLeft, out rayhit, magntiude, layermaskIgnored))
+            if (!Physics.SphereCast(origin, _rayRadius, _dirLeft, out _rayhit, magntiude, _layermaskIgnored))
             {
-                return dirLeft;
+                return _dirLeft;
             }
         }
         return Vector3.zero;

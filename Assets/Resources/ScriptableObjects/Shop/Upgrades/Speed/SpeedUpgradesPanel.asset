@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c849617d7d6ebd343a801ce88cdb13fc, type: 3}
+  m_Name: SpeedUpgradesPanel
+  m_EditorClassIdentifier: 
+  CurrentUpgradeLevel: 1
+  UpgradeStocks:
+  - {fileID: 11400000, guid: e4cd96701d054604d8c16617399180f6, type: 2}
+  - {fileID: 11400000, guid: caf5baa92e624eb47a8615c64c370626, type: 2}
+  - {fileID: 11400000, guid: e32b5f53a8502f8408b443c946b2b758, type: 2}
+  EUpgradeType: 1

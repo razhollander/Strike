@@ -41,9 +41,9 @@ public class InventoryUI : MonoBehaviour
     }
     public void StartAddEffect(SuckableobjectType suckableobjectType, Vector3 startPos)
     {
-       StartCoroutine(StartAddEffectCoursotin(suckableobjectType, startPos));
+       StartCoroutine(StartAddEffectCoroutin(suckableobjectType, startPos));
     }
-    private IEnumerator StartAddEffectCoursotin(SuckableobjectType suckableobjectType, Vector3 startPos)
+    private IEnumerator StartAddEffectCoroutin(SuckableobjectType suckableobjectType, Vector3 startPos)
     {
 
         InventoryObjectUI objectUI = GetInventoryObjectUI(suckableobjectType);

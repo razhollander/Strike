@@ -65,7 +65,7 @@ MonoBehaviour:
     m_id: d937c7bc-479c-4af3-8ee6-4263599d314d
     m_nodeId: 7d7fa347-bcba-42ef-9dce-0ac21908add9
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"Example","ButtonName":"Two","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Shop","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -115,7 +115,7 @@ MonoBehaviour:
   - {fileID: -7933794030654703800}
   m_isSubGraph: 0
   m_version: 1
-  m_description: 
+  m_description: Before game graph
   m_id: fae02ca0-ad6c-435a-bc3e-ed7700b5e837
   m_lastModified: 132231340171077037
 --- !u!114 &2181325268535646298
@@ -190,7 +190,7 @@ MonoBehaviour:
     m_id: 03964ca2-5343-44e1-abff-e455da23f279
     m_nodeId: 64864d14-a453-490b-a319-e92132e13a17
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"Example","ButtonName":"One","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"MainMenu","ButtonName":"Shop","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4

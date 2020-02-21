@@ -8,10 +8,9 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemiesParent;
-    public static GameManager instance;
     [SerializeField] private List<SuckableObject> sceneObjects;
     [SerializeField] List<float> probabilities;
-    [SerializeField] public GameObject player;
+    [SerializeField] public Player player;
     [SerializeField] private float minDis, maxDis;
     [SerializeField] private float waitForSummonSceonds = 3;
     [SerializeField] private float forwardExtra = 1;
@@ -19,12 +18,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] bool isSpawn;
     
+    public UpgradesManager UpgradesManager;
+    public static GameManager instance;
+    
     private int score;
     
     
-    void Start()
+    void Awake()
     { 
         instance = this;
+        UpgradesManager = new UpgradesManager();
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         StartCoroutine(SummonEnemies());
     }
