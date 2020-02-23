@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool isSpawn;
     [SerializeField] UpgradesShopView upgradesShopView;
     public UpgradesManager UpgradesManager;
-    public DataManager DataManager;
+    public ShopManager shopManager;
     public static GameManager instance;
 
     public event Action OnGameLoad;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     { 
         instance = this;
         UpgradesManager = new UpgradesManager(upgradesShopView);
-        DataManager = new DataManager();
+        shopManager = new ShopManager();
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         OnGamePlayStart += ()=> StartCoroutine(SummonEnemies());
         OnGamePlayEnd += () => StopCoroutine(SummonEnemies());

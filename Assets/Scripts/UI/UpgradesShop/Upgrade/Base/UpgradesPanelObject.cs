@@ -7,7 +7,6 @@ using System;
 public class UpgradesPanelObject : ScriptableObject
 {
     public string Name;
-    public int CurrentUpgradeLevel;
     public List<UpgradeStockBase> UpgradeStocks;
     public eUpgradeType EUpgradeType;
 }

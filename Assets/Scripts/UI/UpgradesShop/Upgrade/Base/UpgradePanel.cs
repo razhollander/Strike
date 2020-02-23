@@ -33,14 +33,9 @@ public class UpgradePanel : MonoBehaviour
 
         CreateStocksView();
 
-        //if(_upgradesPanelObject.CurrentUpgradeLevel>= _upgradesPanelObject.UpgradeStocks.Count)
-        //{
-        //    DisablePanel();
-        //    _costText.text = "";
-        //    return;
-        //}
+        int currentUpgradeLevel = GameManager.instance.shopManager.UpgradesShopModel.GetUpgradeLevel(upgradesPanelObject.EUpgradeType);
 
-        for (int i = 0; i < _upgradesPanelObject.CurrentUpgradeLevel; i++)
+        for (int i = 0; i < currentUpgradeLevel; i++)
         {
             if(i<_upgradesPanelObject.UpgradeStocks.Count)
                 OnEnableUpgrade(i);
@@ -113,7 +108,8 @@ public class UpgradePanel : MonoBehaviour
     public void Upgrade()
     {
         //TODO: check if cost is less than player money
-        int currUpgradeLevel = _upgradesPanelObject.CurrentUpgradeLevel;
+        int currUpgradeLevel = GameManager.instance.shopManager.UpgradesShopModel.GetUpgradeLevel(_upgradesPanelObject.EUpgradeType);
+
         UpgradeStockBase currentUpgradeStock = _upgradesPanelObject.UpgradeStocks[currUpgradeLevel];
         string costText = DEFAULT_COST_TEXT;
 
@@ -127,8 +123,8 @@ public class UpgradePanel : MonoBehaviour
             stocksImages[currUpgradeLevel].color = _boughtColor;
             _upgrader.Upgrade(currUpgradeLevel, currentUpgradeStock);
             GameManager.instance.player.PlayerObject.Money -= currentUpgradeStock.Cost;
-            _upgradesPanelObject.CurrentUpgradeLevel++;
-            currUpgradeLevel++;
+            GameManager.instance.shopManager.UpgradesShopModel.SetUpgradeLevel(_upgradesPanelObject.EUpgradeType, currUpgradeLevel++);
+
             if (currUpgradeLevel < _upgradesPanelObject.UpgradeStocks.Count)
             {
                 costText = _upgradesPanelObject.UpgradeStocks[currUpgradeLevel].Cost.ToString();
