@@ -18,11 +18,13 @@ MonoBehaviour:
   - Example
   - General
   - MainMenu
-  - Shop
   - Play
+  - Shop
+  - Settings
   Categories:
   - {fileID: 11400000, guid: 40f9e81ff80114a47a3721228ba749ed, type: 2}
   - {fileID: 11400000, guid: 11c7ba0af27155045b31940db068028c, type: 2}
   - {fileID: 11400000, guid: 4e8938b2b2ca6cc43a1733ed2c403898, type: 2}
-  - {fileID: 11400000, guid: 13d18c89a2b67614cbe62cca44567e2d, type: 2}
   - {fileID: 11400000, guid: df2a50fb8c022504382fdc9c481c5798, type: 2}
+  - {fileID: 11400000, guid: 13d18c89a2b67614cbe62cca44567e2d, type: 2}
+  - {fileID: 11400000, guid: 4363a656ba352884bb58231be9d82ab2, type: 2}

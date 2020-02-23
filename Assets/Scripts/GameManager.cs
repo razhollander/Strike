@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool isSpawn;
     [SerializeField] UpgradesShopView upgradesShopView;
     public UpgradesManager UpgradesManager;
+    public DataManager DataManager;
     public static GameManager instance;
 
     public event Action OnGameLoad;
     public event Action OnGamePlayStart;
+    public event Action OnGamePlayEnd;
 
     private int score;
     
@@ -32,8 +34,14 @@ public class GameManager : MonoBehaviour
     { 
         instance = this;
         UpgradesManager = new UpgradesManager(upgradesShopView);
+        DataManager = new DataManager();
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         OnGamePlayStart += ()=> StartCoroutine(SummonEnemies());
+        OnGamePlayEnd += () => StopCoroutine(SummonEnemies());
+    }
+    public void EndGame()
+    {
+        OnGamePlayEnd();
     }
     public void PlayGame()
     {
