@@ -12,21 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013284f1f7c5c7c4bb1da0e90b3fcb5e, type: 3}
   m_Name: PrefabsCollectionObject
   m_EditorClassIdentifier: 
-  prefabsCollection:
-  - {fileID: 2508786894324569042, guid: b68606d2c10b42144b511cd93c538697, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  dic2:
+  prefabsDictionary:
     m_keys:
-    - b
-    - r
+    - View - UpgradesShop
+    - StockImage
+    - UpgradesPanel
+    - BowlingBall
+    - Pin
+    - PlayerCar
+    - IcePin
     m_values:
     - {fileID: 2508786894324569042, guid: b68606d2c10b42144b511cd93c538697, type: 3}
     - {fileID: 6802552726869551780, guid: 98120bf9b8c51f54b9bc2bd6d189a085, type: 3}
+    - {fileID: 3515249963375436697, guid: 049dd15c5653cff4aac8cf63ab2e9b06, type: 3}
+    - {fileID: 2367794016340903677, guid: 401fb9477f272e74bb8b5dabf62794d0, type: 3}
+    - {fileID: 6206811631335481466, guid: bfc257a0cbefa3546bcaadfdbad569af, type: 3}
+    - {fileID: 5786868716764675202, guid: 40d2a854c88eeb741b4c4c1b72386d79, type: 3}
+    - {fileID: 1938576920105175964, guid: e60689f51820ef44c8f8d5e18d12a50d, type: 3}
