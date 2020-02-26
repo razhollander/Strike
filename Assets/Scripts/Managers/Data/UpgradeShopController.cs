@@ -8,9 +8,10 @@ public class UpgradesShopController
     private UpgradesShopModel _dataModel { get; set; }
     private DataView _dataView { get; set; }
 
-    public UpgradesShopController(UpgradesShopModel dataModel)
+    public UpgradesShopController(UpgradesShopModel upgradesShopModel)
     {
-        _dataModel = dataModel;
+        _dataModel = upgradesShopModel;
+        //TODO Add Model View
         _dataModel.OnMoneyChanged += _dataView.UpdateMoney;
     }
 }

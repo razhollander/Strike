@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text scoreText;
     [SerializeField] float speed;
     [SerializeField] bool isSpawn;
-    [SerializeField] UpgradesShopView upgradesShopView;
+    [SerializeField] PrefabsCollectionObject _prefabsCollectionObject;
+
     public UpgradesManager UpgradesManager;
     public ShopManager shopManager;
     public static GameManager instance;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     { 
         instance = this;
-        UpgradesManager = new UpgradesManager(upgradesShopView);
+        UpgradesManager = new UpgradesManager();
         shopManager = new ShopManager();
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         OnGamePlayStart += ()=> StartCoroutine(SummonEnemies());
@@ -77,6 +78,10 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public T GetPrefab<T>(string name) where T : UnityEngine.Object
+    {
+        return (T)_prefabsCollectionObject.prefabsDictionary[name.Equals(name)];
     }
     public void AddScore(int addedScore)
     {

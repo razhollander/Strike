@@ -33,7 +33,7 @@ public class UpgradePanel : MonoBehaviour
 
         CreateStocksView();
 
-        int currentUpgradeLevel = GameManager.instance.shopManager.UpgradesShopModel.GetUpgradeLevel(upgradesPanelObject.EUpgradeType);
+        int currentUpgradeLevel = GameManager.instance.UpgradesManager.GetUpgradeLevel(upgradesPanelObject.EUpgradeType);
 
         for (int i = 0; i < currentUpgradeLevel; i++)
         {
@@ -108,7 +108,7 @@ public class UpgradePanel : MonoBehaviour
     public void Upgrade()
     {
         //TODO: check if cost is less than player money
-        int currUpgradeLevel = GameManager.instance.shopManager.UpgradesShopModel.GetUpgradeLevel(_upgradesPanelObject.EUpgradeType);
+        int currUpgradeLevel = GameManager.instance.UpgradesManager.GetUpgradeLevel(_upgradesPanelObject.EUpgradeType);
 
         UpgradeStockBase currentUpgradeStock = _upgradesPanelObject.UpgradeStocks[currUpgradeLevel];
         string costText = DEFAULT_COST_TEXT;
@@ -123,7 +123,7 @@ public class UpgradePanel : MonoBehaviour
             stocksImages[currUpgradeLevel].color = _boughtColor;
             _upgrader.Upgrade(currUpgradeLevel, currentUpgradeStock);
             GameManager.instance.player.PlayerObject.Money -= currentUpgradeStock.Cost;
-            GameManager.instance.shopManager.UpgradesShopModel.SetUpgradeLevel(_upgradesPanelObject.EUpgradeType, currUpgradeLevel++);
+            GameManager.instance.UpgradesManager.SetUpgradeLevel(_upgradesPanelObject.EUpgradeType, currUpgradeLevel++);
 
             if (currUpgradeLevel < _upgradesPanelObject.UpgradeStocks.Count)
             {
