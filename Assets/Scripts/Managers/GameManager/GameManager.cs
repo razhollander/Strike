@@ -20,9 +20,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool isSpawn;
     [SerializeField] PrefabsCollectionObject _prefabsCollectionObject;
 
+    public static GameManager Instance;
+    
     public UpgradesManager UpgradesManager;
-    public ShopManager shopManager;
-    public static GameManager instance;
+    public AssetLoadHandler AssetLoadHandler;
+    public GamePrefHandler GamePrefHandler;
+    public GameDataManager GameDataManager;
+    public GameStateManager GameStateManager;
 
     public event Action OnGameLoad;
     public event Action OnGamePlayStart;
@@ -33,10 +37,15 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     { 
-        instance = this;
+        Instance = this;
+        GamePrefHandler = new GamePrefHandler();
+        GameDataManager = new GameDataManager();
+        AssetLoadHandler = new AssetLoadHandler(_prefabsCollectionObject);
         UpgradesManager = new UpgradesManager();
-        shopManager = new ShopManager();
+        GameStateManager = new GameStateManager();
+
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+
         OnGamePlayStart += ()=> StartCoroutine(SummonEnemies());
         OnGamePlayEnd += () => StopCoroutine(SummonEnemies());
     }
@@ -46,11 +55,15 @@ public class GameManager : MonoBehaviour
     }
     public void PlayGame()
     {
+        Debug.Log("Start game");
         OnGamePlayStart();
     }
     void Start()
     {
-        OnGameLoad.Invoke();
+        if(OnGameLoad!=null)
+        {
+            OnGameLoad.Invoke();
+        }
     }
     IEnumerator SummonEnemies()
     {

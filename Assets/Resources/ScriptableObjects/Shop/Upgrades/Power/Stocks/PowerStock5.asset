@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PowerStock5
   m_EditorClassIdentifier: 
   Cost: 2000
-  newPower: 10
+  newPower: 1000

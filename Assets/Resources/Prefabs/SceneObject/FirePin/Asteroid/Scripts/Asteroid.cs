@@ -63,7 +63,7 @@ public class Asteroid : PooledMonobehaviour
     private IEnumerator Hit(Vector3 landPosition)
     {
         rotationTweener.Kill();
-        Vector2 playerPos = MathHandler.Vector3ToVector2(GameManager.instance.player.transform.position);
+        Vector2 playerPos = MathHandler.Vector3ToVector2(GameManager.Instance.player.transform.position);
         Vector2 landPos = MathHandler.Vector3ToVector2(landPosition);
         if (Vector3.Distance(playerPos, landPos) <= hitRadius)
         {

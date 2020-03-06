@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c849617d7d6ebd343a801ce88cdb13fc, type: 3}
+  m_Name: RadiusUpgradesPanel
+  m_EditorClassIdentifier: 
+  Name: Radius
+  UpgradeStocks:
+  - {fileID: 11400000, guid: 6201d507237c65645a289c8b44525ece, type: 2}
+  - {fileID: 11400000, guid: 3ad49aeb1436f2840a41d219abbf1eef, type: 2}
+  - {fileID: 11400000, guid: de5bb38cbc31e6b448a565ee8fda4f77, type: 2}
+  - {fileID: 11400000, guid: 5f87398d3d86ae843a16d4180fb0141a, type: 2}
+  EUpgradeType: 3

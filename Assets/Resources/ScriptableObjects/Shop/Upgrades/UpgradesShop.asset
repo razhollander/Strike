@@ -15,3 +15,5 @@ MonoBehaviour:
   UpgradesPanelObjects:
   - {fileID: 11400000, guid: aecc49fc9dd30f645a19e04904780be8, type: 2}
   - {fileID: 11400000, guid: df3159bfc94750a4f858c1e6ca2d2afc, type: 2}
+  - {fileID: 11400000, guid: 3e7ebcd2455dc9146abe3d0c34923241, type: 2}
+  - {fileID: 11400000, guid: ef6802db4d60497438fbf1b245bd73e5, type: 2}

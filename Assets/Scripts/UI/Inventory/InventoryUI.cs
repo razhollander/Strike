@@ -59,13 +59,13 @@ public class InventoryUI : MonoBehaviour
         yield return new WaitForSeconds(waitForSeceonds);
         Destroy(img.gameObject);
         objectUI.Add();
-        if(GameManager.instance == null)
+        if(GameManager.Instance == null)
         {
             Debug.Log("No GameManager Instance!");
         }
         int score = objectUI.inventoryObject.score;
-        if (score > 0&& GameManager.instance!=null)
-            GameManager.instance.AddScore(score);
+        if (score > 0&& GameManager.Instance!=null)
+            GameManager.Instance.AddScore(score);
     }
     private void EndAddEffect()
     {

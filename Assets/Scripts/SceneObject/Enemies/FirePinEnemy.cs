@@ -59,7 +59,7 @@ public class FirePinEnemy : AttackingEnemy
         if (health > 0)
         {
             Asteroid newAstroid = astroid.Get<Asteroid>();
-            Vector3 hitPos = GameManager.instance.player.transform.forward * 15 + GameManager.instance.player.transform.position;
+            Vector3 hitPos = GameManager.Instance.player.transform.forward * 15 + GameManager.Instance.player.transform.position;
             newAstroid.Lounch(hitPos, lounchAndroidPos.position);
             StartCoroutine(AttackCountdown());
         }

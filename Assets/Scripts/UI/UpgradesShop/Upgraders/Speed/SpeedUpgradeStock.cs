@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpeedUpgradeStock", menuName = "Upgrades/Stocks/SpeedUpgradeStock")]
 public class SpeedUpgradeStock : UpgradeStockBase
 {
-    public float newSpeed;
+    public float Speed;
 }

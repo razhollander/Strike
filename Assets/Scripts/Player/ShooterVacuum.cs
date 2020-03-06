@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class ShooterVacuum : Vacuum
 {
+    [Header("Shooter")]
+
     [SerializeField] private GameObject arrow;
     [SerializeField] private float maxDistance=1000;
     [SerializeField] private float arrowLengthProportion = 1;
@@ -18,9 +20,9 @@ public class ShooterVacuum : Vacuum
     Tween shootTween;
     public void StartAiming(Vector2 aimDirection)
     {
-        if(ObjectBeingSucked != null && !isInPulling)
+        if(ObjectBeingSucked != null && !IsInPulling)
              StopSuckingEnemy();
-        rotationTweener.Kill();
+        RotationTweener.Kill();
         arrow.SetActive(true);
         Aim(aimDirection);
     }
@@ -43,8 +45,8 @@ public class ShooterVacuum : Vacuum
     }
     public void Aim(Vector2 aimDirection)
     {
-        Ray ray = new Ray(vacuumPoint.position, new Vector3(aimDirection.x, 0, aimDirection.y));
-        Debug.DrawRay(vacuumPoint.position,  new Vector3(aimDirection.x, 0, aimDirection.y)*maxDistance, Color.red);
+        Ray ray = new Ray(VacuumPoint.position, new Vector3(aimDirection.x, 0, aimDirection.y));
+        Debug.DrawRay(VacuumPoint.position,  new Vector3(aimDirection.x, 0, aimDirection.y)*maxDistance, Color.red);
         transform.LookAt(transform.position + new Vector3(ray.direction.x,0, ray.direction.z), Vector3.up);
         RaycastHit rayhit;
         if (Physics.SphereCast(ray, rayRadius, out rayhit, maxDistance, LayerMask.GetMask("Enemy")))
@@ -61,7 +63,7 @@ public class ShooterVacuum : Vacuum
     }
     public void Shoot(ObjectShot objectShot, Vector2 direction)
     {
-        objectShot.transform.position = vacuumPoint.position;
+        objectShot.transform.position = VacuumPoint.position;
         objectShot.Shoot(direction);
         StopAiming();
         DoShootFX();
@@ -70,7 +72,7 @@ public class ShooterVacuum : Vacuum
     {
         shootTween.Restart();
         shootTween.Kill();
-        shootTween = vacuumHead.DOPunchScale(Vector3.one * punchShootValue, shootAnimationDuration);
+        shootTween = VacuumHead.DOPunchScale(Vector3.one * punchShootValue, shootAnimationDuration);
         //airParticals.SetActive(false);
         //sparksParticles.Play();
         //swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;
@@ -79,7 +81,7 @@ public class ShooterVacuum : Vacuum
     public void StopAiming()
     {
         arrow.SetActive(false);
-        if(!isInPulling)
+        if(!IsInPulling)
         StartSelfRotation();
 
     }

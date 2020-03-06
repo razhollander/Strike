@@ -40,7 +40,7 @@ public class ElectricPinEnemy : AttackingEnemy
         yield return new WaitForSeconds(attackDelay);
         if (health > 0)
         {
-            Vector2 playerPos = MathHandler.Vector3ToVector2(GameManager.instance.player.transform.position);
+            Vector2 playerPos = MathHandler.Vector3ToVector2(GameManager.Instance.player.transform.position);
             Vector2 thisPos = MathHandler.Vector3ToVector2(transform.position);
             if (Vector2.Distance(thisPos, playerPos) < radius)
             {

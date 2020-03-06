@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c849617d7d6ebd343a801ce88cdb13fc, type: 3}
+  m_Name: VacuumsAmountUpgradesPanel
+  m_EditorClassIdentifier: 
+  Name: Vacuums Amount
+  UpgradeStocks:
+  - {fileID: 11400000, guid: 2780661709fa2834187760d624cc3f7a, type: 2}
+  - {fileID: 11400000, guid: decaea7bd53d09d4a99e8cbbfd57707b, type: 2}
+  - {fileID: 11400000, guid: f1b5badf772d00a46b31b5d4247bc60c, type: 2}
+  EUpgradeType: 2

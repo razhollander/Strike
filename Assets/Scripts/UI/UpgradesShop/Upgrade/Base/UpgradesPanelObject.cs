@@ -10,10 +10,3 @@ public class UpgradesPanelObject : ScriptableObject
     public List<UpgradeStockBase> UpgradeStocks;
     public eUpgradeType EUpgradeType;
 }
-
-public enum eUpgradeType
-{
-    Power,
-    Speed,
-    Vacuums
-}

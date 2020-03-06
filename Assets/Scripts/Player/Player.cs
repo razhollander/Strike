@@ -4,6 +4,6 @@ using UnityEngine;
 using VehicleBehaviour;
 public class Player : MonoBehaviour
 {
-    [SerializeField] public PlayerObject PlayerObject;
     [SerializeField] public WheelVehicle WheelVehicle;
+    [SerializeField] public Vacuum[] vacuumsList;
 }
