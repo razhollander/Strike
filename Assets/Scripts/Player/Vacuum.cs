@@ -16,6 +16,8 @@ public class Vacuum : OverridableMonoBehaviour
     [SerializeField] float _pullingSpeed = 1;
     [SerializeField] ParticleSystem _sparksParticles;
     [SerializeField] Transform _vacuumButton;
+    [SerializeField] float _swallowCooldown;
+    private float _swallowAnimationDuration = 0.25f;
 
     public bool VaccumButtonPressed { get;private set; }
 
@@ -29,7 +31,6 @@ public class Vacuum : OverridableMonoBehaviour
     private Coroutine _suckCoroutine;
     private Coroutine pullCoroutine;
 
-    private float _swallowAnimationDuration = 0.25f;
     protected override void Awake()
     {
         base.Awake();
@@ -56,9 +57,9 @@ public class Vacuum : OverridableMonoBehaviour
     private void SetVacuumParametersData()
     {
         var upgradesManagar = GameManager.Instance.UpgradesManager;
-        _suckingPower = upgradesManagar.GetUpgrade<PowerUpgrader>(eUpgradeType.Power).GetUpgradeValue();
-        _pullingSpeed = upgradesManagar.GetUpgrade<SpeedUpgrader>(eUpgradeType.Speed).GetUpgradeValue();
-        _vacuumRadius = upgradesManagar.GetUpgrade<RadiusUpgrader>(eUpgradeType.Radius).GetUpgradeValue();
+        _suckingPower = upgradesManagar.GetUpgrade<PowerUpgrader>().GetUpgradeValue();
+        _pullingSpeed = upgradesManagar.GetUpgrade<SpeedUpgrader>().GetUpgradeValue();
+        _vacuumRadius = upgradesManagar.GetUpgrade<RadiusUpgrader>().GetUpgradeValue();
     }
     private void OnButtonDown()
     {

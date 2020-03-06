@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class UpgradesManager
 {
     private const string UPGRADES_SHOP_VIEW_NAME = "UpgradesShopView";
@@ -36,9 +36,9 @@ public class UpgradesManager
             }
         }
     }
-    public T GetUpgrade<T>(eUpgradeType upgradeType) where T : UpgraderBase
+    public T GetUpgrade<T>() where T : UpgraderBase
     {
-        return (T)_upgraders[upgradeType];
+        return (T)_upgraders.FirstOrDefault(x => x.Value.GetType() ==  typeof(T)).Value;
     }
     public UpgraderBase GetUpgrade(eUpgradeType upgradeType)
     {

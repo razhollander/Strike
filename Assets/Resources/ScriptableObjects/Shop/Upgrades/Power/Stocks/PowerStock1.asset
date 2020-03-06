@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PowerStock1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeStock
   Cost: 100
-  newPower: 1.5
+  Power: 400

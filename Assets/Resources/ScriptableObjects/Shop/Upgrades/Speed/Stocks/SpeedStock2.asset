@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SpeedStock2
   m_EditorClassIdentifier: 
   Cost: 300
-  newSpeed: 3
+  Speed: 12
