@@ -12981,6 +12981,7 @@ MonoBehaviour:
   _pullingSpeed: 10
   _sparksParticles: {fileID: 198000012194377055}
   _vacuumButton: {fileID: 1885866253}
+  _swallowCooldown: 0
   arrow: {fileID: 192673855}
   maxDistance: 25
   arrowLengthProportion: 1.7
@@ -25488,6 +25489,7 @@ MonoBehaviour:
   _pullingSpeed: 10
   _sparksParticles: {fileID: 1363643849}
   _vacuumButton: {fileID: 1885866253}
+  _swallowCooldown: 0
 --- !u!1 &907678182
 GameObject:
   m_ObjectHideFlags: 0
@@ -37398,7 +37400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1249013097
 Transform:
   m_ObjectHideFlags: 0
@@ -52853,6 +52855,7 @@ MonoBehaviour:
   _pullingSpeed: 10
   _sparksParticles: {fileID: 667926049}
   _vacuumButton: {fileID: 1885866253}
+  _swallowCooldown: 0
 --- !u!1001 &1830299460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54298,7 +54301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1883635639
 Transform:
   m_ObjectHideFlags: 0
@@ -58245,7 +58248,7 @@ MonoBehaviour:
   player: {fileID: 4363201326090613401}
   minDis: 1
   maxDis: 15
-  waitForSummonSceonds: 3
+  waitForSummonSceonds: 1
   forwardExtra: 18
   scoreText: {fileID: 13652592}
   speed: 2
@@ -62727,7 +62730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2080264560
 Transform:
   m_ObjectHideFlags: 0

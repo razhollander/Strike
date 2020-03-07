@@ -50,7 +50,7 @@ public class Vacuum : OverridableMonoBehaviour
         trigger.triggers.Add(entryUp);
         StartSelfRotation();
     }
-    private void Start()
+    protected virtual void Start()
     {
         GameManager.Instance.OnGamePlayStart += SetVacuumParametersData;
     }

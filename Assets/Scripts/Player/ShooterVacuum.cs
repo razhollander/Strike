@@ -38,8 +38,9 @@ public class ShooterVacuum : Vacuum
         //if (arrowObject.isHasChildSprite)
         //    arrowObject.childSprite
     }
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         arrowSpriteRenderer = arrow.GetComponent<SpriteRenderer>();
         arrowDefaultHeight = arrowSpriteRenderer.size.y;
     }
