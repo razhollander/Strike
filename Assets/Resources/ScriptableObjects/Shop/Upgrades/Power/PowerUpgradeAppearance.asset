@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c50892a4e1b31842ac984e092e9f647, type: 3}
   m_Name: PowerUpgradeAppearance
   m_EditorClassIdentifier: 
-  VacuumsHeads: []
+  UpgradeType: 0
+  VacuumsHeads:
+  - {fileID: 7169672174125011159, guid: c4dee4f78cf3f944a8924fffd3881d4d, type: 3}
+  - {fileID: 7169672174125011159, guid: 9c651cfc109e5774983200ab9adcce46, type: 3}
+  - {fileID: 7169672174125011159, guid: 9eda2d88b2a628342b4a0939cef45d98, type: 3}
+  - {fileID: 7169672174125011159, guid: 31cdde5e7d6e73a47be11d901c27208d, type: 3}

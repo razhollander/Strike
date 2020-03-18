@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c85bef6e4f1084f961d465df241216, type: 3}
   m_Name: RadiusUpgradeAppearance
   m_EditorClassIdentifier: 
-  radiusAppearanceStocks: []
+  UpgradeType: 3
+  radiusAppearanceStocks:
+  - size: 90
+    mat: {fileID: 0}
+  - size: 0
+    mat: {fileID: 0}
+  - size: 0
+    mat: {fileID: 0}
+  - size: 0
+    mat: {fileID: 0}

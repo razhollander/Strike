@@ -6,7 +6,7 @@ public class UpgradesManager
 {
     private const string UPGRADES_SHOP_VIEW_NAME = "UpgradesShopView";
 
-    private Dictionary<eUpgradeType,UpgraderBase> _upgraders;
+    private List<UpgraderBase> _upgraders;
     private UpgradesShopController _upgradesShopController;
     private UpgradesShopModel _upgradesShopModel;
     private UpgradesShopView _upgradesShopView;
@@ -18,31 +18,28 @@ public class UpgradesManager
         _upgradesShopView = GameManager.Instance.AssetLoadHandler.LoadAsset<UpgradesShopView>(UPGRADES_SHOP_VIEW_NAME);
         _upgradesShopController = new UpgradesShopController(_upgradesShopModel, _upgradesShopView);
         _upgradesShopObject = _upgradesShopView.UpgradesShopObject;
-        _upgraders = new Dictionary<eUpgradeType, UpgraderBase>();
-        _upgraders.Add(eUpgradeType.Power, new PowerUpgrader());
-        _upgraders.Add(eUpgradeType.Speed, new SpeedUpgrader());
-        _upgraders.Add(eUpgradeType.VacuumsAmount, new VacuumsAmountUpgrader());
-        _upgraders.Add(eUpgradeType.Radius, new RadiusUpgrader());
+        _upgraders = new List<UpgraderBase>();
+        _upgraders.Add(new PowerUpgrader());
+        _upgraders.Add(new SpeedUpgrader());
+        _upgraders.Add(new VacuumsAmountUpgrader());
+        _upgraders.Add(new RadiusUpgrader());
 
-        OnEnableUpgrade();
+       // OnEnableUpgrade();
     }
-    private void OnEnableUpgrade()
-    {
-        foreach (var upgrader in _upgraders)
-        {
-            for (int i = 0; i < GetUpgradeLevel(upgrader.Key); i++)
-            {
-                upgrader.Value.Upgrade(_upgradesShopObject.UpgradesPanelObjects.Find(x=>x.EUpgradeType==upgrader.Key).UpgradeStocks[i]);
-            }
-        }
-    }
+    //private void OnEnableUpgrade()
+    //{
+    //    foreach (var upgrader in _upgraders)
+    //    {
+    //        upgrader.UpgradeNoCost(_upgradesShopObject.UpgradesPanelObjects.Find(x=>x.EUpgradeType==upgrader.UpgradeType).UpgradeStocks[i], GetUpgradeLevel(upgrader.UpgradeType));
+    //    }
+    //}
     public T GetUpgrade<T>() where T : UpgraderBase
     {
-        return (T)_upgraders.FirstOrDefault(x => x.Value.GetType() ==  typeof(T)).Value;
+        return (T)_upgraders.FirstOrDefault(x => x.GetType() ==  typeof(T));
     }
     public UpgraderBase GetUpgrade(eUpgradeType upgradeType)
     {
-        return _upgraders[upgradeType];
+        return _upgraders.FirstOrDefault(x => x.UpgradeType == upgradeType);
     }
     public int GetUpgradeLevel(eUpgradeType upgradeType)
     {

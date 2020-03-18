@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: PowerUpgradesPanel
   m_EditorClassIdentifier: 
   Name: POWER
-  CurrentUpgradeLevel: 4
   UpgradeStocks:
   - {fileID: 11400000, guid: 7adfcde73d6f5a249bf7ccc044bc2f23, type: 2}
   - {fileID: 11400000, guid: 0d4b558b12580d644993eaf639e83b76, type: 2}
   - {fileID: 11400000, guid: a57ae0a38629aee49b722686761d70f3, type: 2}
   - {fileID: 11400000, guid: 59646e129d80cd948bb1fdf6027307da, type: 2}
-  - {fileID: 11400000, guid: 10ac7cdd0b5af314bb6c80ea1d755d68, type: 2}
   EUpgradeType: 0

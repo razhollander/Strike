@@ -15,6 +15,7 @@ public class RadiusUpgrader : UpgraderBase
 
     public override void Upgrade(UpgradeStockBase stockData)
     {
+        base.Upgrade(stockData);
         RadiusUpgradeStock radiusStock = (RadiusUpgradeStock)stockData;
         SetUpgradeValue(radiusStock.Radius);
     }

@@ -127,9 +127,7 @@ public class UpgradePanel : MonoBehaviour
         {
             stocksImages[currUpgradeLevel].color = _boughtColor;
             _upgrader.Upgrade(currentUpgradeStock);
-            GameManager.Instance.GameDataManager.Money -= currentUpgradeStock.Cost;
-            currUpgradeLevel++;
-            GameManager.Instance.UpgradesManager.SetUpgradeLevel(_upgradesPanelObject.EUpgradeType, currUpgradeLevel);
+            currUpgradeLevel = GameManager.Instance.UpgradesManager.GetUpgradeLevel(_upgradesPanelObject.EUpgradeType);
 
             if (currUpgradeLevel < _upgradesPanelObject.UpgradeStocks.Count)
             {

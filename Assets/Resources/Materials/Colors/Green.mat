@@ -20,10 +20,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Orange
+  m_Name: Green
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: _SPECULAR_SETUP
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _EMISSION _SPECULAR_SETUP
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2050
@@ -84,7 +84,7 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.63676953, b: 0, a: 1}
+    - _BaseColor: {r: 0, g: 1, b: 0.46712375, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.11320752, g: 0.106265545, b: 0.106265545, a: 1}
+    - _EmissionColor: {r: 0.18867922, g: 0.0489498, b: 0.0489498, a: 1}
+    - _SpecColor: {r: 0.18867922, g: 0.16286932, b: 0.16286932, a: 1}

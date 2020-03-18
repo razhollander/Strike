@@ -10,6 +10,7 @@ public class SpeedUpgrader : UpgraderBase
 
     public override void Upgrade(UpgradeStockBase stockData)
     {
+        base.Upgrade(stockData);
         SpeedUpgradeStock speedStock = (SpeedUpgradeStock)stockData;
         SetUpgradeValue<float>(speedStock.Speed);
     }

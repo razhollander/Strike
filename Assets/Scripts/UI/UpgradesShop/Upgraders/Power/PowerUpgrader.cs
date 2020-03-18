@@ -14,6 +14,7 @@ public class PowerUpgrader : UpgraderBase
 
     public override void Upgrade(UpgradeStockBase stockData)
     {
+        base.Upgrade(stockData);
         PowerUpgradeStock powerStock = (PowerUpgradeStock)stockData;
         SetUpgradeValue(powerStock.Power);
     }

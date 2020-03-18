@@ -5,6 +5,9 @@ using System;
 
 public abstract class UpgraderBase
 {
+    public eUpgradeType UpgradeType { get; protected set; }
+    public event Action<int> OnUpgrade;
+
     public UpgraderBase()
     {
         SetUpgradeDefault();
@@ -26,6 +29,18 @@ public abstract class UpgraderBase
     }
     protected abstract string UPGRADE_NAME { get;}
     protected abstract void SetUpgradeDefault();
-    public abstract void Upgrade(UpgradeStockBase stockData);
+    public virtual void Upgrade(UpgradeStockBase stockData)
+    {
+        int currUpgradeLevel = GameManager.Instance.UpgradesManager.GetUpgradeLevel(UpgradeType);
+        currUpgradeLevel++;
+        GameManager.Instance.UpgradesManager.SetUpgradeLevel(UpgradeType, currUpgradeLevel);
+        GameManager.Instance.GameDataManager.Money -= stockData.Cost;
+        OnUpgrade?.Invoke(currUpgradeLevel);
+    }
+    //public void UpgradeNoCost(UpgradeStockBase stockData, int currUpgradeLevel)
+    //{
+    //    currUpgradeLevel++;
+    //    GameManager.Instance.UpgradesManager.SetUpgradeLevel(UpgradeType, currUpgradeLevel);
+    //}
 
 }
