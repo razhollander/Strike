@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RadiusUpgradeAppearanceObject : UpgradeAppearanceObject
+[CreateAssetMenu(fileName = "RadiusUpgradeAppearance", menuName = "Upgrades/Appearance/RadiusAppearance")]
+public class RadiusUpgradeAppearanceObject : UpgradeAppearanceBaseObject
 {
-    public Material material;
+    public List<RadiusAppearanceStock> radiusAppearanceStocks;
+}
+[System.Serializable]
+public class RadiusAppearanceStock
+{
+    public int size;
+    public Material mat;
 }

@@ -8,7 +8,7 @@ public class UpgradesShopModel
     const string UPGRADES_LEVELS = "UpgradesLevel";
 
     Dictionary<eUpgradeType, int> _upgradesLevelsDictionary;
-
+    public event Action<eUpgradeType, int> OnUpgrade;
     public UpgradesShopModel()
     {
         if (!GameManager.Instance.GamePrefHandler.IsKeyExist(UPGRADES_LEVELS))
@@ -26,12 +26,9 @@ public class UpgradesShopModel
             {
                 _upgradesLevelsDictionary.Add(upgradeType, 0);
             }
+
+            SetUpgradeLevel(upgradeType, _upgradesLevelsDictionary[upgradeType]);
         }
-
-        GameManager.Instance.GamePrefHandler.SavePref<Dictionary<eUpgradeType, int>>(_upgradesLevelsDictionary, UPGRADES_LEVELS);
-
-
-
     }
 
     public int GetUpgradeLevel(eUpgradeType upgradeType)
@@ -42,5 +39,6 @@ public class UpgradesShopModel
     {
         _upgradesLevelsDictionary[upgradeType] = level;
         GameManager.Instance.GamePrefHandler.SavePref<Dictionary<eUpgradeType, int>>(_upgradesLevelsDictionary, UPGRADES_LEVELS);
+        OnUpgrade?.Invoke(upgradeType,level);
     }
 }

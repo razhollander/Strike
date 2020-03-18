@@ -6,5 +6,4 @@ using UnityEngine;
 public class RadiusUpgradeStock : UpgradeStockBase
 {
     public float Radius;
-    public Color radiusColor;
 }
