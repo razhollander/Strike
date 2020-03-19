@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Vacuums Amount
   UpgradeStocks:
+  - {fileID: 11400000, guid: 2f86654482c9e884289f96ff519a88b9, type: 2}
   - {fileID: 11400000, guid: 2780661709fa2834187760d624cc3f7a, type: 2}
   - {fileID: 11400000, guid: decaea7bd53d09d4a99e8cbbfd57707b, type: 2}
   - {fileID: 11400000, guid: f1b5badf772d00a46b31b5d4247bc60c, type: 2}

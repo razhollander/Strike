@@ -57,7 +57,6 @@ public class Vacuum : OverridableMonoBehaviour
     private void SetVacuumParametersData()
     {
         var upgradesManagar = GameManager.Instance.UpgradesManager;
-        Debug.Log(upgradesManagar.GetUpgrade<PowerUpgrader>());
         _suckingPower = upgradesManagar.GetUpgrade<PowerUpgrader>().GetUpgradeValue();
         _pullingSpeed = upgradesManagar.GetUpgrade<SpeedUpgrader>().GetUpgradeValue();
         _vacuumRadius = upgradesManagar.GetUpgrade<RadiusUpgrader>().GetUpgradeValue();

@@ -11,5 +11,5 @@ public class RadiusUpgradeAppearanceObject : UpgradeAppearanceBaseObject
 public class RadiusAppearanceStock
 {
     public int size;
-    public Material mat;
+    public GameObject antenaGO;
 }

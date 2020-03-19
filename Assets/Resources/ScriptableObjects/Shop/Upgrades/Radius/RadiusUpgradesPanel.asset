@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Radius
   UpgradeStocks:
+  - {fileID: 11400000, guid: 4c99b7053307fc14db742f6c21217a5a, type: 2}
   - {fileID: 11400000, guid: 6201d507237c65645a289c8b44525ece, type: 2}
   - {fileID: 11400000, guid: 3ad49aeb1436f2840a41d219abbf1eef, type: 2}
   - {fileID: 11400000, guid: de5bb38cbc31e6b448a565ee8fda4f77, type: 2}

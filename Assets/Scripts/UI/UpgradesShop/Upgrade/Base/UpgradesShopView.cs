@@ -32,9 +32,6 @@ public class UpgradesShopView : MonoBehaviour
     }
     public void Reset()
     {
-        foreach (eUpgradeType upgradeType in (eUpgradeType[])Enum.GetValues(typeof(eUpgradeType)))
-        {
-            GameManager.Instance.UpgradesManager.SetUpgradeLevel(upgradeType, 0);
-        }
+        GameManager.Instance.UpgradesManager.Reset();
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SpeedUpgradesPanel
   m_EditorClassIdentifier: 
   Name: SPEED
-  CurrentUpgradeLevel: 2
   UpgradeStocks:
+  - {fileID: 11400000, guid: 2b7cce70c6887fa4e80d163a81998ff8, type: 2}
   - {fileID: 11400000, guid: e4cd96701d054604d8c16617399180f6, type: 2}
   - {fileID: 11400000, guid: caf5baa92e624eb47a8615c64c370626, type: 2}
   - {fileID: 11400000, guid: e32b5f53a8502f8408b443c946b2b758, type: 2}

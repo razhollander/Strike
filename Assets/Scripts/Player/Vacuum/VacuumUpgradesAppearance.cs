@@ -5,7 +5,7 @@ using UnityEngine;
 public class VacuumUpgradesAppearance : MonoBehaviour
 {
     [SerializeField]
-    private UpgradeAppearanceTotalObject upgradeAppearanceTotalObject;
+    private PowerUpgradeAppearanceObject powerUpgradeAppearanceObject;
     [SerializeField]
     private GameObject vacuumHead;
     // Start is called before the first frame update
@@ -16,9 +16,8 @@ public class VacuumUpgradesAppearance : MonoBehaviour
     }
     void OnPowerUpgrade(int level)
     {
-        PowerUpgradeAppearanceObject powerUpgradeAppearance = (PowerUpgradeAppearanceObject)upgradeAppearanceTotalObject.upgradeAppearanceBaseObjects.Find(x => x.UpgradeType == eUpgradeType.Power);
         Destroy(vacuumHead.transform.GetChild(0).gameObject);
-        GameObject newVacuumHead = Instantiate(powerUpgradeAppearance.VacuumsHeads[level-1], vacuumHead.transform);
+        GameObject newVacuumHead = Instantiate(powerUpgradeAppearanceObject.VacuumsHeads[level], vacuumHead.transform);
         newVacuumHead.transform.localPosition = Vector3.zero;
         newVacuumHead.transform.localRotation = Quaternion.identity;
     }

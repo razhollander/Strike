@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+
 public class UpgradesManager
 {
     private const string UPGRADES_SHOP_VIEW_NAME = "UpgradesShopView";
@@ -18,24 +20,17 @@ public class UpgradesManager
         _upgradesShopView = GameManager.Instance.AssetLoadHandler.LoadAsset<UpgradesShopView>(UPGRADES_SHOP_VIEW_NAME);
         _upgradesShopController = new UpgradesShopController(_upgradesShopModel, _upgradesShopView);
         _upgradesShopObject = _upgradesShopView.UpgradesShopObject;
-        _upgraders = new List<UpgraderBase>();
-        _upgraders.Add(new PowerUpgrader());
-        _upgraders.Add(new SpeedUpgrader());
-        _upgraders.Add(new VacuumsAmountUpgrader());
-        _upgraders.Add(new RadiusUpgrader());
-
-       // OnEnableUpgrade();
+        _upgraders = new List<UpgraderBase>()
+        {
+             new PowerUpgrader(_upgradesShopObject.UpgradesPanelObjects.Find(x=>x.EUpgradeType == eUpgradeType.Power).UpgradeStocks),
+             new SpeedUpgrader(_upgradesShopObject.UpgradesPanelObjects.Find(x=>x.EUpgradeType == eUpgradeType.Speed).UpgradeStocks),
+             new VacuumsAmountUpgrader(_upgradesShopObject.UpgradesPanelObjects.Find(x=>x.EUpgradeType == eUpgradeType.VacuumsAmount).UpgradeStocks),
+             new RadiusUpgrader(_upgradesShopObject.UpgradesPanelObjects.Find(x=>x.EUpgradeType == eUpgradeType.Radius).UpgradeStocks)
+        };
     }
-    //private void OnEnableUpgrade()
-    //{
-    //    foreach (var upgrader in _upgraders)
-    //    {
-    //        upgrader.UpgradeNoCost(_upgradesShopObject.UpgradesPanelObjects.Find(x=>x.EUpgradeType==upgrader.UpgradeType).UpgradeStocks[i], GetUpgradeLevel(upgrader.UpgradeType));
-    //    }
-    //}
     public T GetUpgrade<T>() where T : UpgraderBase
     {
-        return (T)_upgraders.FirstOrDefault(x => x.GetType() ==  typeof(T));
+        return (T)_upgraders.FirstOrDefault(x => x.GetType() == typeof(T));
     }
     public UpgraderBase GetUpgrade(eUpgradeType upgradeType)
     {
@@ -49,7 +44,17 @@ public class UpgradesManager
     {
         _upgradesShopModel.SetUpgradeLevel(upgradeType, level);
     }
-
+    public void Reset()
+    {
+        foreach (eUpgradeType upgradeType in (eUpgradeType[])Enum.GetValues(typeof(eUpgradeType)))
+        {
+            GameManager.Instance.UpgradesManager.SetUpgradeLevel(upgradeType, 0);
+        }
+        foreach (var upgrader in _upgraders)
+        {
+            upgrader.Reset();
+        }
+    }
 }
 public enum eUpgradeType
 {

@@ -8,10 +8,15 @@ public class SpeedUpgrader : UpgraderBase
 
     protected override string UPGRADE_NAME => SPEED_UPGRADE_NAME;
 
-    public override void Upgrade(UpgradeStockBase stockData)
+    public SpeedUpgrader(List<UpgradeStockBase> upgradeStocks) : base (upgradeStocks)
     {
-        base.Upgrade(stockData);
-        SpeedUpgradeStock speedStock = (SpeedUpgradeStock)stockData;
+        UpgradeType = eUpgradeType.Speed;
+    }
+
+    public override void Upgrade()
+    {
+        base.Upgrade();
+        SpeedUpgradeStock speedStock = GetCurrentUpgradeStock<SpeedUpgradeStock>();
         SetUpgradeValue<float>(speedStock.Speed);
     }
 
@@ -23,5 +28,9 @@ public class SpeedUpgrader : UpgraderBase
     protected override void SetUpgradeDefault()
     {
         SetUpgradeDefault<float>();
+    }
+    public override void Reset()
+    {
+        SetUpgradeValue<float>(((SpeedUpgradeStock)UpgradeStocks[0]).Speed);
     }
 }
