@@ -7,41 +7,42 @@ public abstract class UpgraderBase
 {
     public eUpgradeType UpgradeType { get; protected set; }
     public event Action<int> OnUpgrade;
+    private GameManager _gameManager;
     public List<UpgradeStockBase> UpgradeStocks { get; private set; }
     public UpgraderBase(List<UpgradeStockBase> upgradeStocks)
     {
+        _gameManager = GameManager.Instance;
         UpgradeStocks = upgradeStocks;
         SetUpgradeDefault();
     }
     protected T GetUpgradeValue<T>()
     {
-        return GameManager.Instance.GamePrefHandler.LoadPref<T>(UPGRADE_NAME);
+        return _gameManager.GamePrefHandler.LoadPref<T>(UPGRADE_NAME);
     }
     protected void SetUpgradeValue<T>(T value = default)
     {
         Debug.Log(value);
-        GameManager.Instance.GamePrefHandler.SavePref<T>(value,UPGRADE_NAME);
+        _gameManager.GamePrefHandler.SavePref<T>(value,UPGRADE_NAME);
     }
-    protected void SetUpgradeDefault<T>()
+    protected void SetUpgradeDefault()
     {
-        if (!GameManager.Instance.GamePrefHandler.IsKeyExist(UPGRADE_NAME))
+        if (!_gameManager.GamePrefHandler.IsKeyExist(UPGRADE_NAME))
         {
-            SetUpgradeValue<T>();
+            Reset();
         }
     }
     protected T GetCurrentUpgradeStock<T>() where T : UpgradeStockBase
     {
-        return (T)UpgradeStocks[GameManager.Instance.UpgradesManager.GetUpgradeLevel(UpgradeType)];
+        return (T)UpgradeStocks[_gameManager.UpgradesManager.GetUpgradeLevel(UpgradeType)];
     }
     protected abstract string UPGRADE_NAME { get;}
-    protected abstract void SetUpgradeDefault();
     public virtual void Upgrade()
     {
-        int currUpgradeLevel = GameManager.Instance.UpgradesManager.GetUpgradeLevel(UpgradeType);
+        int currUpgradeLevel = _gameManager.UpgradesManager.GetUpgradeLevel(UpgradeType);
         currUpgradeLevel++;
         var stockData = UpgradeStocks[currUpgradeLevel];
-        GameManager.Instance.UpgradesManager.SetUpgradeLevel(UpgradeType, currUpgradeLevel);
-        GameManager.Instance.GameDataManager.Money -= stockData.Cost;
+        _gameManager.UpgradesManager.SetUpgradeLevel(UpgradeType, currUpgradeLevel);
+        _gameManager.GameDataManager.Money -= stockData.Cost;
         OnUpgrade?.Invoke(currUpgradeLevel);
     }
     public abstract void Reset();

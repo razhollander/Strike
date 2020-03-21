@@ -25,10 +25,6 @@ public class SpeedUpgrader : UpgraderBase
         return base.GetUpgradeValue<float>();
     }
 
-    protected override void SetUpgradeDefault()
-    {
-        SetUpgradeDefault<float>();
-    }
     public override void Reset()
     {
         SetUpgradeValue<float>(((SpeedUpgradeStock)UpgradeStocks[0]).Speed);

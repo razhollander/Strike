@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: RadiusUpgradeAppearance
   m_EditorClassIdentifier: 
   UpgradeType: 3
-  radiusAppearanceStocks:
-  - size: 90
-    mat: {fileID: 0}
-  - size: 0
-    mat: {fileID: 0}
-  - size: 0
-    mat: {fileID: 0}
-  - size: 0
-    mat: {fileID: 0}
+  Antenas:
+  - {fileID: 6947899285940385642, guid: 1d59f64635613ad459ec47afa65bcedc, type: 3}
+  - {fileID: 6947899285940385642, guid: 0399ab2d44d0a8248abf190811730f0b, type: 3}
+  - {fileID: 918437769585217887, guid: 1729c4262686c4043bf49ca0379de951, type: 3}
+  - {fileID: 918437769585217887, guid: ebc91b5c8f3ae384db8c578d43d6b963, type: 3}
+  - {fileID: 918437769585217887, guid: 2dba8af185b7dcc4daa6df8a47754c34, type: 3}

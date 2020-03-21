@@ -24,10 +24,6 @@ public class RadiusUpgrader : UpgraderBase
         SetUpgradeValue(radiusStock.Radius);
     }
 
-    protected override void SetUpgradeDefault()
-    {
-        SetUpgradeDefault<float>();
-    }
     public override void Reset()
     {
         SetUpgradeValue<float>(((RadiusUpgradeStock)UpgradeStocks[0]).Radius);

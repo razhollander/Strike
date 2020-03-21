@@ -5,11 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RadiusUpgradeAppearance", menuName = "Upgrades/Appearance/RadiusAppearance")]
 public class RadiusUpgradeAppearanceObject : UpgradeAppearanceBaseObject
 {
-    public List<RadiusAppearanceStock> radiusAppearanceStocks;
-}
-[System.Serializable]
-public class RadiusAppearanceStock
-{
-    public int size;
-    public GameObject antenaGO;
+    public List<GameObject> Antenas;
 }

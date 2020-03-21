@@ -24,10 +24,6 @@ public class PowerUpgrader : UpgraderBase
         SetUpgradeValue(powerStock.Power);
     }
 
-    protected override void SetUpgradeDefault()
-    {
-        SetUpgradeDefault<float>();
-    }
     public override void Reset()
     {
         SetUpgradeValue<float>(((PowerUpgradeStock)UpgradeStocks[0]).Power);

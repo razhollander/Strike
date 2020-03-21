@@ -24,10 +24,6 @@ public class VacuumsAmountUpgrader : UpgraderBase
         SetUpgradeValue(vacuumAmountStock.VacuumsAmount);
     }
 
-    protected override void SetUpgradeDefault()
-    {
-        SetUpgradeDefault<int>();
-    }
     public override void Reset()
     {
         SetUpgradeValue<int>(((VacuumsAmountUpgradeStock)UpgradeStocks[0]).VacuumsAmount);
