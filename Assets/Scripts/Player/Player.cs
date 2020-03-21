@@ -5,5 +5,5 @@ using VehicleBehaviour;
 public class Player : MonoBehaviour
 {
     [SerializeField] public WheelVehicle WheelVehicle;
-    [SerializeField] public Vacuum[] vacuumsList;
+    [SerializeField] public GameObject Radius; 
 }

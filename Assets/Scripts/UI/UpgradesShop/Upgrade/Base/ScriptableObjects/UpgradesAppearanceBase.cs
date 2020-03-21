@@ -13,7 +13,7 @@ public abstract class UpgradesAppearanceBase : MonoBehaviour
         InitAppearance();
         GameManager.Instance.UpgradesManager.GetUpgrade(UpgradeAppearanceObject.UpgradeType).OnUpgrade += OnUpgrade;
     }
-    void InitAppearance()
+    protected virtual void InitAppearance()
     {
         OnUpgrade(GameManager.Instance.UpgradesManager.GetUpgradeLevel(UpgradeAppearanceObject.UpgradeType));
     }

@@ -18,4 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2780661709fa2834187760d624cc3f7a, type: 2}
   - {fileID: 11400000, guid: decaea7bd53d09d4a99e8cbbfd57707b, type: 2}
   - {fileID: 11400000, guid: f1b5badf772d00a46b31b5d4247bc60c, type: 2}
+  - {fileID: 11400000, guid: 8f0152f038a418746917c0c3516630bd, type: 2}
+  - {fileID: 11400000, guid: 6a77b2843362f5c41bcea693ab030a0e, type: 2}
+  - {fileID: 11400000, guid: b74d0ae6b2602444eafeeac10c8ed454, type: 2}
   EUpgradeType: 2

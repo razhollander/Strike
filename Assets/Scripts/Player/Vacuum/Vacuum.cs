@@ -15,8 +15,6 @@ public class Vacuum : OverridableMonoBehaviour
     [SerializeField] float _vacuumRadius = 10;
     [SerializeField] float _pullingSpeed = 1;
     [SerializeField] ParticleSystem _sparksParticles;
-    [SerializeField] Transform _vacuumButton;
-    [SerializeField] float _swallowCooldown;
     private float _swallowAnimationDuration = 0.25f;
 
     public bool VaccumButtonPressed { get;private set; }
@@ -29,25 +27,12 @@ public class Vacuum : OverridableMonoBehaviour
     private Tween _shakeTweener;
     private Tween _headShake;
     private Coroutine _suckCoroutine;
-    private Coroutine pullCoroutine;
 
     protected override void Awake()
     {
         base.Awake();
         IsInPulling = false;
-        // vacuumPointV2= new Vector2(vacuumPoint.position.x, vacuumPoint.position.z);
         _radiusCenterV2 = new Vector2(_radiusCenter.position.x, _radiusCenter.position.z);
-        EventTrigger trigger = _vacuumButton.GetComponent<EventTrigger>();
-
-        EventTrigger.Entry entryDown = new EventTrigger.Entry();
-        entryDown.eventID = EventTriggerType.PointerDown;
-        entryDown.callback.AddListener((data) => { OnButtonDown(); });
-        trigger.triggers.Add(entryDown);
-
-        EventTrigger.Entry entryUp = new EventTrigger.Entry();
-        entryUp.eventID = EventTriggerType.PointerUp;
-        entryUp.callback.AddListener((data) => { OnButtonUp(); });
-        trigger.triggers.Add(entryUp);
         StartSelfRotation();
     }
     protected virtual void Start()
@@ -61,11 +46,11 @@ public class Vacuum : OverridableMonoBehaviour
         _pullingSpeed = upgradesManagar.GetUpgrade<SpeedUpgrader>().GetUpgradeValue();
         _vacuumRadius = upgradesManagar.GetUpgrade<RadiusUpgrader>().GetUpgradeValue();
     }
-    private void OnButtonDown()
+    public void OnButtonDown()
     {
         VaccumButtonPressed = true;
     }
-    private void OnButtonUp()
+    public void OnButtonUp()
     {
         VaccumButtonPressed = false;
     }

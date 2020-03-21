@@ -12,9 +12,9 @@ public class VacuumsAmountUpgrader : UpgraderBase
         UpgradeType = eUpgradeType.VacuumsAmount;
     }
 
-    public int GetUpgradeValue()
+    public float GetUpgradeValue()
     {
-        return base.GetUpgradeValue<int>();
+        return base.GetUpgradeValue<float>();
     }
 
     public override void Upgrade()
@@ -26,6 +26,6 @@ public class VacuumsAmountUpgrader : UpgraderBase
 
     public override void Reset()
     {
-        SetUpgradeValue<int>(((VacuumsAmountUpgradeStock)UpgradeStocks[0]).VacuumsAmount);
+        SetUpgradeValue<float>(((VacuumsAmountUpgradeStock)UpgradeStocks[0]).VacuumsAmount);
     }
 }

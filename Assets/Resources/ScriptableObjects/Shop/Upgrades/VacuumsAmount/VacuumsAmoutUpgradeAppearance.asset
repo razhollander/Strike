@@ -9,8 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37879fab847a7841b0a54d70ec9d9ec, type: 3}
-  m_Name: VacuumsAmountStock2
+  m_Script: {fileID: 11500000, guid: 4ff218383e7addd459b05e700f8226bd, type: 3}
+  m_Name: VacuumsAmoutUpgradeAppearance
   m_EditorClassIdentifier: 
-  Cost: 2000
-  VacuumsAmount: 0.6666
+  UpgradeType: 2
+  VacuumSize:
+  - 0
+  - 0.4
+  - 0.7
+  - 1
+  - 0.4
+  - 0.7
+  - 1

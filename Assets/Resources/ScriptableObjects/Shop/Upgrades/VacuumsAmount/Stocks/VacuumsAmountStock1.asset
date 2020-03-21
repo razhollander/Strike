@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: VacuumsAmountStock1
   m_EditorClassIdentifier: 
   Cost: 1000
-  VacuumsAmount: 1
+  VacuumsAmount: 0.3333
