@@ -5,14 +5,13 @@ using UnityEngine;
 public class VacuumsAmountUpgradesAppearance : UpgradesAppearanceBase
 {
     const int UPGRADES_PER_VACUUM = 3;
-    [SerializeField] private List<Vacuum> _vacuumsList;
+    [SerializeField] private Vacuum[] _vacuumsArr;
     protected override void OnUpgrade(int level)
     {
         if (level > 0)
         {
             int appearanceLevel = level - 1;
-            float upgradeValue = GameManager.Instance.UpgradesManager.GetUpgrade<VacuumsAmountUpgrader>().GetUpgradeValue();
-            Vacuum currVacuumBeingUpdated = _vacuumsList[appearanceLevel / UPGRADES_PER_VACUUM];
+            Vacuum currVacuumBeingUpdated = _vacuumsArr[(appearanceLevel + UPGRADES_PER_VACUUM )/ UPGRADES_PER_VACUUM];
             float size = ((VacuumsAmoutUpgradeAppearanceObject)UpgradeAppearanceObject).VacuumSize[level];
             currVacuumBeingUpdated.transform.parent.localScale = Vector3.one * size;
 
@@ -24,6 +23,11 @@ public class VacuumsAmountUpgradesAppearance : UpgradesAppearanceBase
     }
     protected override void InitAppearance()
     {
+        for (int i = 0; i < _vacuumsArr.Length; i++)
+        {
+            _vacuumsArr[i].VacuumNumber = i;
+        }
+
         for (int i = 1; i <= GameManager.Instance.UpgradesManager.GetUpgradeLevel(eUpgradeType.VacuumsAmount); i++)
         {
             OnUpgrade(i);

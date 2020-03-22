@@ -5,19 +5,23 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 public class Vacuum : OverridableMonoBehaviour
 {
+    const float SIZE_MULTIPLIER_MAX_VALUE = 1;
+
     [Header("Vacuum")]
 
     [SerializeField] GameObject _airParticals;
     [SerializeField] protected Transform VacuumPoint;
     [SerializeField] protected Transform VacuumHead;
     [SerializeField] Transform _radiusCenter;
+    [SerializeField] private float _sizeMultiplier = 1;
     [SerializeField] float _suckingPower = 2;
     [SerializeField] float _vacuumRadius = 10;
     [SerializeField] float _pullingSpeed = 1;
     [SerializeField] ParticleSystem _sparksParticles;
-    private float _swallowAnimationDuration = 0.25f;
+    [SerializeField] private float _swallowAnimationDuration = 1f;
 
-    public bool VaccumButtonPressed { get;private set; }
+    public bool VaccumButtonPressed { get; private set; }
+    public int VacuumNumber { private get; set; }
 
     protected SuckableObject ObjectBeingSucked;
     protected Tween RotationTweener;
@@ -42,8 +46,15 @@ public class Vacuum : OverridableMonoBehaviour
     private void SetVacuumParametersData()
     {
         var upgradesManagar = GameManager.Instance.UpgradesManager;
-        _suckingPower = upgradesManagar.GetUpgrade<PowerUpgrader>().GetUpgradeValue();
-        _pullingSpeed = upgradesManagar.GetUpgrade<SpeedUpgrader>().GetUpgradeValue();
+
+        float currentVacuumAmountUpgradeValue = upgradesManagar.GetUpgrade<VacuumsAmountUpgrader>().GetUpgradeValue() - VacuumNumber + SIZE_MULTIPLIER_MAX_VALUE;
+        _sizeMultiplier = Mathf.Clamp(currentVacuumAmountUpgradeValue, 0, SIZE_MULTIPLIER_MAX_VALUE);
+
+        var particleSystemLifeTime = _sparksParticles.main.startLifetime;
+        particleSystemLifeTime.constantMax = _swallowAnimationDuration;
+
+        _suckingPower = upgradesManagar.GetUpgrade<PowerUpgrader>().GetUpgradeValue() * _sizeMultiplier;
+        _pullingSpeed = upgradesManagar.GetUpgrade<SpeedUpgrader>().GetUpgradeValue() * _sizeMultiplier;
         _vacuumRadius = upgradesManagar.GetUpgrade<RadiusUpgrader>().GetUpgradeValue();
     }
     public void OnButtonDown()
@@ -179,7 +190,6 @@ public class Vacuum : OverridableMonoBehaviour
         RotationTweener.Kill();
         _airParticals.SetActive(false);
         _sparksParticles.Play();
-        _swallowAnimationDuration = _sparksParticles.main.startLifetime.constantMax;
         VacuumHead.DOPunchRotation((VacuumHead.right + VacuumHead.forward) * 10, _swallowAnimationDuration).OnComplete(EndSwallowAnimation);
     }
     private void EndSwallowAnimation()
@@ -196,7 +206,6 @@ public class Vacuum : OverridableMonoBehaviour
         _headShake.Kill();
         ObjectBeingSucked.IsBeingSucked = false;
         ObjectBeingSucked = null;
-        //radiusCenter.gameObject.SetActive(true);
         _airParticals.SetActive(false);
         StartSelfRotation();
     }
@@ -225,16 +234,4 @@ public class Vacuum : OverridableMonoBehaviour
     {
         _pullingSpeed = speed;
     }
-
-    //public void VaccumButtonPressed()
-    //{
-    //    radiusCenter.gameObject.SetActive(true);
-    //    vaccumButtonPressed = true;
-    //}
-    //public void VaccumButtonReleased()
-    //{
-    //    radiusCenter.gameObject.SetActive(false);
-    //    vaccumButtonPressed = false;
-
-    //}
 }

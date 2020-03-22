@@ -26,17 +26,15 @@ public class InventoryUI : MonoBehaviour
         foreach (InventoryObject inventoryObject in inventory.inventoryObjectList)
         {
             Button newButton = Instantiate(templateButton);
-            newButton.transform.SetParent(transform);
-            
-            newButton.transform.Find("Image").GetComponent<Image>().sprite = inventoryObject.sprite;
+            newButton.transform.SetParent(transform);       
             newButton.gameObject.SetActive(true);
             InventoryObjectUI currIOUI = newButton.transform.GetComponent<InventoryObjectUI>();
             currIOUI.image = newButton.transform.Find("Image").GetComponent<Image>();
+            currIOUI.image.sprite = inventoryObject.sprite;
             currIOUI.inventoryObject = inventoryObject;
             currIOUI.UpdateText();
             currIOUI.button = newButton;
-            inventoryObjectUIList.Add(currIOUI);
-            
+            inventoryObjectUIList.Add(currIOUI);         
         }
     }
     public void StartAddEffect(SuckableobjectType suckableobjectType, Vector3 startPos)
@@ -45,7 +43,6 @@ public class InventoryUI : MonoBehaviour
     }
     private IEnumerator StartAddEffectCoroutin(SuckableobjectType suckableobjectType, Vector3 startPos)
     {
-
         InventoryObjectUI objectUI = GetInventoryObjectUI(suckableobjectType);
         Image img = Instantiate(objectUI.image);
         Vector3 endPos = Vector3.one;
