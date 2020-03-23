@@ -21,7 +21,6 @@ public abstract class UpgraderBase
     }
     protected void SetUpgradeValue<T>(T value = default)
     {
-        Debug.Log(value);
         _gameManager.GamePrefHandler.SavePref<T>(value,UPGRADE_NAME);
     }
     protected void SetUpgradeDefault()

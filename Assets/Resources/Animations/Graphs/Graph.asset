@@ -192,7 +192,7 @@ MonoBehaviour:
   - {fileID: 7043417404341207141}
   m_isSubGraph: 0
   m_version: 1
-  m_description: 'grap
+  m_description: 'graph
 
 '
   m_id: fae02ca0-ad6c-435a-bc3e-ed7700b5e837
@@ -562,7 +562,7 @@ MonoBehaviour:
     m_id: fe6fc352-d13b-42fb-97a6-f7e8e7d067dc
     m_nodeId: fdd5ea37-232d-4081-9622-f0032777ed45
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"Settings","ButtonName":"exit","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Settings","ButtonName":"quit","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - m_connectionMode: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
     m_id: 4df8d078-76a0-462c-b405-786e98c9ca36
     m_nodeId: fdd5ea37-232d-4081-9622-f0032777ed45
     m_socketName: OutputSocket_1
-    m_value: '{"ButtonCategory":"Settings","ButtonName":"back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Settings","ButtonName":"resume","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4

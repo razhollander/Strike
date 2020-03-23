@@ -15,7 +15,7 @@ MonoBehaviour:
   CategoryName: Settings
   DatabaseType: 0
   Names:
-  - exit
+  - quit
   - sound
   - music
-  - back
+  - resume

@@ -8,6 +8,8 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    const float TIMESCALE_CHNGE_DAURATION = 0.4f;
+
     [SerializeField] private GameObject enemiesParent;
     [SerializeField] private List<SuckableObject> sceneObjects;
     [SerializeField] List<float> probabilities;
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] PrefabsCollectionObject _prefabsCollectionObject;
 
     public static GameManager Instance;
-    
+
     public UpgradesManager UpgradesManager;
     public AssetLoadHandler AssetLoadHandler;
     public GamePrefHandler GamePrefHandler;
@@ -31,12 +33,15 @@ public class GameManager : MonoBehaviour
     public event Action OnGameLoad;
     public event Action OnGamePlayStart;
     public event Action OnGamePlayEnd;
+    public event Action OnGamePaused;
+    public event Action OnGameResumed;
+
 
     private int score;
-    
-    
+
+
     void Awake()
-    { 
+    {
         Instance = this;
         GamePrefHandler = new GamePrefHandler();
         GameDataManager = new GameDataManager();
@@ -46,24 +51,33 @@ public class GameManager : MonoBehaviour
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
-        OnGamePlayStart += ()=> StartCoroutine(SummonEnemies());
+        OnGamePlayStart += () => StartCoroutine(SummonEnemies());
         OnGamePlayEnd += () => StopCoroutine(SummonEnemies());
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        OnGamePaused?.Invoke();
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 0.3f;
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f, TIMESCALE_CHNGE_DAURATION);
+        OnGameResumed?.Invoke();
     }
     public void EndGame()
     {
-        OnGamePlayEnd();
+        Time.timeScale = 1f;
+        OnGamePlayEnd?.Invoke();
     }
     public void PlayGame()
     {
         Debug.Log("Start game");
-        OnGamePlayStart();
+        OnGamePlayStart?.Invoke();
     }
     void Start()
     {
-        if(OnGameLoad!=null)
-        {
-            OnGameLoad.Invoke();
-        }
+        OnGameLoad?.Invoke();
     }
     IEnumerator SummonEnemies()
     {
@@ -99,7 +113,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int addedScore)
     {
         StartCoroutine(AddScoreCoroutine(addedScore));
-       
+
     }
     private void UpdateScore(int addedScore)
     {
@@ -112,7 +126,7 @@ public class GameManager : MonoBehaviour
         int scoreToAddThisFrame;
         int scoreLeftToAdd = score;
         while (scoreLeftToAdd != 0)
-        { 
+        {
             scoreToAddThisFrame = Mathf.CeilToInt(Time.deltaTime * score * speed);
             if (scoreToAddThisFrame < scoreLeftToAdd)
             {
