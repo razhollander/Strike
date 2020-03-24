@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameStateManager
 {
-    public eGameState CurrentState { get; private set;}
+    public eGameState CurrentState { get; private set; }
     public event Action GoToUpgradesShop;
     public event Action GoToMainMenu;
     public event Action GoToNormalPlay;
@@ -14,6 +14,7 @@ public class GameStateManager
     public GameStateManager()
     {
         CurrentState = eGameState.Login;
+        GameManager.Instance.OnGamePlayEnd += () => SwitchGameState(eGameState.MainMenu);
     }
 
     public void SwitchGameState(eGameState newState)
@@ -23,16 +24,16 @@ public class GameStateManager
         switch (newState)
         {
             case eGameState.Login:
-                    GoToLogin?.Invoke();
+                GoToLogin?.Invoke();
                 break;
             case eGameState.MainMenu:
-                    GoToMainMenu?.Invoke(); 
+                GoToMainMenu?.Invoke();
                 break;
             case eGameState.UpgradesShop:
-                    GoToUpgradesShop?.Invoke();
+                GoToUpgradesShop?.Invoke();
                 break;
             case eGameState.NormalPlay:
-                    GoToNormalPlay?.Invoke();
+                GoToNormalPlay?.Invoke();
                 break;
         }
     }

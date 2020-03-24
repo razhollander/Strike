@@ -4,8 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 
 
-public class ObjectShot : PooledMonobehaviour
+public class ObjectShot : PooledMonobehaviour, ISceneObject
 {
+    const float ON_QUIT_ANIMATION_TIME = 2f;
+
     [Header("ObjectShot")]
     [SerializeField] protected float damage;
     [SerializeField] private ParticleSystem destroyFX;
@@ -61,4 +63,8 @@ public class ObjectShot : PooledMonobehaviour
         myRigidbody.isKinematic = !isEnabled;
     }
 
+    public void DoQuitAnimation()
+    {
+        DOTween.To(() => transform.localScale, x => transform.localScale = x, Vector3.zero, ON_QUIT_ANIMATION_TIME).onComplete += () => gameObject.SetActive(false);
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
 
 
     private int score;
-
+    private Coroutine summonCorutine;
 
     void Awake()
     {
@@ -50,9 +51,8 @@ public class GameManager : MonoBehaviour
         GameStateManager = new GameStateManager();
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-
-        OnGamePlayStart += () => StartCoroutine(SummonEnemies());
-        OnGamePlayEnd += () => StopCoroutine(SummonEnemies());
+        OnGamePlayStart += () => summonCorutine = StartCoroutine(SummonEnemies());
+        OnGamePlayEnd += () => StopCoroutine(summonCorutine);
     }
     public void PauseGame()
     {
@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Time.timeScale = 1f;
+        var ss = FindObjectsOfType<MonoBehaviour>().OfType<ISceneObject>();
+        foreach (ISceneObject s in ss)
+        {
+            s.DoQuitAnimation();
+        }
         OnGamePlayEnd?.Invoke();
     }
     public void PlayGame()

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class SuckableObject : PooledMonobehaviour
+using DG.Tweening;
+public class SuckableObject : PooledMonobehaviour, ISceneObject
 {
+    const float ON_QUIT_ANIMATION_TIME = 2f;
 
     [SerializeField] protected SuckableobjectType suckableobjectType;
     [SerializeField] int scoreValue;
@@ -40,7 +42,12 @@ public class SuckableObject : PooledMonobehaviour
     protected virtual void OnEnable()
     {
         ResetTransform();
-
+        //GameManager.Instance.OnGamePlayEnd += DoQuitAnimation;
+    }
+    protected override void OnDisable()
+    {
+        //GameManager.Instance.OnGamePlayEnd -= DoQuitAnimation;
+        base.OnDisable();
     }
     protected void ResetTransform()
     {
@@ -63,6 +70,10 @@ public class SuckableObject : PooledMonobehaviour
         return this.Get<SuckableObject>();
     }
 
+    public void DoQuitAnimation()
+    {
+        DOTween.To(() => transform.localScale, x => transform.localScale = x, Vector3.zero, ON_QUIT_ANIMATION_TIME).onComplete+= () => gameObject.SetActive(false);
+    }
 }
 public enum SuckableobjectType
 {

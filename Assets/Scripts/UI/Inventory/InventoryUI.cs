@@ -9,7 +9,6 @@ public class InventoryUI : MonoBehaviour
     public Ease ease;
 
     [SerializeField] private Inventory inventory;
-    [SerializeField] private Canvas mainCanvas;
     [SerializeField] private Button templateButton;
 
     private static List<InventoryObjectUI> inventoryObjectUIList;
@@ -26,8 +25,6 @@ public class InventoryUI : MonoBehaviour
         foreach (InventoryObject inventoryObject in inventory.inventoryObjectList)
         {
             Button newButton = Instantiate(templateButton);
-            newButton.transform.SetParent(transform);       
-            newButton.gameObject.SetActive(true);
             InventoryObjectUI currIOUI = newButton.transform.GetComponent<InventoryObjectUI>();
             currIOUI.image = newButton.transform.Find("Image").GetComponent<Image>();
             currIOUI.image.sprite = inventoryObject.sprite;
@@ -35,6 +32,9 @@ public class InventoryUI : MonoBehaviour
             currIOUI.UpdateText();
             currIOUI.button = newButton;
             inventoryObjectUIList.Add(currIOUI);         
+            newButton.gameObject.SetActive(true);
+            newButton.transform.SetParent(transform);
+            newButton.transform.localScale = Vector3.one;
         }
     }
     public void StartAddEffect(SuckableobjectType suckableobjectType, Vector3 startPos)
@@ -64,10 +64,7 @@ public class InventoryUI : MonoBehaviour
         if (score > 0&& GameManager.Instance!=null)
             GameManager.Instance.AddScore(score);
     }
-    private void EndAddEffect()
-    {
 
-    }
     public static InventoryObjectUI GetInventoryObjectUI(SuckableobjectType suckableobjectType)
     {
         return inventoryObjectUIList.Find(x => x.inventoryObject.suckableObjectType == suckableobjectType);

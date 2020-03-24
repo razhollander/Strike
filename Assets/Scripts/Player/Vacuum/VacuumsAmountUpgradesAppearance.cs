@@ -19,6 +19,8 @@ public class VacuumsAmountUpgradesAppearance : UpgradesAppearanceBase
             {
                 currVacuumBeingUpdated.gameObject.SetActive(true);
             }
+
+            DoBuyEffect(currVacuumBeingUpdated.transform);
         }
     }
     protected override void InitAppearance()

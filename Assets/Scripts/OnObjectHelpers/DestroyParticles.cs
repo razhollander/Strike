@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class DestroyParticles : MonoBehaviour
 {
+        [SerializeField] bool _isSetActive = false;
 
         private IEnumerator Start()
         {
             yield return new WaitForSeconds(GetComponent<ParticleSystem>().main.duration);
-            Destroy(gameObject);
+            
+            if (_isSetActive)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
     

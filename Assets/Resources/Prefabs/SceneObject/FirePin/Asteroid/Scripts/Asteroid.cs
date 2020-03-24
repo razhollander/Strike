@@ -4,6 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 public class Asteroid : PooledMonobehaviour
 {
+    const string VORONOI_COLOR = "_voronoiColor";
+    const string FRENSEL_COLOR = "_frenselColor";
+
     [SerializeField] float time = 4;
     [SerializeField] float jumpPower = 5;
     [SerializeField] float hitRadius = 3;
@@ -26,23 +29,18 @@ public class Asteroid : PooledMonobehaviour
     {
         Scale = transform.localScale;
         asteroidMaterial = thisRenderer.material;
-        asteroidVoronoiColor = asteroidMaterial.GetColor("_voronoiColor");
-        asteroidFrenselColor = asteroidMaterial.GetColor("_frenselColor");
+        asteroidVoronoiColor = asteroidMaterial.GetColor(VORONOI_COLOR);
+        asteroidFrenselColor = asteroidMaterial.GetColor(FRENSEL_COLOR);
 
     }
     private void OnEnable()
     {
         thisRenderer.enabled = true;
-        asteroidMaterial.SetColor("_voronoiColor", asteroidVoronoiColor);
-        asteroidMaterial.SetColor("_frenselColor", asteroidFrenselColor);
+        asteroidMaterial.SetColor(VORONOI_COLOR, asteroidVoronoiColor);
+        asteroidMaterial.SetColor(FRENSEL_COLOR, asteroidFrenselColor);
     }
     public void Lounch(Vector3 landPosition, Vector3 startPos)
     {
-        //int times = 14 * (int)rotationSpeed;
-
-        //int x = Random.Range(0, 360);
-        //int y = Random.Range(0, 360);
-        //int z = Random.Range(0, 360);
         Sequence animationSeq = DOTween.Sequence();
         animationSeq.PrependInterval(time / 2);
         animationSeq.Append(shadowHitPoint.transform.DOShakePosition(time/2, shadowShakeStrength, shadowShakeVabration, 90, false, false).SetEase(Ease.InExpo));
@@ -65,26 +63,24 @@ public class Asteroid : PooledMonobehaviour
         rotationTweener.Kill();
         Vector2 playerPos = MathHandler.Vector3ToVector2(GameManager.Instance.player.transform.position);
         Vector2 landPos = MathHandler.Vector3ToVector2(landPosition);
+
         if (Vector3.Distance(playerPos, landPos) <= hitRadius)
         {
             //Debug.Log("Hit");
-
         }
         else
         {
             //Debug.Log("Didnt Hit");
         }
+
         //Hit Effect
         hitExplosionParticles.Play();
         fireTrailParticles.Stop();
         float effectTime = hitExplosionParticles.main.duration;
         transform.DOScale(transform.localScale/2, effectTime);
         Material asteroidMaterial = thisRenderer.material;
-        DOTween.To(() => asteroidMaterial.GetColor("_voronoiColor"), x => asteroidMaterial.SetColor("_voronoiColor",x), Color.black, effectTime);
-        DOTween.To(() => asteroidMaterial.GetColor("_frenselColor"), x => asteroidMaterial.SetColor("_frenselColor", x), Color.black, effectTime);
-
-        //asteroidMaterial.SetColor("_voronoiColor", Color.black);
-        //asteroidMaterial.SetColor("_frenselColor", Color.black);
+        DOTween.To(() => asteroidMaterial.GetColor(VORONOI_COLOR), x => asteroidMaterial.SetColor(VORONOI_COLOR, x), Color.black, effectTime);
+        DOTween.To(() => asteroidMaterial.GetColor(FRENSEL_COLOR), x => asteroidMaterial.SetColor(FRENSEL_COLOR , x), Color.black, effectTime);
 
         yield return new WaitForSeconds(effectTime);
         thisRenderer.enabled = false;
