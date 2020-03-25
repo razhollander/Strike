@@ -19732,7 +19732,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -51071,6 +51071,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCar
       objectReference: {fileID: 0}
+    - target: {fileID: 4848651958657759437, guid: 40d2a854c88eeb741b4c4c1b72386d79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836863741315107063, guid: 40d2a854c88eeb741b4c4c1b72386d79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2956420479758590193, guid: 40d2a854c88eeb741b4c4c1b72386d79,
         type: 3}
       propertyPath: _swallowAnimationDuration
@@ -51086,6 +51096,21 @@ PrefabInstance:
       propertyPath: _swallowAnimationDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1984209429950465065, guid: 40d2a854c88eeb741b4c4c1b72386d79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836863741880466031, guid: 40d2a854c88eeb741b4c4c1b72386d79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513025537829065970, guid: 40d2a854c88eeb741b4c4c1b72386d79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1437933321947137196, guid: 40d2a854c88eeb741b4c4c1b72386d79,
         type: 3}
       propertyPath: m_RootOrder
@@ -51096,22 +51121,7 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 7836863741880466031, guid: 40d2a854c88eeb741b4c4c1b72386d79,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4848651958657759437, guid: 40d2a854c88eeb741b4c4c1b72386d79,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7836863741196467426, guid: 40d2a854c88eeb741b4c4c1b72386d79,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1984209429950465065, guid: 40d2a854c88eeb741b4c4c1b72386d79,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -51145,16 +51155,6 @@ PrefabInstance:
         type: 3}
       propertyPath: explosionRadius
       value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7836863741315107063, guid: 40d2a854c88eeb741b4c4c1b72386d79,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5513025537829065970, guid: 40d2a854c88eeb741b4c4c1b72386d79,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7355591678654336657, guid: 40d2a854c88eeb741b4c4c1b72386d79,
         type: 3}

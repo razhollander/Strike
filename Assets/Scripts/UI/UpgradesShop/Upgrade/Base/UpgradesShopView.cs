@@ -28,7 +28,7 @@ public class UpgradesShopView : MonoBehaviour
     }
     public void BackButtonPressed()
     {
-        GameManager.Instance.GameStateManager.SwitchGameState(eGameState.MainMenu);
+        GameManager.Instance.GameStateManager.SwitchGameState(GameManager.Instance.GameStateManager.MainMenu);
     }
     public void Reset()
     {

@@ -9644,7 +9644,7 @@ MonoBehaviour:
   myCollider: {fileID: 4643206830402451007}
   myRigidbody: {fileID: 3657609424188480661}
   speed: 20
-  explosionRadius: 10
+  explosionRadius: 20
   explosionForce: 3
   upForce: 1
 --- !u!1001 &3517474442692070451
@@ -9658,6 +9658,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BigExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304749645474195283, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304638739701456181, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304669933324669657, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304325092471790889, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304165540696715395, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6175407481121863183, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
@@ -9719,37 +9744,12 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6304165540696715395, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304325092471790889, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304669933324669657, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304564844097266499, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6270014764260709599, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6304638739701456181, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304749645474195283, guid: ae7f01daf906786459d65e930c823443,
+    - target: {fileID: 6304564844097266499, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
       propertyPath: playOnAwake
       value: 0

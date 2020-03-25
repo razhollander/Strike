@@ -5,43 +5,41 @@ using UnityEngine;
 
 public class GameStateManager
 {
-    public eGameState CurrentState { get; private set; }
-    public event Action GoToUpgradesShop;
-    public event Action GoToMainMenu;
-    public event Action GoToNormalPlay;
-    public event Action GoToLogin;
-    public event Action<eGameState> GoToLocation;
+    public State CurrentState { get; private set; }
+    public State UpgradesShop;
+    public State MainMenu;
+    public State NormalPlay;
+    public State Login;
     public GameStateManager()
-    {
-        CurrentState = eGameState.Login;
-        GameManager.Instance.OnGamePlayEnd += () => SwitchGameState(eGameState.MainMenu);
-    }
+    {        
+        UpgradesShop = new State();
+        MainMenu = new State();
+        NormalPlay = new State();
+        Login = new State();
 
-    public void SwitchGameState(eGameState newState)
-    {
-        GoToLocation?.Invoke(newState);
-
-        switch (newState)
-        {
-            case eGameState.Login:
-                GoToLogin?.Invoke();
-                break;
-            case eGameState.MainMenu:
-                GoToMainMenu?.Invoke();
-                break;
-            case eGameState.UpgradesShop:
-                GoToUpgradesShop?.Invoke();
-                break;
-            case eGameState.NormalPlay:
-                GoToNormalPlay?.Invoke();
-                break;
-        }
+        CurrentState = Login;
+        SwitchGameState(MainMenu);
     }
+    public void SwitchGameState(State newState)
+    {
+        CurrentState.Leave();
+        CurrentState = newState;
+        CurrentState.Enter();
+    }
+    
 }
-public enum eGameState
+
+public class State
 {
-    Login,
-    MainMenu,
-    UpgradesShop,
-    NormalPlay
+    public event Action OnLeave;
+    public event Action OnEnter;
+
+    internal void Leave()
+    {
+        OnLeave?.Invoke();
+    }
+    internal void Enter()
+    {
+        OnEnter?.Invoke();
+    }
 }

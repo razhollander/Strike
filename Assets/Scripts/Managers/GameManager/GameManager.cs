@@ -31,9 +31,6 @@ public class GameManager : MonoBehaviour
     public GameDataManager GameDataManager;
     public GameStateManager GameStateManager;
 
-    public event Action OnGameLoad;
-    public event Action OnGamePlayStart;
-    public event Action OnGamePlayEnd;
     public event Action OnGamePaused;
     public event Action OnGameResumed;
 
@@ -51,8 +48,8 @@ public class GameManager : MonoBehaviour
         GameStateManager = new GameStateManager();
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-        OnGamePlayStart += () => summonCorutine = StartCoroutine(SummonEnemies());
-        OnGamePlayEnd += () => StopCoroutine(summonCorutine);
+        GameStateManager.NormalPlay.OnEnter += ()=> summonCorutine = StartCoroutine(SummonEnemies());
+        GameStateManager.NormalPlay.OnLeave += () => StopCoroutine(summonCorutine);
     }
     public void PauseGame()
     {
@@ -73,16 +70,15 @@ public class GameManager : MonoBehaviour
         {
             s.DoQuitAnimation();
         }
-        OnGamePlayEnd?.Invoke();
+        GameStateManager.SwitchGameState(GameStateManager.MainMenu);
     }
     public void PlayGame()
     {
+        GameStateManager.SwitchGameState(GameManager.Instance.GameStateManager.NormalPlay);
         Debug.Log("Start game");
-        OnGamePlayStart?.Invoke();
     }
     void Start()
     {
-        OnGameLoad?.Invoke();
     }
     IEnumerator SummonEnemies()
     {

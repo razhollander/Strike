@@ -41,7 +41,7 @@ public class Vacuum : OverridableMonoBehaviour
     }
     protected virtual void Start()
     {
-        GameManager.Instance.OnGamePlayStart += SetVacuumParametersData;
+        GameManager.Instance.GameStateManager.NormalPlay.OnEnter += SetVacuumParametersData;
     }
     private void SetVacuumParametersData()
     {
