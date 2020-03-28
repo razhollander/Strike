@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float minDis, maxDis;
     [SerializeField] private float waitForSummonSceonds = 3;
     [SerializeField] private float forwardExtra = 1;
+    [SerializeField] Text scoreText;
+    [SerializeField] float speed;
     [SerializeField] bool isSpawn;
     [SerializeField] PrefabsCollectionObject _prefabsCollectionObject;
 
@@ -33,11 +35,9 @@ public class GameManager : MonoBehaviour
     public event Action OnGameResumed;
 
 
+    private int score;
     private Coroutine summonCorutine;
 
-    void Start()
-    {
-    }
     void Awake()
     {
         Instance = this;
@@ -48,9 +48,8 @@ public class GameManager : MonoBehaviour
         GameStateManager = new GameStateManager();
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-        var normalPlayState = GameStateManager.GetState<NormalPlayState>();
-        normalPlayState.OnEnter+= ()=> summonCorutine = StartCoroutine(SummonEnemies());
-        normalPlayState.OnLeave+= () => StopCoroutine(summonCorutine);
+        GameStateManager.NormalPlay.OnEnter += ()=> summonCorutine = StartCoroutine(SummonEnemies());
+        GameStateManager.NormalPlay.OnLeave += () => StopCoroutine(summonCorutine);
     }
     public void PauseGame()
     {
@@ -71,12 +70,15 @@ public class GameManager : MonoBehaviour
         {
             s.DoQuitAnimation();
         }
-        GameStateManager.SwitchGameState<MainMenuState>();
+        GameStateManager.SwitchGameState(GameStateManager.MainMenu);
     }
     public void PlayGame()
     {
-        GameStateManager.SwitchGameState<NormalPlayState>();
+        GameStateManager.SwitchGameState(GameManager.Instance.GameStateManager.NormalPlay);
         Debug.Log("Start game");
+    }
+    void Start()
+    {
     }
     IEnumerator SummonEnemies()
     {
@@ -101,4 +103,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public T GetPrefab<T>(string name) where T : UnityEngine.Object
+    {
+        return (T)_prefabsCollectionObject.prefabsDictionary[name.Equals(name)];
+    }
+    public void AddScore(int addedScore)
+    {
+        StartCoroutine(AddScoreCoroutine(addedScore));
+
+    }
+    private void UpdateScore(int addedScore)
+    {
+        score += addedScore;
+        scoreText.text = "Score: " + score;
+    }
+    private IEnumerator AddScoreCoroutine(int score)
+    {
+        // float timePerAdd = scoreAnimationTime / (float)score;
+        int scoreToAddThisFrame;
+        int scoreLeftToAdd = score;
+        while (scoreLeftToAdd != 0)
+        {
+            scoreToAddThisFrame = Mathf.CeilToInt(Time.deltaTime * score * speed);
+            if (scoreToAddThisFrame < scoreLeftToAdd)
+            {
+                UpdateScore(scoreToAddThisFrame);
+                scoreLeftToAdd -= scoreToAddThisFrame;
+            }
+            else
+            {
+                UpdateScore(scoreLeftToAdd);
+                scoreLeftToAdd -= scoreLeftToAdd;
+            }
+            yield return null;
+        }
+    }
 }

@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - MasterCanvas
-  - PlayCanvas
   layers:
   - Default
   - TransparentFX

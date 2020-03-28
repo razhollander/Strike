@@ -17,7 +17,7 @@ public class UpgradesManager
     public UpgradesManager()
     {
         _upgradesShopModel = new UpgradesShopModel();
-        _upgradesShopView = GameManager.Instance.AssetLoadHandler.CreateAsset<UpgradesShopView>(UPGRADES_SHOP_VIEW_NAME);
+        _upgradesShopView = GameManager.Instance.AssetLoadHandler.LoadAsset<UpgradesShopView>(UPGRADES_SHOP_VIEW_NAME);
         _upgradesShopController = new UpgradesShopController(_upgradesShopModel, _upgradesShopView);
         _upgradesShopObject = _upgradesShopView.UpgradesShopObject;
         _upgraders = new List<UpgraderBase>()

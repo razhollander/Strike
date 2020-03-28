@@ -10,7 +10,11 @@ public class AssetLoadHandler
     {
         _prefabsCollectionObject = prefabsCollectionObject;
     }
-    public T CreateAsset<T>(string name ="") where T : UnityEngine.Object
+    //public T LoadAsset<T>(string name) where T : UnityEngine.Object
+    //{
+    //    return (T)GameObject.Instantiate(_prefabsCollectionObject.prefabsDictionary[name]);
+    //}
+    public T LoadAsset<T>(string name ="") where T : UnityEngine.Object
     {
         if (typeof(ScriptableObject).IsAssignableFrom(typeof(T)))
         {

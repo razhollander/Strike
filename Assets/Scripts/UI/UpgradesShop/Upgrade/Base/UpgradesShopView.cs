@@ -11,17 +11,16 @@ public class UpgradesShopView : MonoBehaviour
     [SerializeField] Transform _upgradesPanelsParent;
     [SerializeField] UpgradePanel _upgradePanel;
     [SerializeField] TextMeshProUGUI _moneyText;
-    GameManager _gm;
+
     private void Start()
     {
-        _gm = GameManager.Instance;
         foreach (var upgradePanel in UpgradesShopObject.UpgradesPanelObjects)
         {
             var currUpgradePanel = Instantiate(_upgradePanel, _upgradesPanelsParent);
-            currUpgradePanel.SetPanelInit(upgradePanel, _gm.UpgradesManager.GetUpgrade(upgradePanel.EUpgradeType));
+            currUpgradePanel.SetPanelInit(upgradePanel, GameManager.Instance.UpgradesManager.GetUpgrade(upgradePanel.EUpgradeType));
         }
 
-        _moneyText.text = _gm.GameDataManager.Money.ToString();
+        _moneyText.text = GameManager.Instance.GameDataManager.Money.ToString();
     }
     public void UpdateMoneyText(int newPlayerMoney)
     {
@@ -29,10 +28,10 @@ public class UpgradesShopView : MonoBehaviour
     }
     public void BackButtonPressed()
     {
-        _gm.GameStateManager.SwitchGameState<MainMenuState>();
+        GameManager.Instance.GameStateManager.SwitchGameState(GameManager.Instance.GameStateManager.MainMenu);
     }
     public void Reset()
     {
-        _gm.UpgradesManager.Reset();
+        GameManager.Instance.UpgradesManager.Reset();
     }
 }

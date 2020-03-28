@@ -11,7 +11,6 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private Button templateButton;
 
-    GameManager _gm;
     private static List<InventoryObjectUI> inventoryObjectUIList;
     public static InventoryUI instance;
     void Awake()
@@ -20,10 +19,7 @@ public class InventoryUI : MonoBehaviour
         inventoryObjectUIList = new List<InventoryObjectUI>();
         PopulateInventory();
     }
-    private void Start()
-    {
-        _gm = GameManager.Instance;
-    }
+
     void PopulateInventory()
     {
         foreach (InventoryObject inventoryObject in inventory.inventoryObjectList)
@@ -60,13 +56,13 @@ public class InventoryUI : MonoBehaviour
         yield return new WaitForSeconds(waitForSeceonds);
         Destroy(img.gameObject);
         objectUI.Add();
-        if(_gm == null)
+        if(GameManager.Instance == null)
         {
             Debug.Log("No GameManager Instance!");
         }
         int score = objectUI.inventoryObject.score;
-        if (score > 0&& _gm != null)
-            _gm.GameStateManager.GetState<NormalPlayState>().AddScore(score);
+        if (score > 0&& GameManager.Instance!=null)
+            GameManager.Instance.AddScore(score);
     }
 
     public static InventoryObjectUI GetInventoryObjectUI(SuckableobjectType suckableobjectType)
