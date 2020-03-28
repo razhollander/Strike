@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameScoreView : MonoBehaviour
 {
-    [SerializeField] float _scoreAnimtaionSpeed;
-    [SerializeField] Text _scoreText;
+    const string SCORE_TEXT = "Score: ";
 
+    [SerializeField] private float _scoreAnimtaionSpeed;
+    [SerializeField] private Text _scoreText;
+
+    int _totalScore=0;
 
     public void AddScore(int addedScore)
     {
@@ -14,7 +17,8 @@ public class GameScoreView : MonoBehaviour
     }
     private void UpdateScoreText(int addedScore)
     {
-        _scoreText.text = "Score: " + addedScore;
+        _totalScore += addedScore;
+        _scoreText.text = SCORE_TEXT + _totalScore;
     }
     private IEnumerator AddScoreCoroutine(int score)
     {

@@ -44,13 +44,12 @@ public abstract class State
     public event Action OnLeave;
     public event Action OnEnter;
 
-    public void Leave()
+    public virtual void Leave()
     {
         OnLeave?.Invoke();
     }
     public virtual void Enter()
     {
-        Debug.Log("Enter");
         OnEnter?.Invoke();
     }
 }

@@ -17,9 +17,14 @@ public class GameScoreController
         _gameScoreView.transform.SetParent(GameObject.FindGameObjectWithTag(PLAY_CANVAS_TAG).transform,false);
         OnAddScore += _gameScoreView.AddScore;
     }
+    public void Dispose()
+    {
+        OnAddScore -= _gameScoreView.AddScore;
+        GameObject.Destroy(_gameScoreView.gameObject);
+    }
     public void AddScore(int addedScore)
     {
+        OnAddScore?.Invoke(addedScore);
         _score += addedScore;
-        OnAddScore?.Invoke(_score);
     }
 }

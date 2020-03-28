@@ -371,5 +371,14 @@ namespace VehicleBehaviour {
         return Input.GetAxis(input);
 #endif
         }
+
+        private void OnDisable()
+        {
+            foreach (WheelCollider wheel in driveWheel)
+            {
+                wheel.motorTorque = 0;
+                //wheel.brakeTorque = 100;
+            }
+        }
     }
 }

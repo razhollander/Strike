@@ -10,6 +10,11 @@ public class NormalPlayState : State
         base.Enter();
         _gameScoreController = new GameScoreController();
     }
+    public override void Leave()
+    {
+        base.Leave();
+        _gameScoreController.Dispose();
+    }
     public void AddScore(int addedScore)
     {
         _gameScoreController.AddScore(addedScore);
