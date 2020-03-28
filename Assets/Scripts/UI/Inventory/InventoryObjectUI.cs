@@ -11,9 +11,18 @@ public class InventoryObjectUI : MonoBehaviour
     public Button button;
     [SerializeField] private Text text;
     private Tween punchTweener;
+    private void Start()
+    {
+        ResetCollected();
+        var normalPlayState = GameManager.Instance.GameStateManager.GetState<NormalPlayState>();
+        normalPlayState.OnEnter += ResetCollected;
+        normalPlayState.OnEnter += ResetCollected;
+
+    }
+
     public void Add(int counter=1)
     {
-        inventoryObject.count+= counter;
+        inventoryObject.collected+= counter;
         punchTweener.Restart();
         punchTweener.Kill();
         punchTweener = text.transform.DOPunchScale(text.transform.up,0.2f);
@@ -22,16 +31,20 @@ public class InventoryObjectUI : MonoBehaviour
 
     public void UpdateText()
     {
-        text.text = "x" + inventoryObject.count;
+        text.text = "x" + inventoryObject.collected;
     }
     public void Use()
     {
-        inventoryObject.count--;
+        inventoryObject.collected--;
         UpdateText();
     }
     public void ButtonClicked()
     {
         JoystickShoot.instance.SelectObject(this);
     }
-
+    private void ResetCollected()
+    {
+        inventoryObject.collected = 0;
+        UpdateText();
+    }
 }

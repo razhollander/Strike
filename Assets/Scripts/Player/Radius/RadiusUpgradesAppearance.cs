@@ -6,7 +6,7 @@ public class RadiusUpgradesAppearance : MonoBehaviour
 {
     void Start()
     {
-        GameManager.Instance.GameStateManager.NormalPlay.OnEnter += InitAppearance;
+        GameManager.Instance.GameStateManager.GetState<NormalPlayState>().OnEnter += InitAppearance;
     }
 
     void InitAppearance()
