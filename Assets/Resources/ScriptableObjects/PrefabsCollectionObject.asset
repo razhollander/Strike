@@ -18,10 +18,8 @@ MonoBehaviour:
     - UpgradesPanel
     - PlayerCar
     - BoughtLightningEffect
-    - GameScore
     m_values:
     - {fileID: 2508786894324569042, guid: b68606d2c10b42144b511cd93c538697, type: 3}
     - {fileID: 3515249963375436697, guid: 049dd15c5653cff4aac8cf63ab2e9b06, type: 3}
     - {fileID: 5786868716764675202, guid: 40d2a854c88eeb741b4c4c1b72386d79, type: 3}
     - {fileID: 1127112359047256368, guid: ba40fe3c74255ba48997d27e0bc25b6d, type: 3}
-    - {fileID: 6003459224143298390, guid: 464ff60c249a11945864f6c7ab677f6a, type: 3}

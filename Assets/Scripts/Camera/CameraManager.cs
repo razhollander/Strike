@@ -12,11 +12,11 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.GameStateManager.GetState<MainMenuState>().OnEnter+=() => {
+        GameManager.Instance.GameStateManager.MainMenu.OnEnter += () => {
             _followCamera.enabled = true;
             _animator.SetBool(UPDRAGE_STORE_ANIMATION_NAME, false); 
         };
-        GameManager.Instance.GameStateManager.GetState<UpgradesShopState>().OnEnter += () => _animator.SetBool(UPDRAGE_STORE_ANIMATION_NAME, true);
-        GameManager.Instance.GameStateManager.GetState<NormalPlayState>().OnEnter += () => _followCamera.enabled = true; 
+        GameManager.Instance.GameStateManager.UpgradesShop.OnEnter += () => _animator.SetBool(UPDRAGE_STORE_ANIMATION_NAME, true);
+        GameManager.Instance.GameStateManager.NormalPlay.OnEnter += () => _followCamera.enabled = true; 
     }
 }

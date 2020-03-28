@@ -7,8 +7,9 @@ public class InventoryObject : ScriptableObject
 {
     public SuckableobjectType suckableObjectType;
     public ObjectShot objectShot;
-    public int collected = 0;
+    public int count = 0;
     public Sprite sprite;
     public ArrowObject arrowObject;
     public int score;
+
 }
