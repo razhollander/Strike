@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, ISceneObject
     [SerializeField] private float upForce;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float DownSpeed = 2;
-    [SerializeField] private WheelVehicle WheelVehicle;
+    [SerializeField] private BaseVehicle WheelVehicle;
     [SerializeField] public GameObject Radius;
     [SerializeField] private Animator _animator;
     private Vector3 _startPos;

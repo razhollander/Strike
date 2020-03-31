@@ -25,7 +25,7 @@ public class FollowPlayer : OverridableMonoBehaviour
     protected override void Awake()
     {
         base.Awake();
-        player = FindObjectOfType<VehicleBehaviour.WheelVehicle>().gameObject;
+        player = FindObjectOfType<BaseVehicle>().gameObject;
         playerPos = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         _layermaskIgnored = ~((1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Player")));
         _rayRadius = transform.localScale.x;

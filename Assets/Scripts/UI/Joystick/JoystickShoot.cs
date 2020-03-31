@@ -12,7 +12,6 @@ public class JoystickShoot : Joystick
     private PostProcessVolume volume;
     Vignette vignette;
     public static JoystickShoot instance;
-    bool isMouseHeld = false;
     public float slowTimeDuration = 0.5f;
     public float handlerRadiusToShoot = 1;
     protected override void Awake()
@@ -41,25 +40,22 @@ public class JoystickShoot : Joystick
     }
     public override void UpdateMe()
     {
-        if(isMouseHeld)
+        if(IsMouseHeld)
                   shooterVacuum.Aim(input);
         if (input.sqrMagnitude > Mathf.Pow(handlerRadiusToShoot, 2))
             shooterVacuum.SetArrow(true);
         else
             shooterVacuum.SetArrow(false);
-
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
         SetSlowMotion(true);
-        isMouseHeld = true;
         shooterVacuum.StartAiming(input);
         base.OnPointerDown(eventData);
     }
     public override void OnPointerUp(PointerEventData eventData)
     {
         SetSlowMotion(false);
-        isMouseHeld = false;
         if (input.magnitude >= handlerRadiusToShoot && selectedInventoryObject != null)
         {
             input.Normalize();

@@ -18,10 +18,10 @@ public class FollowCamera : MonoBehaviour
     //    Vector3 tPos = target.position + offset + target.forward * rotationOffset;
     //    transform.position = Vector3.Lerp(transform.position, tPos, Time.fixedDeltaTime * lerpPositionMultiplier);
     //}
-    public void FixedUpdate()
+    public void Update()
     {
         Vector3 tPos = target.position + offset + target.forward * rotationOffset;
-        transform.position = Vector3.Lerp(transform.position, tPos, Time.fixedDeltaTime * lerpPositionMultiplier);
+        transform.position = Vector3.Lerp(transform.position, tPos, Time.deltaTime * lerpPositionMultiplier);
     }
 
 }

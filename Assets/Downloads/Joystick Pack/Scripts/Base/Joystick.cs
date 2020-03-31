@@ -8,6 +8,7 @@ public class Joystick : OverridableMonoBehaviour, IPointerDownHandler, IDragHand
     public float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; } }
     public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }
     public Vector2 Direction { get { return new Vector2(Horizontal, Vertical); } }
+    public  bool IsMouseHeld = false;
 
     public float HandleRange
     {
@@ -59,6 +60,7 @@ public class Joystick : OverridableMonoBehaviour, IPointerDownHandler, IDragHand
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        IsMouseHeld = true;
         OnDrag(eventData);
     }
 
@@ -131,6 +133,7 @@ public class Joystick : OverridableMonoBehaviour, IPointerDownHandler, IDragHand
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
+        IsMouseHeld = false;
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
     }

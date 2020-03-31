@@ -14,7 +14,8 @@ using UnityEngine;
 
 namespace VehicleBehaviour {
     [RequireComponent(typeof(Rigidbody))]
-    public class WheelVehicle : MonoBehaviour {
+    public class WheelVehicle : BaseVehicle
+    {
         
         [Header("Inputs")]
     #if MULTIOSCONTROLS
