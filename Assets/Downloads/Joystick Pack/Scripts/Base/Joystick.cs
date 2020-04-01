@@ -43,6 +43,7 @@ public class Joystick : OverridableMonoBehaviour, IPointerDownHandler, IDragHand
 
     protected virtual void Start()
     {
+        updateWhenDisabled = false;
         HandleRange = handleRange;
         DeadZone = deadZone;
         baseRect = GetComponent<RectTransform>();

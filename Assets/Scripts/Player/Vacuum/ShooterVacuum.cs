@@ -71,9 +71,10 @@ public class ShooterVacuum : Vacuum
     }
     private void DoShootFX()
     {
+        RotationTweener.Kill();
         shootTween.Restart();
         shootTween.Kill();
-        shootTween = VacuumHead.DOPunchScale(Vector3.one * punchShootValue, shootAnimationDuration);
+        shootTween = VacuumHead.DOPunchScale(Vector3.one * punchShootValue, shootAnimationDuration).OnComplete(StartSelfRotation);
         //airParticals.SetActive(false);
         //sparksParticles.Play();
         //swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;

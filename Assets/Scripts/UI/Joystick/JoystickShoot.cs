@@ -45,7 +45,7 @@ public class JoystickShoot : Joystick
         if (input.sqrMagnitude > Mathf.Pow(handlerRadiusToShoot, 2))
             shooterVacuum.SetArrow(true);
         else
-            shooterVacuum.SetArrow(false);
+            shooterVacuum.SetArrow(false);  
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
