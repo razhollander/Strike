@@ -82,5 +82,6 @@ public enum SuckableobjectType
     firePin = 2,
     electricPin = 3,
     IcePin = 4,
-    powerUp = 5
+    magneticPin = 5,
+    powerUp = 6
 }

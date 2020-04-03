@@ -4850,7 +4850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef68608aa1d1f44cbb86bd935d56f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPoolSize: 6
+  initialPoolSize: 10
 --- !u!199 &1127112359047256380
 ParticleSystemRenderer:
   serializedVersion: 6

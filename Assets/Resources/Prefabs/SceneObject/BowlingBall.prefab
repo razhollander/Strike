@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2367794016340903677}
-  m_LocalRotation: {x: -0.47894606, y: -0.5202025, z: -0.5202025, w: 0.47894606}
-  m_LocalPosition: {x: 2.24, y: 1.63, z: -9.19}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2367794015870191226}
+  - {fileID: 7324731862992334636}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -94.729004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2367794016340903673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2367794016340903675
 MonoBehaviour:
@@ -78,7 +78,7 @@ MonoBehaviour:
   initialPoolSize: 10
   suckableobjectType: 0
   scoreValue: 0
-  thisRenderer: {fileID: 2367794015870191363}
+  thisRenderer: {fileID: 5458682732473248227}
   thisCollider: {fileID: 2367794016340903672}
   thisRigidBody: {fileID: 2367794016340903673}
 --- !u!1001 &2367794015870190646
@@ -93,12 +93,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BowlingBall
       objectReference: {fileID: 0}
-    - target: {fileID: -5178661895559278292, guid: 5ed29caea2919a241b2c27346b68019b,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -581195821847472809, guid: ca0b5ba1aae8cea43970ba819a77920a,
-        type: 3}
     - target: {fileID: -4216859302048453862, guid: 5ed29caea2919a241b2c27346b68019b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -154,15 +148,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -94.729004
       objectReference: {fileID: 0}
+    - target: {fileID: -5178661895559278292, guid: 5ed29caea2919a241b2c27346b68019b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -581195821847472809, guid: ca0b5ba1aae8cea43970ba819a77920a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ed29caea2919a241b2c27346b68019b, type: 3}
---- !u!4 &2367794015870191226 stripped
+--- !u!4 &7324731862992334636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 5ed29caea2919a241b2c27346b68019b,
     type: 3}
   m_PrefabInstance: {fileID: 2367794015870190646}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &2367794015870191363 stripped
+--- !u!23 &5458682732473248227 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 5ed29caea2919a241b2c27346b68019b,
     type: 3}

@@ -5,7 +5,7 @@ public class ParticleToTarget : OverridableMonoBehaviour
     public Transform Target;
     public float speed = 1;
     private ParticleSystem system;
-
+    Vector3 v2;
     private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
 
     int count;
@@ -20,24 +20,30 @@ public class ParticleToTarget : OverridableMonoBehaviour
         {
             this.enabled = false;
         }
-
     }
 
     public override void UpdateMe()
     {
+        if(Target!=null)
+        {
+            v2 = Target.position;
+        }
 
         count = system.GetParticles(particles);
 
         for (int i = 0; i < count; i++)
         {
-            ParticleSystem.Particle particle = particles[i];
+            if (Target != null)
+            {
+                ParticleSystem.Particle particle = particles[i];
 
-            Vector3 v1 = system.transform.TransformPoint(particle.position);
-            Vector3 v2 = Target.position;
+                Vector3 v1 = system.transform.TransformPoint(particle.position);
 
-            Vector3 tarPosi = (v2 - v1) * (particle.remainingLifetime / particle.startLifetime)* speed;
-            particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
-            particles[i] = particle;
+                Vector3 tarPosi = (v2 - v1) * (particle.remainingLifetime / particle.startLifetime) * speed;
+                particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
+                particles[i] = particle;
+            }
+
         }
 
         system.SetParticles(particles, count);

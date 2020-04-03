@@ -68,7 +68,7 @@ public class Vacuum : OverridableMonoBehaviour
     protected void StartSelfRotation()
     {
         RotationTweener.Kill();
-        RotationTweener = transform.DORotate(new Vector3(0, 360, 0), 1, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
+        RotationTweener = transform.DOLocalRotate(new Vector3(0, 360, 0), 1, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
     public override void UpdateMe()
     {

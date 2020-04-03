@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject enemiesParent;
     [SerializeField] private List<SuckableObject> sceneObjects;
     [SerializeField] List<float> probabilities;
-    [SerializeField] public Player player;
+    [SerializeField] public PlayerBase player;
     [SerializeField] private float minDis, maxDis;
     [SerializeField] private float waitForSummonSceonds = 3;
     [SerializeField] private float forwardExtra = 1;
