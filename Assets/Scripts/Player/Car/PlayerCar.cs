@@ -4,7 +4,8 @@ using UnityEngine;
 using VehicleBehaviour;
 public class PlayerCar : PlayerBase
 {
-    [SerializeField] Rigidbody _rigidbody;
+    [SerializeField] protected Rigidbody _rigidbody;
+
     protected override void Awake()
     {
         _rigidbody.isKinematic = true;
@@ -24,4 +25,8 @@ public class PlayerCar : PlayerBase
         base.HandleEnterNormalPlay();
     }
 
+    public override void AddForce(Vector2 force)
+    {
+        _rigidbody.AddForce(force.ToVector3());
+    }
 }

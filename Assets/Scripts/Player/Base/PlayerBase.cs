@@ -9,7 +9,7 @@ public abstract class PlayerBase : MonoBehaviour, ISceneObject
     [SerializeField] private float _explosiveForce = 100;
     [SerializeField] private float _explosionRadius = 1000;
     [SerializeField] private float _upForce;
-    [SerializeField] private BaseVehicle _baseVehicle;
+    [SerializeField] protected BaseVehicle _baseVehicle;
     [SerializeField] public GameObject Radius;
     [SerializeField] protected Animator _animator;
 
@@ -19,6 +19,7 @@ public abstract class PlayerBase : MonoBehaviour, ISceneObject
     {
         _startPos = transform.position;
     }
+    public abstract void AddForce(Vector2 force);
     private void Start()
     {
         GameManager.Instance.GameStateManager.GetState<NormalPlayState>().OnLeave += SpawnAnimtion;

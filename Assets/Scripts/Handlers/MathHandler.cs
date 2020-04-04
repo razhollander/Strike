@@ -20,6 +20,14 @@ public static class MathHandler
     {
         return new Vector3(vec.x, 0, vec.y);
     }
+    public static Vector2 ToVector2(this Vector3 vec)
+    {
+        return new Vector2(vec.x, vec.z);
+    }
+    public static Vector3 SetYZero(this Vector3 vec)
+    {
+        return new Vector3(vec.x, 0, vec.z);
+    }
     public static Vector3 RotateVectorByAngle(Vector3 vec, float angleInDegrees)//angle in degrees anti clockwise
     {
         float angleInRadians = angleInDegrees * Mathf.PI / 180;

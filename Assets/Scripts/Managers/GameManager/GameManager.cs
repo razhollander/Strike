@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         var normalPlayState = GameStateManager.GetState<NormalPlayState>();
         normalPlayState.OnEnter+= ()=> summonCorutine = StartCoroutine(SummonEnemies());
-        normalPlayState.OnLeave+= () => StopCoroutine(summonCorutine);
+        normalPlayState.OnLeave+= () => { if (summonCorutine != null) StopCoroutine(summonCorutine); };
     }
     public void PauseGame()
     {

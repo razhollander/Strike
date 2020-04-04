@@ -5,11 +5,14 @@ using UnityEngine;
 public class MagneticPinEnemy : AttackingEnemy
 {
     [Header("MagnecticPin")]
-    [SerializeField] private ParticleSystem trailEffect;
-    [SerializeField] private Animator animator;
-    [SerializeField] Transform lounchAndroidPos;
-    [SerializeField] Asteroid astroid;
-    [SerializeField] [Range(0,1)] private float lounchAtAnimationPercent=0.8f;
+    [SerializeField] private ParticleSystem _attackEffect;
+    [SerializeField] Transform _magnet;
+    [SerializeField] private float _pullAmount;
+    [SerializeField] private float _attackDauration = 3;
+
+    PlayerBase _player;
+    Coroutine pullPlayerCoroutine;
+    Vector3 towardsPlayer;
     public override SuckableObject Duplicate()
     {
         return this.Get<MagneticPinEnemy>();
@@ -18,28 +21,24 @@ public class MagneticPinEnemy : AttackingEnemy
     {
         base.Awake();
         pulledEvent += StopAttack;
-        pulledEvent += EndTrailEffect;
-        startDyingEvent += EndTrailEffect;
         startDyingEvent += StopAttack;
     }
-    private void EndTrailEffect()
+    private void Start()
     {
-        trailEffect.Stop();
+        _player = GameManager.Instance.player;
     }
+
     protected override void OnEnable()
     {
         base.OnEnable();
-        trailEffect.Play();
         StartCoroutine(SpawnInDelay());
         StartCoroutine(AttackCountdown());
-
     }
     private IEnumerator SpawnInDelay()
     {
         MakeActive(false);
         yield return new WaitForSeconds(spawnTimeDelay);
         MakeActive(true);
-        trailEffect.Play();
     }
     protected override void MakeActive(bool isActive)
     {
@@ -48,28 +47,41 @@ public class MagneticPinEnemy : AttackingEnemy
     }
     protected override IEnumerator Attack()
     {
-        thisFollowPlayer.enabled = false;
-        animator.Play("ChargeAttack");
+        _attackEffect.Play();
+        pullPlayerCoroutine = StartCoroutine(PullPlayer());
+        yield return new WaitForSeconds(_attackDauration);
+        //yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime>lounchAtAnimationPercent);
 
-        yield return null;
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime>lounchAtAnimationPercent);
+        //if (health > 0)
+        //{
+        //    Asteroid newAstroid = astroid.Get<Asteroid>();
+        //    Vector3 hitPos = GameManager.Instance.player.transform.forward * 15 + GameManager.Instance.player.transform.position;
+        //    newAstroid.Lounch(hitPos, lounchAndroidPos.position);
+        //    StartCoroutine(AttackCountdown());
+        //}
+        StopAttack();
+        //yield return new WaitForSeconds(0.5f);
 
-        if (health > 0)
+        //if (health>0)
+        //    thisFollowPlayer.enabled = true;
+    }
+    private IEnumerator PullPlayer()
+    {
+        while (true)
         {
-            Asteroid newAstroid = astroid.Get<Asteroid>();
-            Vector3 hitPos = GameManager.Instance.player.transform.forward * 15 + GameManager.Instance.player.transform.position;
-            newAstroid.Lounch(hitPos, lounchAndroidPos.position);
-            StartCoroutine(AttackCountdown());
+            yield return new WaitForFixedUpdate();
+            towardsPlayer = (_player.transform.position - transform.position).SetYZero();
+            _player.AddForce(-towardsPlayer.ToVector2() * _pullAmount);
+            _magnet.LookAt(_player.transform);
         }
-
-        yield return new WaitForSeconds(0.5f);
-
-        if (health>0)
-            thisFollowPlayer.enabled = true;
     }
     public override void StopAttack()
     {
-        animator.Play("DefaultState");
+        if (pullPlayerCoroutine != null)
+        {
+            StopCoroutine(pullPlayerCoroutine);
+        }
+        _attackEffect.Stop();
         base.StopAttack();
     }
 }

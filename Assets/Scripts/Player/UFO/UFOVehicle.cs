@@ -4,25 +4,51 @@ using UnityEngine;
 
 public class UFOVehicle : BaseVehicle
 {
-    [SerializeField] private float _movementSpeed = 1;
-    [SerializeField] private float _rotationSpeed = 1;
-    [SerializeField] float _lerpPositionMultiplier = 1f;
-    [SerializeField] float _lerpRotationMultiplier = 1f;
+    [SerializeField] private float _movementSpeed = 0.2f;
+    [SerializeField] private float _rotationSpeed = 10;
+    [SerializeField] float _lerpPositionMultiplier = 4;
+    [SerializeField] float _lerpRotationMultiplier = 0.8f;
+    [SerializeField] private float rotateBy = 4;
 
-    public float GetMovementSpeed()
+    Vector3 _newPos;
+
+    public void MoveByDirection(Vector2 direction)
     {
-        return _movementSpeed;
+        _newPos += direction.ToVector3() * _movementSpeed;
     }
-    public float GetRotationSpeed()
+    private void Start()
     {
-        return _rotationSpeed;
+        Reset();
+        GameManager.Instance.GameStateManager.GetState<NormalPlayState>().OnEnter += Reset;
     }
-    public float GetLerpPositionMultiplier()
+    private void Reset()
     {
-        return _lerpPositionMultiplier;
+        _newPos = transform.position;
     }
-    public float GetLerpRotationMultiplier()
+    private void Update()
     {
-        return _lerpRotationMultiplier;
+        transform.position = Vector3.Lerp(transform.position, _newPos, _lerpPositionMultiplier * Time.deltaTime);
+
+        Vector3 deltaVector = (_newPos - transform.position);
+        Vector3 newDirection = Vector3.RotateTowards(new Vector3(transform.forward.x, deltaVector.y, transform.forward.z), deltaVector, _rotationSpeed * Time.deltaTime, 0.0f);
+        Quaternion turnRotation = Quaternion.LookRotation(newDirection);
+        Quaternion leanForwardRotation = Quaternion.AngleAxis(rotateBy * deltaVector.magnitude, Vector3.right);
+        transform.rotation = Quaternion.Lerp(transform.rotation, turnRotation * leanForwardRotation, _lerpRotationMultiplier);
     }
+    //public float GetMovementSpeed()
+    //{
+    //    return _movementSpeed;
+    //}
+    //public float GetRotationSpeed()
+    //{
+    //    return _rotationSpeed;
+    //}
+    //public float GetLerpPositionMultiplier()
+    //{
+    //    return _lerpPositionMultiplier;
+    //}
+    //public float GetLerpRotationMultiplier()
+    //{
+    //    return _lerpRotationMultiplier;
+    //}
 }
