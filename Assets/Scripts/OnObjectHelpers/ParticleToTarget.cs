@@ -7,7 +7,7 @@ public class ParticleToTarget : OverridableMonoBehaviour
     private ParticleSystem system;
     Vector3 v2;
     private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
-
+    [SerializeField] bool _isWorldSpace = false;
     int count;
 
     protected override void Awake()
@@ -24,7 +24,7 @@ public class ParticleToTarget : OverridableMonoBehaviour
 
     public override void UpdateMe()
     {
-        if(Target!=null)
+        if (Target != null)
         {
             v2 = Target.position;
         }
@@ -37,10 +37,17 @@ public class ParticleToTarget : OverridableMonoBehaviour
             {
                 ParticleSystem.Particle particle = particles[i];
 
-                Vector3 v1 = system.transform.TransformPoint(particle.position);
+                Vector3 v1;
+                if (!_isWorldSpace)
+                    v1 = system.transform.TransformPoint(particle.position);
+                else
+                    v1 = particle.position;
 
-                Vector3 tarPosi = (v2 - v1) * (particle.remainingLifetime / particle.startLifetime) * speed;
-                particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
+                Vector3 tarPosi = (v2 - v1) * (particle.remainingLifetime / particle.startLifetime) * speed * Time.deltaTime;
+                if (!_isWorldSpace)
+                    particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
+                else
+                    particle.position = v2 - tarPosi;
                 particles[i] = particle;
             }
 

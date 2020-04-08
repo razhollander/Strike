@@ -12,7 +12,7 @@ public class MagneticPinEnemy : AttackingEnemy
 
     PlayerBase _player;
     Coroutine pullPlayerCoroutine;
-    Vector3 towardsPlayer;
+    Vector3 towardsPin;
     public override SuckableObject Duplicate()
     {
         return this.Get<MagneticPinEnemy>();
@@ -70,8 +70,9 @@ public class MagneticPinEnemy : AttackingEnemy
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            towardsPlayer = (_player.transform.position - transform.position).SetYZero();
-            _player.AddForce(-towardsPlayer.ToVector2() * _pullAmount);
+            towardsPin = (transform.position-_player.transform.position).SetYZero();
+            float sqrtDistance = towardsPin.sqrMagnitude;
+            _player.AddForce(towardsPin.ToVector2() * _pullAmount/ sqrtDistance);
             _magnet.LookAt(_player.transform);
         }
     }

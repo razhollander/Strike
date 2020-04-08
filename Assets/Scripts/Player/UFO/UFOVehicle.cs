@@ -14,7 +14,7 @@ public class UFOVehicle : BaseVehicle
 
     public void MoveByDirection(Vector2 direction)
     {
-        _newPos += direction.ToVector3() * _movementSpeed;
+        _newPos += direction.ToVector3() * _movementSpeed * Time.deltaTime;
     }
     private void Start()
     {
