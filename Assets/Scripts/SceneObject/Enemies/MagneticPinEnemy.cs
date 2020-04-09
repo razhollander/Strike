@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class MagneticPinEnemy : AttackingEnemy
 {
+    //const string SHADER_ALPHA_PARAMETER = "_Shader_Alpha";
+    const float ZERO = 0; 
+    const float ONE = 1;
+    const float MAX_DISTANCE_PERCENT = 2;
+
     [Header("MagnecticPin")]
     [SerializeField] private ParticleSystem _attackEffect;
     [SerializeField] Transform _magnet;
     [SerializeField] private float _pullAmount;
     [SerializeField] private float _attackDauration = 3;
+    //[SerializeField] private Material _pulledObjectMaterial;
+    [SerializeField] private float _maxDistance = 10;
+    [SerializeField] MagnetLaserStrike _magnetLaserStrike;
 
     PlayerBase _player;
-    Coroutine pullPlayerCoroutine;
+    Transform _target;
+    Coroutine _pullPlayerCoroutine;
+    Coroutine _updateLaserCoroutine;
+
+    float distance = float.MaxValue;
     Vector3 towardsPin;
     public override SuckableObject Duplicate()
     {
@@ -25,9 +37,10 @@ public class MagneticPinEnemy : AttackingEnemy
     }
     private void Start()
     {
+        _magnetLaserStrike._target = GameManager.Instance.player.magneticForcePoint;
         _player = GameManager.Instance.player;
+        _target = _player.magneticForcePoint;
     }
-
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -48,40 +61,57 @@ public class MagneticPinEnemy : AttackingEnemy
     protected override IEnumerator Attack()
     {
         _attackEffect.Play();
-        pullPlayerCoroutine = StartCoroutine(PullPlayer());
+        _pullPlayerCoroutine = StartCoroutine(PullPlayer());
+        _updateLaserCoroutine = StartCoroutine(UpdateLaserEffect());
         yield return new WaitForSeconds(_attackDauration);
-        //yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime>lounchAtAnimationPercent);
-
-        //if (health > 0)
-        //{
-        //    Asteroid newAstroid = astroid.Get<Asteroid>();
-        //    Vector3 hitPos = GameManager.Instance.player.transform.forward * 15 + GameManager.Instance.player.transform.position;
-        //    newAstroid.Lounch(hitPos, lounchAndroidPos.position);
-        //    StartCoroutine(AttackCountdown());
-        //}
         StopAttack();
-        //yield return new WaitForSeconds(0.5f);
+    }
+    private IEnumerator UpdateLaserEffect()
+    {
+        float alpha;
 
-        //if (health>0)
-        //    thisFollowPlayer.enabled = true;
+        while (true)
+        {
+            _magnet.LookAt(_target);
+            
+            if (distance < _maxDistance)
+            {
+                alpha = Mathf.Clamp(MAX_DISTANCE_PERCENT * (_maxDistance-distance)/_maxDistance,ZERO,ONE);
+                _magnetLaserStrike.SetAlpha(alpha);
+                //_pulledObjectMaterial.SetFloat(SHADER_ALPHA_PARAMETER, alpha);
+
+            }
+            else
+            {
+                _magnetLaserStrike.SetAlpha(ZERO);
+                //_pulledObjectMaterial.SetFloat(SHADER_ALPHA_PARAMETER, ZERO);
+            }
+
+            yield return null;
+        }
     }
     private IEnumerator PullPlayer()
     {
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            towardsPin = (transform.position-_player.transform.position).SetYZero();
-            float sqrtDistance = towardsPin.sqrMagnitude;
-            _player.AddForce(towardsPin.ToVector2() * _pullAmount/ sqrtDistance);
-            _magnet.LookAt(_player.transform);
+            towardsPin = (transform.position- _target.position).SetYZero();
+            distance = towardsPin.magnitude;
+            if (distance < _maxDistance)
+                _player.AddForce(towardsPin.ToVector2().normalized * _pullAmount/ distance);
         }
     }
     public override void StopAttack()
     {
-        if (pullPlayerCoroutine != null)
+        if (_pullPlayerCoroutine != null)
         {
-            StopCoroutine(pullPlayerCoroutine);
+            StopCoroutine(_pullPlayerCoroutine);
         }
+        if(_updateLaserCoroutine!=null)
+        {
+            StopCoroutine(_updateLaserCoroutine);
+        }
+
         _attackEffect.Stop();
         base.StopAttack();
     }

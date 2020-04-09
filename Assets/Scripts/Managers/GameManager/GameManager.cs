@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
         UpgradesManager = new UpgradesManager();
         GameStateManager = new GameStateManager();
 
+        player = GameObject.FindObjectOfType<PlayerBase>();
+
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         var normalPlayState = GameStateManager.GetState<NormalPlayState>();
         normalPlayState.OnEnter+= ()=> summonCorutine = StartCoroutine(SummonEnemies());

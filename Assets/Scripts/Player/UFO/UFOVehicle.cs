@@ -16,6 +16,10 @@ public class UFOVehicle : BaseVehicle
     {
         _newPos += direction.ToVector3() * _movementSpeed * Time.deltaTime;
     }
+    public void AddForce(Vector2 force)
+    {
+        _newPos += force.ToVector3() * Time.deltaTime;
+    }
     private void Start()
     {
         Reset();
@@ -35,20 +39,4 @@ public class UFOVehicle : BaseVehicle
         Quaternion leanForwardRotation = Quaternion.AngleAxis(rotateBy * deltaVector.magnitude, Vector3.right);
         transform.rotation = Quaternion.Lerp(transform.rotation, turnRotation * leanForwardRotation, _lerpRotationMultiplier);
     }
-    //public float GetMovementSpeed()
-    //{
-    //    return _movementSpeed;
-    //}
-    //public float GetRotationSpeed()
-    //{
-    //    return _rotationSpeed;
-    //}
-    //public float GetLerpPositionMultiplier()
-    //{
-    //    return _lerpPositionMultiplier;
-    //}
-    //public float GetLerpRotationMultiplier()
-    //{
-    //    return _lerpRotationMultiplier;
-    //}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    Transform target;
 
     [SerializeField] Vector3 offset;
 
@@ -13,6 +13,10 @@ public class FollowCamera : MonoBehaviour
     [Range(0, 10)]
     [SerializeField] float lerpPositionMultiplier = 1f;
 
+    private void Start()
+    {
+        target = GameManager.Instance.player.transform;
+    }
     //public override void FixedUpdateMe()
     //{
     //    Vector3 tPos = target.position + offset + target.forward * rotationOffset;

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerUFO : PlayerBase
 {
+    [Header("UFO")]
+
     private UFOVehicle _UFOVehicle;
+
+    public override ePlayerType PlayerType { get => ePlayerType.UFO; }
 
     protected override void Awake()
     {
@@ -13,6 +17,6 @@ public class PlayerUFO : PlayerBase
     }
     public override void AddForce(Vector2 force)
     {
-        _UFOVehicle.MoveByDirection(force);
+        _UFOVehicle.AddForce(force);
     }
 }

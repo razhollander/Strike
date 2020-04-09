@@ -4,7 +4,10 @@ using UnityEngine;
 using VehicleBehaviour;
 public class PlayerCar : PlayerBase
 {
+    [Header("Car")]
     [SerializeField] protected Rigidbody _rigidbody;
+    [SerializeField] float divideForceBy=2;
+    public override ePlayerType PlayerType { get => ePlayerType.Car; }
 
     protected override void Awake()
     {
@@ -24,9 +27,8 @@ public class PlayerCar : PlayerBase
         _animator.enabled = false;
         base.HandleEnterNormalPlay();
     }
-
     public override void AddForce(Vector2 force)
     {
-        _rigidbody.AddForce(force.ToVector3());
+        base.AddForce(force/divideForceBy);
     }
 }

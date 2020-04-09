@@ -12,14 +12,22 @@ public abstract class PlayerBase : MonoBehaviour, ISceneObject
     [SerializeField] protected BaseVehicle _baseVehicle;
     [SerializeField] public GameObject Radius;
     [SerializeField] protected Animator _animator;
+    [SerializeField] public Transform magneticForcePoint;
+
+    public abstract ePlayerType PlayerType { get; }
 
     private Vector3 _startPos;
-    
+    private Quaternion _startRot;
+
     protected virtual void Awake()
     {
         _startPos = transform.position;
+        _startRot = transform.rotation;
     }
-    public abstract void AddForce(Vector2 force);
+    public virtual void AddForce(Vector2 force)
+    {
+        transform.position += force.ToVector3() * Time.deltaTime;
+    }
     private void Start()
     {
         GameManager.Instance.GameStateManager.GetState<NormalPlayState>().OnLeave += SpawnAnimtion;
@@ -34,6 +42,7 @@ public abstract class PlayerBase : MonoBehaviour, ISceneObject
     protected virtual void SpawnAnimtion()
     {
         transform.position = _startPos;
+        transform.rotation = _startRot;
         _baseVehicle.enabled = false;
         _animator.SetTrigger(SPAWN_ANIMATION_NAME);
     }
@@ -47,4 +56,9 @@ public abstract class PlayerBase : MonoBehaviour, ISceneObject
             rb.AddExplosionForce(_explosiveForce, pos, _explosionRadius, _upForce, ForceMode.Impulse);
         }
     }
+}
+public enum ePlayerType
+{
+    Car,
+    UFO
 }
