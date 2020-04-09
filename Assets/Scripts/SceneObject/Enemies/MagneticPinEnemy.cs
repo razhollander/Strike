@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagneticPinEnemy : AttackingEnemy
+public class MagneticPinEnemy : Enemy
 {
-    //const string SHADER_ALPHA_PARAMETER = "_Shader_Alpha";
     const float ZERO = 0; 
     const float ONE = 1;
     const float MAX_DISTANCE_PERCENT = 2;
@@ -13,17 +13,16 @@ public class MagneticPinEnemy : AttackingEnemy
     [SerializeField] private ParticleSystem _attackEffect;
     [SerializeField] Transform _magnet;
     [SerializeField] private float _pullAmount;
-    [SerializeField] private float _attackDauration = 3;
-    //[SerializeField] private Material _pulledObjectMaterial;
     [SerializeField] private float _maxDistance = 10;
     [SerializeField] MagnetLaserStrike _magnetLaserStrike;
 
     PlayerBase _player;
     Transform _target;
-    Coroutine _pullPlayerCoroutine;
-    Coroutine _updateLaserCoroutine;
 
-    float distance = float.MaxValue;
+    float _lazerAlpha;
+    float _distance = float.MaxValue;
+    float _prevDistance = float.MaxValue;
+    bool _isEffectEnabled = false;
     Vector3 towardsPin;
     public override SuckableObject Duplicate()
     {
@@ -32,8 +31,10 @@ public class MagneticPinEnemy : AttackingEnemy
     protected override void Awake()
     {
         base.Awake();
-        pulledEvent += StopAttack;
-        startDyingEvent += StopAttack;
+        pulledEvent += StopEffect;
+        startDyingEvent += StopEffect;
+        pulledEvent += () => _isEffectEnabled = false;
+        startDyingEvent += () => _isEffectEnabled = false;
     }
     private void Start()
     {
@@ -41,11 +42,59 @@ public class MagneticPinEnemy : AttackingEnemy
         _player = GameManager.Instance.player;
         _target = _player.magneticForcePoint;
     }
+    private void Update()
+    {
+        if (_target != null&& _isEffectEnabled)
+        {
+            towardsPin = (transform.position - _target.position).SetYZero();
+            _distance = towardsPin.magnitude;
+
+            if (_distance < _maxDistance)
+            {
+                if(_prevDistance>=_maxDistance)
+                {
+                    StartEffect();
+                }
+
+                PullTarget();
+                UpdateEffect();
+            }
+            else
+            {
+                if (_prevDistance < _maxDistance)
+                {
+                    StopEffect();
+                }
+            }
+
+            _prevDistance = _distance;
+        }
+    }
+
+    private void StartEffect()
+    {
+        _attackEffect.Play();
+    }
+    private void UpdateEffect()
+    {
+        _magnet.LookAt(_target);
+        _lazerAlpha = Mathf.Clamp(MAX_DISTANCE_PERCENT * (_maxDistance - _distance) / _maxDistance, ZERO, ONE);
+        _magnetLaserStrike.SetAlpha(_lazerAlpha);
+    }
+    private void StopEffect()
+    {
+        _magnetLaserStrike.SetAlpha(ZERO);
+        _attackEffect.Stop();
+    }
+
+    void PullTarget()
+    {
+        _player.AddForce(towardsPin.normalized * _pullAmount / _distance);
+    }
     protected override void OnEnable()
     {
         base.OnEnable();
         StartCoroutine(SpawnInDelay());
-        StartCoroutine(AttackCountdown());
     }
     private IEnumerator SpawnInDelay()
     {
@@ -56,63 +105,15 @@ public class MagneticPinEnemy : AttackingEnemy
     protected override void MakeActive(bool isActive)
     {
         thisRenderer.gameObject.SetActive(isActive);
+        _magnetLaserStrike.gameObject.SetActive(isActive);
+       _isEffectEnabled = isActive;
+
+        if(!isActive)
+        {
+            _magnetLaserStrike.SetAlpha(ZERO);
+        }
+
         base.MakeActive(isActive);
     }
-    protected override IEnumerator Attack()
-    {
-        _attackEffect.Play();
-        _pullPlayerCoroutine = StartCoroutine(PullPlayer());
-        _updateLaserCoroutine = StartCoroutine(UpdateLaserEffect());
-        yield return new WaitForSeconds(_attackDauration);
-        StopAttack();
-    }
-    private IEnumerator UpdateLaserEffect()
-    {
-        float alpha;
 
-        while (true)
-        {
-            _magnet.LookAt(_target);
-            
-            if (distance < _maxDistance)
-            {
-                alpha = Mathf.Clamp(MAX_DISTANCE_PERCENT * (_maxDistance-distance)/_maxDistance,ZERO,ONE);
-                _magnetLaserStrike.SetAlpha(alpha);
-                //_pulledObjectMaterial.SetFloat(SHADER_ALPHA_PARAMETER, alpha);
-
-            }
-            else
-            {
-                _magnetLaserStrike.SetAlpha(ZERO);
-                //_pulledObjectMaterial.SetFloat(SHADER_ALPHA_PARAMETER, ZERO);
-            }
-
-            yield return null;
-        }
-    }
-    private IEnumerator PullPlayer()
-    {
-        while (true)
-        {
-            yield return new WaitForFixedUpdate();
-            towardsPin = (transform.position- _target.position).SetYZero();
-            distance = towardsPin.magnitude;
-            if (distance < _maxDistance)
-                _player.AddForce(towardsPin.ToVector2().normalized * _pullAmount/ distance);
-        }
-    }
-    public override void StopAttack()
-    {
-        if (_pullPlayerCoroutine != null)
-        {
-            StopCoroutine(_pullPlayerCoroutine);
-        }
-        if(_updateLaserCoroutine!=null)
-        {
-            StopCoroutine(_updateLaserCoroutine);
-        }
-
-        _attackEffect.Stop();
-        base.StopAttack();
-    }
 }

@@ -15,7 +15,7 @@ public class PlayerUFO : PlayerBase
         base.Awake();
         _UFOVehicle = (UFOVehicle)_baseVehicle;
     }
-    public override void AddForce(Vector2 force)
+    public override void AddForce(Vector3 force)
     {
         _UFOVehicle.AddForce(force);
     }

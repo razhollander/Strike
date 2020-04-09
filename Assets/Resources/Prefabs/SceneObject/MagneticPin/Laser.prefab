@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2334e6b5d912c3f4b8f253a083bf08dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPoolSize: 5
   _lineRenderer1: {fileID: 2895696534797295374}
   _lineRenderer2: {fileID: 513665245847174881}
   _target: {fileID: 0}

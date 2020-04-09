@@ -27,7 +27,7 @@ public class PlayerCar : PlayerBase
         _animator.enabled = false;
         base.HandleEnterNormalPlay();
     }
-    public override void AddForce(Vector2 force)
+    public override void AddForce(Vector3 force)
     {
         base.AddForce(force/divideForceBy);
     }

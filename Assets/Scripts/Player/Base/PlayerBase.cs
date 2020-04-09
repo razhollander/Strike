@@ -24,9 +24,9 @@ public abstract class PlayerBase : MonoBehaviour, ISceneObject
         _startPos = transform.position;
         _startRot = transform.rotation;
     }
-    public virtual void AddForce(Vector2 force)
+    public virtual void AddForce(Vector3 force)
     {
-        transform.position += force.ToVector3() * Time.deltaTime;
+        transform.position += force * Time.deltaTime;
     }
     private void Start()
     {

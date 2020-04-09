@@ -16,9 +16,9 @@ public class UFOVehicle : BaseVehicle
     {
         _newPos += direction.ToVector3() * _movementSpeed * Time.deltaTime;
     }
-    public void AddForce(Vector2 force)
+    public void AddForce(Vector3 force)
     {
-        _newPos += force.ToVector3() * Time.deltaTime;
+        _newPos += force * Time.deltaTime;
     }
     private void Start()
     {

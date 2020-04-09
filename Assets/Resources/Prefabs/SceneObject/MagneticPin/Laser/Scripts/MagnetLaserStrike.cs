@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetLaserStrike : MonoBehaviour
+public class MagnetLaserStrike : PooledMonobehaviour
 {
     [SerializeField] LineRenderer _lineRenderer1;
     [SerializeField] LineRenderer _lineRenderer2;
