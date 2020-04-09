@@ -35,9 +35,6 @@ public class GameManager : MonoBehaviour
 
     private Coroutine summonCorutine;
 
-    void Start()
-    {
-    }
     void Awake()
     {
         Instance = this;
@@ -53,6 +50,10 @@ public class GameManager : MonoBehaviour
         var normalPlayState = GameStateManager.GetState<NormalPlayState>();
         normalPlayState.OnEnter+= ()=> summonCorutine = StartCoroutine(SummonEnemies());
         normalPlayState.OnLeave+= () => { if (summonCorutine != null) StopCoroutine(summonCorutine); };
+    }
+    public List<SuckableObject> GetSuckableObjects()
+    {
+        return enemiesParent.transform.GetComponentsInChildren<SuckableObject>().ToList();
     }
     public void PauseGame()
     {

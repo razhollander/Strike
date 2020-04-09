@@ -74,6 +74,10 @@ public class SuckableObject : PooledMonobehaviour, ISceneObject
     {
         DOTween.To(() => transform.localScale, x => transform.localScale = x, Vector3.zero, ON_QUIT_ANIMATION_TIME).onComplete+= () => gameObject.SetActive(false);
     }
+    public void AddForce(Vector3 force)
+    {
+        thisRigidBody.AddForce(force);
+    }
 }
 public enum SuckableobjectType
 {

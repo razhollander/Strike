@@ -19384,7 +19384,7 @@ MonoBehaviour:
   _attackEffect: {fileID: 3478674444511955861}
   _magnet: {fileID: 6535700230349761449}
   _pullAmount: 20
-  _maxDistance: 20
+  _radius: 20
   _magnetLaserStrike: {fileID: 7823476364906372010}
 --- !u!95 &4178411967341957937
 Animator:
@@ -48805,6 +48805,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.018401634
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882931985622852407, guid: 3787ead89bbaec244a7fb4ffe51a1be3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882931985622852407, guid: 3787ead89bbaec244a7fb4ffe51a1be3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882931985622852407, guid: 3787ead89bbaec244a7fb4ffe51a1be3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882931985622852407, guid: 3787ead89bbaec244a7fb4ffe51a1be3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882931985622852407, guid: 3787ead89bbaec244a7fb4ffe51a1be3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3787ead89bbaec244a7fb4ffe51a1be3, type: 3}

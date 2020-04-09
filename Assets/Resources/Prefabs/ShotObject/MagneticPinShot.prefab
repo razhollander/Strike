@@ -78,7 +78,11 @@ MonoBehaviour:
   myRenderer: {fileID: 2388432992727408179}
   myCollider: {fileID: 2163660797346728989}
   myRigidbody: {fileID: 7830443012187776695}
-  speed: 20
+  speed: 10
+  _magnetLaserStrike: {fileID: 5672254224193395436, guid: 3787ead89bbaec244a7fb4ffe51a1be3,
+    type: 3}
+  _radius: 20
+  _pullAmount: 600
 --- !u!1 &4689478512892879185
 GameObject:
   m_ObjectHideFlags: 0

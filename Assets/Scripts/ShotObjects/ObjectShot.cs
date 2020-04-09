@@ -15,9 +15,7 @@ public class ObjectShot : PooledMonobehaviour, ISceneObject
     [SerializeField] private Collider myCollider;
     [SerializeField] protected Rigidbody myRigidbody;
     public float speed = 10;
-
-    protected delegate IEnumerator OnCollisionDelegate(Enemy enemy);
-    protected OnCollisionDelegate onCollisionFunc;
+    protected System.Func<Enemy,IEnumerator> onCollisionFunc;
     protected float scaleUpTime = 0.5f;
 
     protected virtual void OnEnable()

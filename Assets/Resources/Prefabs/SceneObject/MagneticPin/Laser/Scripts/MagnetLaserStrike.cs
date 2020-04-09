@@ -10,7 +10,7 @@ public class MagnetLaserStrike : PooledMonobehaviour
     const float HALF = 0.5f;
     const float ZERO = 0;
 
-    [SerializeField] public Transform _target;
+    [SerializeField] public Transform Target;
     [SerializeField] private int _numberOfPoints = 40;
     [SerializeField] private float _length = 50;
     [SerializeField] private float _waveHeight = 4;
@@ -36,7 +36,7 @@ public class MagnetLaserStrike : PooledMonobehaviour
 
         delta += Time.deltaTime * _moveSpeed;
         halfWaveHeight = _waveHeight * HALF;
-        _length = (_target.position - transform.position).magnitude;
+        _length = (Target.position - transform.position).magnitude;
         step = _length / _numberOfPoints;
 
         for (int i = 0; i < _numberOfPoints; ++i)
@@ -76,7 +76,7 @@ public class MagnetLaserStrike : PooledMonobehaviour
 
     public void Update()
 {
-    if (_target != null)
+    if (Target != null)
     {
         GeneratePoints();
         _lineRenderer1.Simplify(tolerance);

@@ -13,7 +13,7 @@ public class MagneticPinEnemy : Enemy
     [SerializeField] private ParticleSystem _attackEffect;
     [SerializeField] Transform _magnet;
     [SerializeField] private float _pullAmount;
-    [SerializeField] private float _maxDistance = 10;
+    [SerializeField] private float _radius = 20;
     [SerializeField] MagnetLaserStrike _magnetLaserStrike;
 
     PlayerBase _player;
@@ -38,7 +38,7 @@ public class MagneticPinEnemy : Enemy
     }
     private void Start()
     {
-        _magnetLaserStrike._target = GameManager.Instance.player.magneticForcePoint;
+        _magnetLaserStrike.Target = GameManager.Instance.player.magneticForcePoint;
         _player = GameManager.Instance.player;
         _target = _player.magneticForcePoint;
     }
@@ -49,9 +49,9 @@ public class MagneticPinEnemy : Enemy
             towardsPin = (transform.position - _target.position).SetYZero();
             _distance = towardsPin.magnitude;
 
-            if (_distance < _maxDistance)
+            if (_distance < _radius)
             {
-                if(_prevDistance>=_maxDistance)
+                if(_prevDistance>=_radius)
                 {
                     StartEffect();
                 }
@@ -61,7 +61,7 @@ public class MagneticPinEnemy : Enemy
             }
             else
             {
-                if (_prevDistance < _maxDistance)
+                if (_prevDistance < _radius)
                 {
                     StopEffect();
                 }
@@ -78,7 +78,7 @@ public class MagneticPinEnemy : Enemy
     private void UpdateEffect()
     {
         _magnet.LookAt(_target);
-        _lazerAlpha = Mathf.Clamp(MAX_DISTANCE_PERCENT * (_maxDistance - _distance) / _maxDistance, ZERO, ONE);
+        _lazerAlpha = Mathf.Clamp(MAX_DISTANCE_PERCENT * (_radius - _distance) / _radius, ZERO, ONE);
         _magnetLaserStrike.SetAlpha(_lazerAlpha);
     }
     private void StopEffect()
