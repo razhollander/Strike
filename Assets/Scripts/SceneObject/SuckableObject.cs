@@ -49,7 +49,7 @@ public class SuckableObject : PooledMonobehaviour, ISceneObject
         MakeActive(false);
         base.OnDisable();
     }
-    protected void ResetTransform()
+    protected virtual void ResetTransform()
     {
         transform.localScale = BeginLocalScale;
         transform.localRotation = Quaternion.Euler(0, 0, 0);

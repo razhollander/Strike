@@ -99,7 +99,9 @@ public class MagneticPinEnemy : Enemy
     private IEnumerator SpawnInDelay()
     {
         MakeActive(false);
+        _magnet.gameObject.SetActive(false);
         yield return new WaitForSeconds(spawnTimeDelay);
+        _magnet.gameObject.SetActive(true);
         MakeActive(true);
     }
     protected override void MakeActive(bool isActive)
@@ -114,6 +116,11 @@ public class MagneticPinEnemy : Enemy
         }
 
         base.MakeActive(isActive);
+    }
+    protected override void ResetTransform()
+    {
+        _magnet.localRotation = Quaternion.Euler(0, 0, 0);
+        base.ResetTransform();
     }
 
 }
