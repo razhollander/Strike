@@ -8,14 +8,14 @@ public class SuckableObject : PooledMonobehaviour, ISceneObject
     const float ON_QUIT_ANIMATION_TIME = 2f;
 
     [SerializeField] protected SuckableobjectType suckableobjectType;
-    [SerializeField] int scoreValue;
     [SerializeField] public Renderer thisRenderer;
     [SerializeField] protected Collider thisCollider;
     [SerializeField] protected Rigidbody thisRigidBody;
 
-    [System.NonSerialized] private bool isBeingSucked = false;
+    private bool isBeingSucked = false;
     private Vector3 BeginLocalScale;
     protected event Action pulledEvent;
+    public bool IsActive { get; private set; }
     public bool IsBeingSucked { get => isBeingSucked; set => isBeingSucked = value; }
 
     public void DisableCollider()
@@ -42,11 +42,11 @@ public class SuckableObject : PooledMonobehaviour, ISceneObject
     protected virtual void OnEnable()
     {
         ResetTransform();
-        //GameManager.Instance.OnGamePlayEnd += DoQuitAnimation;
+        MakeActive(true);
     }
     protected override void OnDisable()
     {
-        //GameManager.Instance.OnGamePlayEnd -= DoQuitAnimation;
+        MakeActive(false);
         base.OnDisable();
     }
     protected void ResetTransform()
@@ -54,15 +54,14 @@ public class SuckableObject : PooledMonobehaviour, ISceneObject
         transform.localScale = BeginLocalScale;
         transform.localRotation = Quaternion.Euler(0, 0, 0);
         thisRigidBody.velocity = Vector3.zero;
-        //thisRigidBody.inertiaTensorRotation = Quaternion.Euler(0, 0, 0);
-        //thisRigidBody.inertiaTensor = Vector3.zero;
-
         thisRigidBody.angularVelocity = Vector3.zero;
     }
     protected virtual void MakeActive(bool isActive)
     {
         thisCollider.enabled = isActive;
         thisRenderer.enabled = isActive;
+        thisRigidBody.useGravity = isActive;
+        IsActive = isActive;
     }
 
     public virtual SuckableObject Duplicate()

@@ -13,6 +13,7 @@ public class MagneticPinShot : BasicPinShot
     [SerializeField] float _radius = 10;
     [SerializeField] float _pullAmount;
 
+    bool isPulling = true;
     List<ObejctPulled> _objectsPulledList;
     GameManager gm;
     private void Awake()
@@ -25,8 +26,18 @@ public class MagneticPinShot : BasicPinShot
     }
     private void Update()
     {
-        FindObjectsInRadius();
-        UpdateEffects();
+        if (isPulling)
+        {
+            FindObjectsInRadius();
+            UpdateEffects();
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (isPulling)
+        {
+            PullObjects();
+        }
     }
 
     protected override IEnumerator DestroySelf(float delay = 0)
@@ -41,6 +52,11 @@ public class MagneticPinShot : BasicPinShot
         return base.DestroySelf(delay);
     }
 
+    protected override void SetComponents(bool isEnabled)
+    {
+        isPulling = isEnabled;
+        base.SetComponents(isEnabled);
+    }
     private void UpdateEffects()
     {
         Vector3 pos = transform.position;
@@ -52,10 +68,6 @@ public class MagneticPinShot : BasicPinShot
             float _lazerAlpha = Mathf.Clamp(MAX_DISTANCE_PERCENT * (_radius - pulledObject.Distance) / _radius, ZERO, ONE);
             pulledObject.MagnetLaserStrike.SetAlpha(_lazerAlpha);
         }
-    }
-    private void FixedUpdate()
-    {
-        PullObjects();
     }
     private void PullObjects()
     {
@@ -83,10 +95,12 @@ public class MagneticPinShot : BasicPinShot
             {
                 if (!isAlreadyInList)
                 {
-                    var newPulledObject = new ObejctPulled(suckableObject, _magnetLaserStrike.Get<MagnetLaserStrike>(null,true), distance);
-                    //newPulledObject.MagnetLaserStrike.transform.LookAt(suckableObject.transform);
-                    newPulledObject.MagnetLaserStrike.Target = suckableObject.transform;
-                    newObjectsPulledList.Add(newPulledObject);
+                    if (suckableObject.IsActive)
+                    {
+                        var newPulledObject = new ObejctPulled(suckableObject, _magnetLaserStrike.Get<MagnetLaserStrike>(null, true), distance);
+                        newPulledObject.MagnetLaserStrike.Target = suckableObject.transform;
+                        newObjectsPulledList.Add(newPulledObject);
+                    }
                 }
                 else
                 {
@@ -97,14 +111,26 @@ public class MagneticPinShot : BasicPinShot
             {
                 if (isAlreadyInList)
                 {
-                    objectPulled.MagnetLaserStrike.gameObject.SetActive(false);
+                    objectPulled.Disable();
                     _objectsPulledList.Remove(objectPulled);
                 }
             }
         }
 
-        _objectsPulledList.AddRange(newObjectsPulledList);
+        newObjectsPulledList.AddRange(_objectsPulledList);
+        _objectsPulledList.Clear();
 
+        foreach (var objectPulled in newObjectsPulledList)
+        {
+            if(objectPulled.SuckableObject.IsActive)
+            {
+                _objectsPulledList.Add(objectPulled);
+            }
+            else
+            {
+                objectPulled.Disable();
+            }
+        }
     }
     private class ObejctPulled
     {
@@ -117,6 +143,10 @@ public class MagneticPinShot : BasicPinShot
             SuckableObject = suckableObject;
             MagnetLaserStrike = magnetLaserStrike;
             Distance = distance;
+        }
+        public void Disable()
+        {
+            MagnetLaserStrike.gameObject.SetActive(false);
         }
     }
 }

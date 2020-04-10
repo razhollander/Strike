@@ -75,10 +75,10 @@ public class Enemy : SuckableObject
         }
         StartCoroutine(SetHealthDelayed(value, isRelative, isUpdateHealthLimit, delay));
     }
-    public void AddForce(Vector3 force)
-    {
-        thisRigidBody.AddForce(force, ForceMode.Force);
-    }
+    //public void AddForce(Vector3 force)
+    //{
+    //    thisRigidBody.AddForce(force, ForceMode.Force);
+    //}
     public void AddForce(Vector3 force,float delay)
     {
         StartCoroutine(AddForceDelay(force, delay));
@@ -129,9 +129,7 @@ public class Enemy : SuckableObject
     }
     protected override void MakeActive(bool isActive)
     {
-        thisCollider.enabled = isActive;
         thisFollowPlayer.enabled = isActive;
-        thisRenderer.enabled=isActive;
-        thisRigidBody.useGravity = isActive;
+        base.MakeActive(isActive);
     }
 }
