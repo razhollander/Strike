@@ -119,7 +119,7 @@ public class MagneticPinEnemy : Enemy
     }
     protected override void ResetTransform()
     {
-        _magnet.localRotation = Quaternion.Euler(0, 0, 0);
+        _magnet.localRotation = Quaternion.Euler(Vector3.zero);
         base.ResetTransform();
     }
 

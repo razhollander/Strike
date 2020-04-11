@@ -16,7 +16,6 @@ public class ElectricPinShot : BasicPinShot
     [SerializeField] float forceHitPower;
     Queue<EnemyHit> enemyHitQueue;
     List<Enemy> enemiesAlreadyHitList;
-    //List<ParticleSystem> electricStrikeParticlesList;
 
         
     protected override void SetComponents(bool isEnabled)
@@ -24,19 +23,14 @@ public class ElectricPinShot : BasicPinShot
         base.SetComponents(isEnabled);
         trail.SetActive(isEnabled);
     }
-    protected override IEnumerator PinCollisionFunc(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy)
     {
-        enemy.SetHealth(-damage, true, true);
-        rotationTweener.Kill();
         ElectricStike(enemy);
-        //yield return new WaitForSeconds(EffectDuration);
-        StartCoroutine(DestroySelf());
-        yield return null;
+        base.HandleCollision(enemy);
     }
     
     private void ElectricStike(Enemy enemy)
     {
-        //electricStrikeParticlesList = new List<ParticleSystem>();
         enemyHitQueue = new Queue<EnemyHit>();
         enemiesAlreadyHitList = new List<Enemy>();
         enemyHitQueue.Enqueue(new EnemyHit(enemy,0));

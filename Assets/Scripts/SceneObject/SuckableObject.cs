@@ -51,10 +51,11 @@ public class SuckableObject : PooledMonobehaviour, ISceneObject
     }
     protected virtual void ResetTransform()
     {
+        Vector3 vectorZero = Vector3.zero;
         transform.localScale = BeginLocalScale;
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
-        thisRigidBody.velocity = Vector3.zero;
-        thisRigidBody.angularVelocity = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(vectorZero);
+        thisRigidBody.velocity = vectorZero;
+        thisRigidBody.angularVelocity = vectorZero;
     }
     protected virtual void MakeActive(bool isActive)
     {
@@ -86,5 +87,6 @@ public enum SuckableobjectType
     electricPin = 3,
     IcePin = 4,
     magneticPin = 5,
-    powerUp = 6
+    superBowlingBall = 6,
+    powerUp = 7
 }

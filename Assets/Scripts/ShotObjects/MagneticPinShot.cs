@@ -13,20 +13,21 @@ public class MagneticPinShot : BasicPinShot
     [SerializeField] float _radius = 10;
     [SerializeField] float _pullAmount;
 
-    bool isPulling = true;
-    List<ObejctPulled> _objectsPulledList;
-    GameManager gm;
-    private void Awake()
+    private bool _isPulling = true;
+    private List<ObejctPulled> _objectsPulledList;
+    private GameManager _gm;
+    protected override void Awake()
     {
         _objectsPulledList = new List<ObejctPulled>();
+        base.Awake();
     }
     private void Start()
     {
-        gm = GameManager.Instance;
+        _gm = GameManager.Instance;
     }
     private void Update()
     {
-        if (isPulling)
+        if (_isPulling)
         {
             FindObjectsInRadius();
             UpdateEffects();
@@ -34,7 +35,7 @@ public class MagneticPinShot : BasicPinShot
     }
     private void FixedUpdate()
     {
-        if (isPulling)
+        if (_isPulling)
         {
             PullObjects();
         }
@@ -54,7 +55,7 @@ public class MagneticPinShot : BasicPinShot
 
     protected override void SetComponents(bool isEnabled)
     {
-        isPulling = isEnabled;
+        _isPulling = isEnabled;
         base.SetComponents(isEnabled);
     }
     private void UpdateEffects()
@@ -75,22 +76,24 @@ public class MagneticPinShot : BasicPinShot
 
         foreach (var pulledObject in _objectsPulledList)
         {
-            Vector3 force = (pos-pulledObject.SuckableObject.transform.position).normalized * _pullAmount / pulledObject.Distance;
+            Vector3 force = (pos - pulledObject.SuckableObject.transform.position).normalized * _pullAmount / pulledObject.Distance;
             pulledObject.SuckableObject.AddForce(force);
         }
     }
     private void FindObjectsInRadius()
     {
-        var suckableObjects = gm.GetSuckableObjects();
+        var suckableObjects = _gm.GetSuckableObjects();
         Vector3 pos = transform.position;
 
         List<ObejctPulled> newObjectsPulledList = new List<ObejctPulled>();
 
+        //Add new objects in radius
         foreach (var suckableObject in suckableObjects)
         {
             float distance = Vector3.Distance(suckableObject.transform.position, pos);
             var objectPulled = _objectsPulledList.Find(x => x.SuckableObject == suckableObject);
             bool isAlreadyInList = objectPulled != null;
+
             if (distance < _radius)
             {
                 if (!isAlreadyInList)
@@ -120,6 +123,7 @@ public class MagneticPinShot : BasicPinShot
         newObjectsPulledList.AddRange(_objectsPulledList);
         _objectsPulledList.Clear();
 
+        // remove objects which are in radius but are not active
         foreach (var objectPulled in newObjectsPulledList)
         {
             if(objectPulled.SuckableObject.IsActive)
@@ -144,6 +148,7 @@ public class MagneticPinShot : BasicPinShot
             MagnetLaserStrike = magnetLaserStrike;
             Distance = distance;
         }
+
         public void Disable()
         {
             MagnetLaserStrike.gameObject.SetActive(false);

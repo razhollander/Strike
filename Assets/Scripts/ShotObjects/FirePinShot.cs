@@ -10,12 +10,11 @@ public class FirePinShot : BasicPinShot
     [SerializeField] private float upForce;
 
 
-    protected override IEnumerator PinCollisionFunc(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy)
     {
         enemy.SetHealth(-damage, true, true);
         rotationTweener.Kill();
         Explode();
-        yield return null;
     }
     private void Explode()
     {

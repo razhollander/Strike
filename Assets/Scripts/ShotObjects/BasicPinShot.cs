@@ -7,10 +7,6 @@ public class BasicPinShot : ObjectShot
 {
     protected Tween rotationTweener;
 
-    void Awake()
-    {
-        onCollisionFunc = PinCollisionFunc;
-    }
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -21,11 +17,10 @@ public class BasicPinShot : ObjectShot
         rotationTweener.Kill();
         rotationTweener = myRenderer.gameObject.transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.WorldAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
-    protected virtual IEnumerator PinCollisionFunc(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy)
     {
         enemy.SetHealth(-damage, true, true);
         rotationTweener.Kill();
-        StartCoroutine(DestroySelf());
-        yield return null;
+        base.HandleCollision(enemy);
     }
 }

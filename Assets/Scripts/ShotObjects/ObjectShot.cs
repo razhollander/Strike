@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using System;
 
 public class ObjectShot : PooledMonobehaviour, ISceneObject
 {
@@ -15,9 +15,13 @@ public class ObjectShot : PooledMonobehaviour, ISceneObject
     [SerializeField] private Collider myCollider;
     [SerializeField] protected Rigidbody myRigidbody;
     public float speed = 10;
-    protected System.Func<Enemy,IEnumerator> onCollisionFunc;
+    protected event Action<Enemy> OnCollision;
     protected float scaleUpTime = 0.5f;
 
+    protected virtual void Awake()
+    {
+        OnCollision += HandleCollision;
+    }
     protected virtual void OnEnable()
     {
         SetComponents(true);
@@ -37,11 +41,16 @@ public class ObjectShot : PooledMonobehaviour, ISceneObject
         Enemy enemy = collision.collider.transform.GetComponent<Enemy>();
         if (enemy != null)
         {
-            if (onCollisionFunc != null)
-                StartCoroutine(onCollisionFunc(enemy));
-            else
-                StartCoroutine(DestroySelf());
+            //if (OnCollision != null)
+            //    OnCollision(enemy);
+            //else
+            //    StartCoroutine(DestroySelf());
+            OnCollision?.Invoke(enemy);
         }
+    }
+    protected virtual void HandleCollision(Enemy enemy)
+    {
+        StartCoroutine(DestroySelf());
     }
     protected virtual IEnumerator DestroySelf(float delay = 0)
     {

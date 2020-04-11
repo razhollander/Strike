@@ -19424,7 +19424,7 @@ MonoBehaviour:
   _attackEffect: {fileID: 3478674444511955861}
   _magnet: {fileID: 6535700230349761449}
   _pullAmount: 20
-  _radius: 5
+  _radius: 20
   _magnetLaserStrike: {fileID: 7823476364906372010}
 --- !u!95 &4178411967341957937
 Animator:

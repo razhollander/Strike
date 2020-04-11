@@ -10,7 +10,7 @@ public class BowlingBallShot : ObjectShot
     private List<GameObject> enemiesHit;
     void Awake()
     {
-        onCollisionFunc = BowlingBallCollisionFunc;
+        OnCollision += BowlingBallCollisionFunc;
     }
     protected override void OnEnable()
     {
@@ -18,7 +18,7 @@ public class BowlingBallShot : ObjectShot
         enemiesHit = new List<GameObject>();
         //DoSelfRotate();
     }
-    private IEnumerator BowlingBallCollisionFunc(Enemy enemy)
+    private void BowlingBallCollisionFunc(Enemy enemy)
     {
         if (!AlreadyHitEnemy(enemy.gameObject))
         {
@@ -29,7 +29,6 @@ public class BowlingBallShot : ObjectShot
             if (EnemyHit == 0)
                 StartCoroutine(DestroySelf());
         }
-        yield return null;
     }
     private bool AlreadyHitEnemy(GameObject enemy)
     {

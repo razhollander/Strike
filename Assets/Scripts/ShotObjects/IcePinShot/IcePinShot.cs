@@ -14,12 +14,10 @@ public class IcePinShot : BasicPinShot
     List<Enemy> enemiesList;
     static Vector3 hitBoxSize;
 
-
-    protected override IEnumerator PinCollisionFunc(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy)
     {
         rotationTweener.Kill();
         IceStrike();
-        yield return null;
     }
     private void IceStrike()
     {

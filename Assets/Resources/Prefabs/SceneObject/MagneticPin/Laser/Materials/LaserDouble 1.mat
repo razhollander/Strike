@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LaserDouble
+  m_Name: LaserDouble 1
   m_Shader: {fileID: -6465566751694194690, guid: 5cbc5e5e017a19e41be7b3fb7bd62e1b,
     type: 3}
   m_ShaderKeywords: 
@@ -71,9 +71,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_13FE16DE: 1
-    - Vector1_147A4901: 0.459
-    - Vector1_6F279827: 0.7
-    - Vector1_7C7C21A6: 0.602
+    - Vector1_147A4901: 0.64
+    - Vector1_6F279827: 0.88
+    - Vector1_7C7C21A6: 0.58
     - Vector1_8977D175: 8.93
     - _AlphaClip: 0
     - _Blend: 0
@@ -98,7 +98,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_FA849DAB: {r: 2.6082377, g: 2.6082377, b: 2.6082377, a: 1}
+    - Color_FA849DAB: {r: 0.21616548, g: 3.0551393, b: 1.0995855, a: 1}
     - Vector2_5FC870BA: {r: 0.5, g: 0, b: 0, a: 0}
     - Vector2_F3510225: {r: 0.5, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
