@@ -5,20 +5,15 @@ using DG.Tweening;
 
 public class BowlingBallShot : ObjectShot
 {
-    Tween rotationTweener;
-    [SerializeField] private int EnemyHit = 3;
-    private List<GameObject> enemiesHit;
-    void Awake()
-    {
-        OnCollision += BowlingBallCollisionFunc;
-    }
+    [SerializeField] protected int EnemyHit = 3;
+    protected List<GameObject> enemiesHit;
+
     protected override void OnEnable()
     {
         base.OnEnable();
         enemiesHit = new List<GameObject>();
-        //DoSelfRotate();
     }
-    private void BowlingBallCollisionFunc(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy, Vector3 collisionPoint)
     {
         if (!AlreadyHitEnemy(enemy.gameObject))
         {
@@ -30,7 +25,7 @@ public class BowlingBallShot : ObjectShot
                 StartCoroutine(DestroySelf());
         }
     }
-    private bool AlreadyHitEnemy(GameObject enemy)
+    protected bool AlreadyHitEnemy(GameObject enemy)
     {
         return enemiesHit.Find(x => x == enemy) != null;
     }

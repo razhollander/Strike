@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2367794016340903674}
   - component: {fileID: 2367794016340903673}
   - component: {fileID: 2367794016340903672}
-  - component: {fileID: 2367794016340903675}
+  - component: {fileID: 8505223597989327142}
   m_Layer: 0
   m_Name: BowlingBall
   m_TagString: Untagged
@@ -63,7 +63,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2367794016340903675
+--- !u!114 &8505223597989327142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,12 +72,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2367794016340903677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09f9fa693450ba44ea42744280502435, type: 3}
+  m_Script: {fileID: 11500000, guid: c9eba85ce8e7fd542a86318d0e1e6772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 10
   suckableobjectType: 0
-  scoreValue: 0
   thisRenderer: {fileID: 5458682732473248227}
   thisCollider: {fileID: 2367794016340903672}
   thisRigidBody: {fileID: 2367794016340903673}

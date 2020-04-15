@@ -117,10 +117,10 @@ public class Enemy : SuckableObject
     //{
     //    GetComponentInChildren<Rigidbody>().centerOfMass = Vector3.down;
     //}
-    public override SuckableObject Duplicate()
-    {
-        return this.Get<Enemy>();
-    }
+    //public override SuckableObject Duplicate()
+    //{
+    //    return this.Get<Enemy>();
+    //}
     private IEnumerator SpawnInDelay()
     {
         MakeActive(false);

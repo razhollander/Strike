@@ -10,10 +10,10 @@ public class FirePinEnemy : AttackingEnemy
     [SerializeField] Transform lounchAndroidPos;
     [SerializeField] Asteroid astroid;
     [SerializeField] [Range(0,1)] private float lounchAtAnimationPercent=0.8f;
-    public override SuckableObject Duplicate()
-    {
-        return this.Get<FirePinEnemy>();
-    }
+    //public override SuckableObject Duplicate()
+    //{
+    //    return this.Get<FirePinEnemy>();
+    //}
     protected override void Awake()
     {
         base.Awake();

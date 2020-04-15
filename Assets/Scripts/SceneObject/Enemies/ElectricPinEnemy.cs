@@ -15,10 +15,10 @@ public class ElectricPinEnemy : AttackingEnemy
         pulledEvent += StopAttack;
         startDyingEvent += StopAttack;
     }
-    public override SuckableObject Duplicate()
-    {
-        return this.Get<ElectricPinEnemy>();
-    }
+    //public override SuckableObject Duplicate()
+    //{
+    //    return this.Get<ElectricPinEnemy>();
+    //}
     protected override void OnEnable()
     {
         base.OnEnable();

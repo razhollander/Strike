@@ -15,7 +15,7 @@ public class ObjectShot : PooledMonobehaviour, ISceneObject
     [SerializeField] private Collider myCollider;
     [SerializeField] protected Rigidbody myRigidbody;
     public float speed = 10;
-    protected event Action<Enemy> OnCollision;
+    protected event Action<Enemy,Vector3> OnCollision;
     protected float scaleUpTime = 0.5f;
 
     protected virtual void Awake()
@@ -39,16 +39,13 @@ public class ObjectShot : PooledMonobehaviour, ISceneObject
     private void OnCollisionEnter(Collision collision)
     {
         Enemy enemy = collision.collider.transform.GetComponent<Enemy>();
+        
         if (enemy != null)
         {
-            //if (OnCollision != null)
-            //    OnCollision(enemy);
-            //else
-            //    StartCoroutine(DestroySelf());
-            OnCollision?.Invoke(enemy);
+                OnCollision?.Invoke(enemy, collision.GetContact(0).point);
         }
     }
-    protected virtual void HandleCollision(Enemy enemy)
+    protected virtual void HandleCollision(Enemy enemy, Vector3 collisionPoint)
     {
         StartCoroutine(DestroySelf());
     }

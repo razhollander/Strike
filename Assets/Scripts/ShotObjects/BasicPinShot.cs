@@ -17,10 +17,10 @@ public class BasicPinShot : ObjectShot
         rotationTweener.Kill();
         rotationTweener = myRenderer.gameObject.transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.WorldAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
-    protected override void HandleCollision(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy, Vector3 collisionPoint)
     {
         enemy.SetHealth(-damage, true, true);
         rotationTweener.Kill();
-        base.HandleCollision(enemy);
+        base.HandleCollision(enemy, collisionPoint);
     }
 }

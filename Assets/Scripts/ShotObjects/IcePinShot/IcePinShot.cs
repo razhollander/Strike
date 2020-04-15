@@ -14,7 +14,7 @@ public class IcePinShot : BasicPinShot
     List<Enemy> enemiesList;
     static Vector3 hitBoxSize;
 
-    protected override void HandleCollision(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy, Vector3 collisionPoint)
     {
         rotationTweener.Kill();
         IceStrike();

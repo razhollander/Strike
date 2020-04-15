@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DG.Tweening;
-public class SuckableObject : PooledMonobehaviour, ISceneObject
+public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
 {
     const float ON_QUIT_ANIMATION_TIME = 2f;
 

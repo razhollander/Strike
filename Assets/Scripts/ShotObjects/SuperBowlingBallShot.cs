@@ -3,32 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class SuperBowlingBallShot : ObjectShot
+public class SuperBowlingBallShot : BowlingBallShot
 {
-    Tween rotationTweener;
-    [SerializeField] private int EnemyHit = 3;
-    private List<GameObject> enemiesHit;
- 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        enemiesHit = new List<GameObject>();
-        //DoSelfRotate();
-    }
-    protected override void HandleCollision(Enemy enemy)
+    [SerializeField] SuperBowlingBallStrike _hitEffect;
+    
+    protected override void HandleCollision(Enemy enemy, Vector3 collisionPoint)
     {
         if (!AlreadyHitEnemy(enemy.gameObject))
         {
-            EnemyHit--;
             enemiesHit.Add(enemy.gameObject);
-            //Debug.Log(EnemyHit);
             enemy.SetHealth(-damage, true, true);
-            if (EnemyHit == 0)
-                StartCoroutine(DestroySelf());
+            Transform effect = _hitEffect.Get<SuperBowlingBallStrike>().transform;
+            effect.position = collisionPoint;
         }
     }
-    private bool AlreadyHitEnemy(GameObject enemy)
-    {
-        return enemiesHit.Find(x => x == enemy) != null;
-    }
+
 }

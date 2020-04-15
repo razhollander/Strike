@@ -8,10 +8,10 @@ public class IcePinEnemy : Enemy
     [SerializeField] private ParticleSystem trailEffect;
     [SerializeField] private ParticleSystem attackCircleEffect;
 
-    public override SuckableObject Duplicate()
-    {
-        return this.Get<IcePinEnemy>();
-    }
+    //public override SuckableObject Duplicate()
+    //{
+    //    return this.Get<IcePinEnemy>();
+    //}
     protected override void Awake()
     {
         base.Awake();

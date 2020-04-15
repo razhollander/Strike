@@ -10,7 +10,7 @@ public class FirePinShot : BasicPinShot
     [SerializeField] private float upForce;
 
 
-    protected override void HandleCollision(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy, Vector3 collisionPoint)
     {
         enemy.SetHealth(-damage, true, true);
         rotationTweener.Kill();

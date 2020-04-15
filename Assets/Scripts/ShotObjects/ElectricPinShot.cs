@@ -23,10 +23,10 @@ public class ElectricPinShot : BasicPinShot
         base.SetComponents(isEnabled);
         trail.SetActive(isEnabled);
     }
-    protected override void HandleCollision(Enemy enemy)
+    protected override void HandleCollision(Enemy enemy, Vector3 collisionPoint)
     {
         ElectricStike(enemy);
-        base.HandleCollision(enemy);
+        base.HandleCollision(enemy, collisionPoint);
     }
     
     private void ElectricStike(Enemy enemy)
