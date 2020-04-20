@@ -5,6 +5,8 @@ using System;
 using DG.Tweening;
 public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
 {
+    [SerializeField]
+    protected bool canBeSucked = true;
     const float ON_QUIT_ANIMATION_TIME = 2f;
 
     [SerializeField] protected SuckableobjectType suckableobjectType;
@@ -17,7 +19,10 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
     protected event Action pulledEvent;
     public bool IsActive { get; private set; }
     public bool IsBeingSucked { get => isBeingSucked; set => isBeingSucked = value; }
-
+    public bool CanBeSucked()
+    {
+        return canBeSucked;
+    }
     public void DisableCollider()
     {
         thisCollider.enabled = false;

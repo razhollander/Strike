@@ -121,9 +121,9 @@ public class Vacuum : OverridableMonoBehaviour
     {
         Vector3 lookatVec = new Vector3(ObjectBeingSucked.transform.position.x, transform.position.y, ObjectBeingSucked.transform.position.z);
         float tempDistance = 0;
-        if (ObjectBeingSucked is Enemy)
+        if (ObjectBeingSucked is HealthySuckableObject)
         {
-            Enemy enemyBeingSucked = (Enemy)ObjectBeingSucked;
+            HealthySuckableObject enemyBeingSucked = (HealthySuckableObject)ObjectBeingSucked;
             while (enemyBeingSucked.Health > 0)
             {
                 _radiusCenterV2.Set(_radiusCenter.position.x, _radiusCenter.position.z);
@@ -211,7 +211,7 @@ public class Vacuum : OverridableMonoBehaviour
     }
     public void StopSuckingEnemy()
     {
-        Enemy enemyBeingSucked = (Enemy)ObjectBeingSucked;
+        HealthySuckableObject enemyBeingSucked = (HealthySuckableObject)ObjectBeingSucked;
         enemyBeingSucked.ResetHealth();
         StopCoroutine(_suckCoroutine);
         ResetParameters();

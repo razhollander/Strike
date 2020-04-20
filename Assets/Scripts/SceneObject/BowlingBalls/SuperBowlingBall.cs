@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuperBowlingBall : BowlingBall
+public class SuperBowlingBall : HealthySuckableObject
 {
 
 }
