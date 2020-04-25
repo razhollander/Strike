@@ -97,8 +97,9 @@ public class GameManager : MonoBehaviour
                 x = minDis;
 
             Vector3 vec = player.transform.right.SetYZero() * x;
-            vec += (MeshHandler.GetMeshHeight(sceneObjects[index].thisRenderer) / 2+ 0.1f )* Vector3.up;
-            spawnedObject.transform.position = player.transform.forward * forwardExtra + vec + player.transform.position;
+            //vec += (MeshHandler.GetMeshHeight(sceneObjects[index].thisRenderer) / 2+ 0.1f )* Vector3.up;
+            //spawnedObject.transform.position = player.transform.forward * forwardExtra + vec + player.transform.position;
+            spawnedObject.SetSpawnedPosition(player.transform.forward * forwardExtra + vec + player.transform.position);
             spawnedObject.transform.SetParent(enemiesParent.transform);
             yield return new WaitForSeconds(waitForSummonSceonds);
         }

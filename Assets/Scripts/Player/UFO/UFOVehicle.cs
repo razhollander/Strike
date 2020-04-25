@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UFOVehicle : BaseVehicle
 {
+    [SerializeField] float MIN_ROTATION = 0.1f;
+
     [SerializeField] private float _movementSpeed = 0.2f;
     [SerializeField] private float _rotationSpeed = 10;
     [SerializeField] float _lerpPositionMultiplier = 4;
@@ -29,11 +31,14 @@ public class UFOVehicle : BaseVehicle
     {
         _newPos = transform.position;
     }
-    private void Update()
+    public override void UpdateMe()
     {
         transform.position = Vector3.Lerp(transform.position, _newPos, _lerpPositionMultiplier * Time.deltaTime);
-
         Vector3 deltaVector = (_newPos - transform.position);
+
+        if (deltaVector.sqrMagnitude < MIN_ROTATION)
+            deltaVector = Vector3.zero;
+
         Vector3 newDirection = Vector3.RotateTowards(new Vector3(transform.forward.x, deltaVector.y, transform.forward.z), deltaVector, _rotationSpeed * Time.deltaTime, 0.0f);
         Quaternion turnRotation = Quaternion.LookRotation(newDirection);
         Quaternion leanForwardRotation = Quaternion.AngleAxis(rotateBy * deltaVector.magnitude, Vector3.right);

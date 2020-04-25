@@ -5,6 +5,8 @@ using System;
 using DG.Tweening;
 public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
 {
+    private const float EXTRA_Y_SPACE = 0.1f;
+
     [SerializeField]
     protected bool canBeSucked = true;
     const float ON_QUIT_ANIMATION_TIME = 2f;
@@ -14,11 +16,10 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
     [SerializeField] protected Collider thisCollider;
     [SerializeField] protected Rigidbody thisRigidBody;
 
-    private bool isBeingSucked = false;
     private Vector3 BeginLocalScale;
     protected event Action pulledEvent;
     public bool IsActive { get; private set; }
-    public bool IsBeingSucked { get => isBeingSucked; set => isBeingSucked = value; }
+    public bool IsBeingSucked { get; set; }
     public bool CanBeSucked()
     {
         return canBeSucked;
@@ -29,14 +30,13 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
     }
     public void GetPulled()
     {
+        thisRigidBody.isKinematic = true;
         pulledEvent();
     }
-    public void Collected()
+    public virtual void Collected()
     {
-        InventoryUI.instance.StartAddEffect(suckableobjectType, transform.position);
         gameObject.SetActive(false);
-        isBeingSucked = false;
-
+        IsBeingSucked = false;
     }
     protected virtual void Awake()
     {
@@ -59,8 +59,10 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
         Vector3 vectorZero = Vector3.zero;
         transform.localScale = BeginLocalScale;
         transform.localRotation = Quaternion.Euler(vectorZero);
+        thisRigidBody.isKinematic = false;
         thisRigidBody.velocity = vectorZero;
         thisRigidBody.angularVelocity = vectorZero;
+
     }
     protected virtual void MakeActive(bool isActive)
     {
@@ -73,6 +75,12 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
     public virtual SuckableObject Duplicate()
     {
         return this.Get<SuckableObject>();
+    }
+
+    public virtual void SetSpawnedPosition(Vector3 spawnedPos)
+    {
+        Vector3 yPos = (MeshHandler.GetMeshHeight(thisRenderer) / 2 + EXTRA_Y_SPACE) * Vector3.up;
+        transform.position = spawnedPos + yPos;
     }
 
     public void DoQuitAnimation()
@@ -93,5 +101,6 @@ public enum SuckableobjectType
     IcePin = 4,
     magneticPin = 5,
     superBowlingBall = 6,
-    powerUp = 7
+    powerUp = 7,
+    coin=8
 }

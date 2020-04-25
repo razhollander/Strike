@@ -213,7 +213,7 @@ namespace VehicleBehaviour {
         }
 
         // Visual feedbacks and boost regen
-        void Update()
+        public override void UpdateMe()
         {
             foreach (ParticleSystem gasParticle in gasParticles)
             {
@@ -229,7 +229,7 @@ namespace VehicleBehaviour {
         }
         
         // Update everything
-        void FixedUpdate () {
+        public override void FixedUpdateMe () {
             // Mesure current speed
             speed = transform.InverseTransformDirection(_rb.velocity).z * 3.6f;
 

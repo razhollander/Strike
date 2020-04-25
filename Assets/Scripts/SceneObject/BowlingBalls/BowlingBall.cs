@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowlingBall : SuckableObject
+public class BowlingBall : InventorySuckableObject
 {
-    //public override SuckableObject Duplicate()
-    //{
-    //    return this.Get<BowlingBall>();
-    //}
+
 }

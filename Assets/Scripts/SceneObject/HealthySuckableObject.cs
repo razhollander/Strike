@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthySuckableObject : SuckableObject
+public class HealthySuckableObject : InventorySuckableObject
 {
     [SerializeField] private float healthCanvasTime = 3;
     [SerializeField] private GameObject healthCanvas;
@@ -27,6 +27,9 @@ public class HealthySuckableObject : SuckableObject
         healthCanvas.SetActive(false);
         SetHealth(maxHealth);
     }
+
+
+
     public void SetHealth(float value, bool isRelative = true, bool isUpdateHealthLimit = false, float delay = 0)
     {
         if (value < 0)
