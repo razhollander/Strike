@@ -22,7 +22,7 @@ public class JoystickUFOEditor : JoystickEditor
     {
         base.DrawValues();
         EditorGUILayout.PropertyField(_UFOVehicle, new GUIContent("UFO Vehicle", "The moving UFO"));
-        EditorGUILayout.PropertyField(rotateBy, new GUIContent("rotateBy", "The moving UFO"));
+       // EditorGUILayout.PropertyField(rotateBy, new GUIContent("rotateBy", "The moving UFO"));
 
     }
 

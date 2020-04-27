@@ -9,6 +9,7 @@ public class JoystickShoot : Joystick
 {
     public InventoryObjectUI selectedInventoryObject;
     [SerializeField] private ShooterVacuum shooterVacuum;
+    [SerializeField] private Image _shotObjectHandleImage;
     private PostProcessVolume volume;
     Vignette vignette;
     public static JoystickShoot instance;
@@ -69,7 +70,14 @@ public class JoystickShoot : Joystick
     public void SelectObject(InventoryObjectUI inventoryObjectUI)
     {
         selectedInventoryObject = inventoryObjectUI;
-        handle.GetComponent<Image>().sprite = inventoryObjectUI.inventoryObject.sprite;
+        //handle.GetComponent<Image>().sprite = inventoryObjectUI.inventoryObject.sprite;
+
+        if(!_shotObjectHandleImage.enabled)
+        {
+            _shotObjectHandleImage.color = Color.white;
+        }
+
+        _shotObjectHandleImage.sprite = inventoryObjectUI.inventoryObject.sprite;
         shooterVacuum.SetArrow(inventoryObjectUI.inventoryObject.arrowObject);
     }
 }

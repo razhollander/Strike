@@ -33,7 +33,7 @@ public class Joystick : OverridableMonoBehaviour, IPointerDownHandler, IDragHand
     [SerializeField] private bool snapY = false;
 
     [SerializeField] protected RectTransform background = null;
-    [SerializeField] public RectTransform handle = null;
+    [SerializeField] private RectTransform handle = null;
     private RectTransform baseRect = null;
 
     private Canvas canvas;
