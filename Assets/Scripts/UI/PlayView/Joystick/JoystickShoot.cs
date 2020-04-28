@@ -74,7 +74,7 @@ public class JoystickShoot : Joystick
 
         if(!_shotObjectHandleImage.enabled)
         {
-            _shotObjectHandleImage.color = Color.white;
+            _shotObjectHandleImage.enabled = true;
         }
 
         _shotObjectHandleImage.sprite = inventoryObjectUI.inventoryObject.sprite;

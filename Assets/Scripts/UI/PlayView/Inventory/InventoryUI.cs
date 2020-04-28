@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class InventoryUI : MonoBehaviour
 {
-    public Ease ease;
+    [SerializeField] private Ease ease = Ease.InSine;
 
     [SerializeField] private Inventory inventory;
     [SerializeField] private Button templateButton;
@@ -52,7 +52,7 @@ public class InventoryUI : MonoBehaviour
         Vector3 endPos = Vector3.one;
         
         img.transform.SetParent(objectUI.transform);
-        img.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(startPos);
+        img.GetComponent<RectTransform>().position = CameraManager.instance.MainCamera.WorldToScreenPoint(startPos);
         img.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         float waitForSeceonds = 0.5f;
         img.transform.DOScale(1, waitForSeceonds).SetEase(Ease.OutExpo);
@@ -65,8 +65,10 @@ public class InventoryUI : MonoBehaviour
             Debug.Log("No GameManager Instance!");
         }
         int score = objectUI.inventoryObject.score;
-        if (score > 0&& _gm != null)
+        if (score > 0 && _gm != null)
+        {
             _gm.GameStateManager.GetState<NormalPlayState>().AddScore(score);
+        }
     }
 
     public static InventoryObjectUI GetInventoryObjectUI(SuckableobjectType suckableobjectType)

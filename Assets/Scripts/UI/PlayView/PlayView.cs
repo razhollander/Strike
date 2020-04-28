@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayView : MonoBehaviour
 {
-    //[SerializeField] JoyStickView _joyStickView;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Debug.Log("On");
-    }
-
+    public const string PLAY_CANVAS_TAG = "PlayCanvas";
 }

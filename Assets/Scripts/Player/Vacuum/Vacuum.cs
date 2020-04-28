@@ -219,8 +219,12 @@ public class Vacuum : OverridableMonoBehaviour
     }
     private bool IsEnemyInRadius(SuckableObject enemy, out float sqrMagnitudeDistance)
     {
-        Vector2 enemyPos = new Vector2(enemy.transform.position.x, enemy.transform.position.z);
-        sqrMagnitudeDistance = (enemyPos - _radiusCenterV2).sqrMagnitude;
+        //Vector2 enemyPos = new Vector2(enemy.transform.position.x, enemy.transform.position.z);
+
+
+        //sqrMagnitudeDistance = (enemyPos - _radiusCenterV2).sqrMagnitude;
+        sqrMagnitudeDistance = (enemy.transform.position.SetYZero() - _radiusCenterV2.ToVector3()).sqrMagnitude;
+
         if (sqrMagnitudeDistance < Mathf.Pow(_vacuumRadius, 2))
         {
             return true;

@@ -1,18 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System;
 
-public class GameDataManager
+public class MoneyModel
 {
     const string PLAYER_MONEY = "PlayerMoney";
     public event Action<int> OnPlayerMoneyChanged;
+
     public int Money
     {
         get
         {
-            if(!GameManager.Instance.GamePrefHandler.IsKeyExist(PLAYER_MONEY))
+            if (!GameManager.Instance.GamePrefHandler.IsKeyExist(PLAYER_MONEY))
             {
                 GameManager.Instance.GamePrefHandler.SavePref<int>(0, PLAYER_MONEY);
             }
@@ -20,7 +20,7 @@ public class GameDataManager
         }
         set
         {
-            GameManager.Instance.GamePrefHandler.SavePref<int>(value ,PLAYER_MONEY);
+            GameManager.Instance.GamePrefHandler.SavePref<int>(value, PLAYER_MONEY);
             OnPlayerMoneyChanged(value);
         }
     }

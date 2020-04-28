@@ -13,7 +13,7 @@ public class UpgradesShopController
     {
         _dataModel = upgradesShopModel;
         _upgradesShopView = upgradesShopView;
-        GameManager.Instance.GameDataManager.OnPlayerMoneyChanged += _upgradesShopView.UpdateMoneyText;
+        //GameManager.Instance.GameDataManager.OnPlayerMoneyChanged += _upgradesShopView.UpdateMoneyText;
     }
 
 

@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
     public UpgradesManager UpgradesManager;
     public AssetLoadHandler AssetLoadHandler;
     public GamePrefHandler GamePrefHandler;
-    public GameDataManager GameDataManager;
     public GameStateManager GameStateManager;
+    public MoneyModel MoneyModel;
 
     public event Action OnGamePaused;
     public event Action OnGameResumed;
@@ -39,11 +39,10 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         GamePrefHandler = new GamePrefHandler();
-        GameDataManager = new GameDataManager();
         AssetLoadHandler = new AssetLoadHandler(_prefabsCollectionObject);
         UpgradesManager = new UpgradesManager();
         GameStateManager = new GameStateManager();
-
+        MoneyModel = new MoneyModel();
         player = GameObject.FindObjectOfType<PlayerBase>();
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Coin : SuckableObject
 {
+    [SerializeField] public int MoneyValue = 50;
     [SerializeField] float startingY = 20;
     public override void Collected()
     {
-        Debug.Log("COLLECED");
+        GameManager.Instance.GameStateManager.GetState<NormalPlayState>().AddGameMoney(MoneyValue,transform.position);
         base.Collected();
     }
 

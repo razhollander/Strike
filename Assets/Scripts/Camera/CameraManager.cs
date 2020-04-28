@@ -8,14 +8,19 @@ public class CameraManager : MonoBehaviour
     const string NORMAL_PLAY_ANIMATION_NAME = "NormalPlay";
     const float MOVE_TO_START_POS_TIME = 0.7f;
 
+    [SerializeField] public Camera MainCamera;
     [SerializeField] Animator _animator;
-    [SerializeField] Camera _mainCamera;
     [SerializeField] FollowCamera _followCamera;
+
+    public static CameraManager instance;
 
     Vector3 _startPos;
     Quaternion _startRot;
+
     private void Awake()
     {
+        instance = this;
+        MainCamera = Camera.main;
         _startPos = transform.position;
         _startRot = transform.rotation;
     }

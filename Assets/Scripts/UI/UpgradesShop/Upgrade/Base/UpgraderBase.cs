@@ -41,7 +41,7 @@ public abstract class UpgraderBase
         currUpgradeLevel++;
         var stockData = UpgradeStocks[currUpgradeLevel];
         _gameManager.UpgradesManager.SetUpgradeLevel(UpgradeType, currUpgradeLevel);
-        _gameManager.GameDataManager.Money -= stockData.Cost;
+        _gameManager.MoneyModel.Money -= stockData.Cost;
         OnUpgrade?.Invoke(currUpgradeLevel);
     }
     public abstract void Reset();

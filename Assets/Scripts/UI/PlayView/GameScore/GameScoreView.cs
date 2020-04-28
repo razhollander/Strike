@@ -2,42 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class GameScoreView : MonoBehaviour
+public class GameScoreView : Countable
 {
-    const string SCORE_TEXT = "Score: ";
 
-    [SerializeField] private float _scoreAnimtaionSpeed;
-    [SerializeField] private Text _scoreText;
-
-    int _totalScore=0;
-
-    public void AddScore(int addedScore)
+    private void Awake()
     {
-        StartCoroutine(AddScoreCoroutine(addedScore));
+        BaseText = "Score:";
     }
-    private void UpdateScoreText(int addedScore)
-    {
-        _totalScore += addedScore;
-        _scoreText.text = SCORE_TEXT + _totalScore;
-    }
-    private IEnumerator AddScoreCoroutine(int score)
-    {
-        int scoreToAddThisFrame;
-        int scoreLeftToAdd = score;
-        while (scoreLeftToAdd != 0)
-        {
-            scoreToAddThisFrame = Mathf.CeilToInt(Time.deltaTime * score * _scoreAnimtaionSpeed);
-            if (scoreToAddThisFrame < scoreLeftToAdd)
-            {
-                UpdateScoreText(scoreToAddThisFrame);
-                scoreLeftToAdd -= scoreToAddThisFrame;
-            }
-            else
-            {
-                UpdateScoreText(scoreLeftToAdd);
-                scoreLeftToAdd -= scoreLeftToAdd;
-            }
-            yield return null;
-        }
-    }
+    //public void AddScore(int addedScore)
+    //{
+    //    StartCoroutine(AddScoreCoroutine(addedScore));
+    //}
+    //private void UpdateScoreText(int addedScore)
+    //{
+    //    _totalScore += addedScore;
+    //    _scoreText.text = SCORE_TEXT + _totalScore;
+    //}
+    //private IEnumerator AddScoreCoroutine(int score)
+    //{
+    //    int scoreToAddThisFrame;
+    //    int scoreLeftToAdd = score;
+    //    while (scoreLeftToAdd != 0)
+    //    {
+    //        scoreToAddThisFrame = Mathf.CeilToInt(Time.deltaTime * score * _scoreAnimtaionSpeed);
+    //        if (scoreToAddThisFrame < scoreLeftToAdd)
+    //        {
+    //            UpdateScoreText(scoreToAddThisFrame);
+    //            scoreLeftToAdd -= scoreToAddThisFrame;
+    //        }
+    //        else
+    //        {
+    //            UpdateScoreText(scoreLeftToAdd);
+    //            scoreLeftToAdd -= scoreLeftToAdd;
+    //        }
+    //        yield return null;
+    //    }
+    //}
 }

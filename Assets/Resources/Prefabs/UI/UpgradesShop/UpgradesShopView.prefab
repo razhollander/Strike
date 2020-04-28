@@ -3813,6 +3813,7 @@ GameObject:
   - component: {fileID: 7373252439649475338}
   - component: {fileID: 8302693539440504788}
   - component: {fileID: 2816194303283818671}
+  - component: {fileID: 4703492995793156845}
   m_Layer: 0
   m_Name: MoneyText
   m_TagString: Untagged
@@ -3959,6 +3960,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4703492995793156845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322228999763741958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2dd91afb0d1074d8f5a5f79323f923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textAnimtaionSpeed: 2
+  _text: {fileID: 2816194303283818671}
 --- !u!1 &7723626790491168180
 GameObject:
   m_ObjectHideFlags: 0

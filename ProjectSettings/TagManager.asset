@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MasterCanvas
   - PlayCanvas
+  - NormalPlayTopRightPanel
   layers:
   - Default
   - TransparentFX
