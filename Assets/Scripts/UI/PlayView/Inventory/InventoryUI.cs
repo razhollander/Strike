@@ -39,6 +39,8 @@ public class InventoryUI : MonoBehaviour
             newButton.gameObject.SetActive(true);
             newButton.transform.SetParent(transform);
             newButton.transform.localScale = Vector3.one;
+            newButton.transform.transform.localPosition = Vector3.zero;
+            newButton.transform.localRotation = Quaternion.identity;
         }
     }
     public void StartAddEffect(SuckableobjectType suckableobjectType, Vector3 startPos)

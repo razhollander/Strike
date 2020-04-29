@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class GameMoneyView : Countable
 {
     [SerializeField] private Ease _ease = Ease.InSine;
@@ -47,6 +46,7 @@ public class GameMoneyView : Countable
     }
     private void EndEffect()
     {
+        Debug.Log("Effect");
         collectEffect.Play();
     }
 }
