@@ -7,6 +7,8 @@ public class GameMoneyView : Countable
 {
     [SerializeField] private Ease _ease = Ease.InSine;
     [SerializeField] Image _coinImage;
+    [SerializeField] float animationTime = 0.5f;
+    [SerializeField] ParticleSystem collectEffect;
 
     private Transform _playViewTransform;
     private Transform PlayViewTransform
@@ -34,15 +36,17 @@ public class GameMoneyView : Countable
         img.transform.SetParent(transform);
         img.GetComponent<RectTransform>().position = CameraManager.instance.MainCamera.WorldToScreenPoint(startPos);
         img.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        float waitForSeceonds = 0.5f;
-        img.transform.DOScale(1, waitForSeceonds).SetEase(Ease.OutExpo);
-        img.transform.DOLocalMove(endPos, waitForSeceonds).SetEase(_ease);
-        yield return new WaitForSeconds(waitForSeceonds);
+        img.transform.DOScale(1, animationTime).SetEase(Ease.OutExpo);
+        img.transform.DOLocalRotate(new Vector3(0,360*4,0), animationTime, RotateMode.LocalAxisAdd).SetEase(_ease);
+
+        img.transform.DOLocalMove(endPos, animationTime).SetEase(_ease);
+        yield return new WaitForSeconds(animationTime);
         Destroy(img.gameObject);
         EndEffect();
         SetNumber(moneyValue);
     }
     private void EndEffect()
     {
+        collectEffect.Play();
     }
 }

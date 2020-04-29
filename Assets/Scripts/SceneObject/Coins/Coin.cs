@@ -6,6 +6,7 @@ public class Coin : SuckableObject
 {
     [SerializeField] public int MoneyValue = 50;
     [SerializeField] float startingY = 20;
+    [SerializeField] float spawnAngularSpeed = 1;
     public override void Collected()
     {
         GameManager.Instance.GameStateManager.GetState<NormalPlayState>().AddGameMoney(MoneyValue,transform.position);
@@ -16,7 +17,8 @@ public class Coin : SuckableObject
     {
         base.ResetTransform();
         float randomRot = Random.Range(0, 360);
-        transform.localRotation = Quaternion.Euler(randomRot, (randomRot + 100) * 2, (randomRot + 200) * 3);
+        thisRigidBody.angularVelocity = new Vector3(0, 0,1)* spawnAngularSpeed;
+        //transform.localRotation = Quaternion.Euler(randomRot, (randomRot + 100) * 2, (randomRot + 200) * 3);
     }
     public override void SetSpawnedPosition(Vector3 spawnedPos)
     {

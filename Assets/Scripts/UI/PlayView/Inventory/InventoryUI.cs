@@ -49,7 +49,7 @@ public class InventoryUI : MonoBehaviour
     {
         InventoryObjectUI objectUI = GetInventoryObjectUI(suckableobjectType);
         Image img = Instantiate(objectUI.image);
-        Vector3 endPos = Vector3.one;
+        Vector3 endPos = Vector3.zero;
         
         img.transform.SetParent(objectUI.transform);
         img.GetComponent<RectTransform>().position = CameraManager.instance.MainCamera.WorldToScreenPoint(startPos);
