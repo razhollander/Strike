@@ -156,7 +156,6 @@ public class Vacuum : OverridableMonoBehaviour
         pulledObjectBeginScale = ObjectBeingSucked.transform.localScale;
         float prevDistance = 0;
         float distance = Vector3.Distance(ObjectBeingSucked.transform.position, VacuumPoint.position);
-        //float minDistance = 0.75f;
         ObjectBeingSucked.GetPulled();
         while (distance > minDistance)
         {

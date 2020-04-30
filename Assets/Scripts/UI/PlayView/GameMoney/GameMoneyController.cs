@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMoneyController : MonoBehaviour
+public class GameMoneyController
 {
     const string GAME_MONEY_PREFAB_NAME = "GameMoney";
     const string NORMAL_PLAY_TOP_RIGHT_PANEL = "NormalPlayTopRightPanel";
@@ -35,7 +35,7 @@ public class GameMoneyController : MonoBehaviour
     public void AddGameMoney(int addedGameMoney, Vector3 suckedPosition)
     {
         _gameMoney += addedGameMoney;
-        _gameMoneyView.StartAddEffect(_gameMoney, suckedPosition);
+        _gameMoneyView.StartEffectCorutine(_gameMoney, suckedPosition);
     }
     public void Dispose()
     {

@@ -8,7 +8,7 @@ public class GameMoneyView : Countable
     [SerializeField] Image _coinImage;
     [SerializeField] float animationTime = 0.5f;
     [SerializeField] ParticleSystem collectEffect;
-
+    [SerializeField] float scalePunchAmount = 1;
     private Transform _playViewTransform;
     private Transform PlayViewTransform
     {
@@ -23,30 +23,31 @@ public class GameMoneyView : Countable
                 return _playViewTransform;
         }
     }
-    public void StartAddEffect(int moneyValue, Vector3 startPos)
+    public void StartEffectCorutine(int moneyValue, Vector3 startPos)
     {
-        StartCoroutine(StartAddEffectCoroutin(moneyValue, startPos));
+        StartCoroutine(StartAddEffect(moneyValue, startPos));
     }
-    private IEnumerator StartAddEffectCoroutin(int moneyValue, Vector3 startPos)
+    public IEnumerator StartAddEffect(int moneyValue, Vector3 startPos)
     {
-        Image img = Instantiate(_coinImage);
+        GameObject img = Instantiate(_coinImage.gameObject, transform);
         Vector3 endPos = Vector3.zero;
+        yield return new WaitForEndOfFrame();
 
-        img.transform.SetParent(transform);
-        img.GetComponent<RectTransform>().position = CameraManager.instance.MainCamera.WorldToScreenPoint(startPos);
+        Vector2 thisPointScreenSpace = CameraManager.instance.MainCamera.WorldToScreenPoint(((RectTransform)transform).position);
+        Vector2 spawnPointScreenSpace = CameraManager.instance.MainCamera.WorldToScreenPoint(startPos);
+        ((RectTransform)img.transform).localPosition = spawnPointScreenSpace - thisPointScreenSpace;
+        img.GetComponent<RectTransform>().localRotation = Quaternion.identity;
         img.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        img.transform.DOScale(1, animationTime).SetEase(Ease.OutExpo);
-        img.transform.DOLocalRotate(new Vector3(0,360*4,0), animationTime, RotateMode.LocalAxisAdd).SetEase(_ease);
+        ParticleSystem collectEffect = img.transform.GetComponentInChildren<ParticleSystem>();
 
         img.transform.DOLocalMove(endPos, animationTime).SetEase(_ease);
+        img.transform.DOScale(1, animationTime).SetEase(Ease.OutExpo);
+        img.transform.DOLocalRotate(new Vector3(0, 360 * 4, 0), animationTime, RotateMode.LocalAxisAdd).SetEase(_ease);
+
         yield return new WaitForSeconds(animationTime);
-        Destroy(img.gameObject);
-        EndEffect();
-        SetNumber(moneyValue);
-    }
-    private void EndEffect()
-    {
-        Debug.Log("Effect");
+
         collectEffect.Play();
+        SetNumber(moneyValue);
+        img.transform.DOPunchScale(Vector3.one, 0.4f, 1, scalePunchAmount).OnComplete(() => Destroy(img));
     }
 }

@@ -24,6 +24,10 @@ public static class MathHandler
     {
         return new Vector2(vec.x, vec.z);
     }
+    public static Vector2 ToVector2_Y(this Vector3 vec)
+    {
+        return new Vector2(vec.x, vec.y);
+    }
     public static Vector3 SetYZero(this Vector3 vec)
     {
         return new Vector3(vec.x, 0, vec.z);
