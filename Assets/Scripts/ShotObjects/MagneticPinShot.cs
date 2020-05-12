@@ -12,6 +12,7 @@ public class MagneticPinShot : BasicPinShot
     [SerializeField] MagnetLaserStrike _magnetLaserStrike;
     [SerializeField] float _radius = 10;
     [SerializeField] float _pullAmount;
+    [SerializeField] ParticleSystem _magneticPulseEffect;
 
     private bool _isPulling = true;
     private List<ObejctPulled> _objectsPulledList;
@@ -56,7 +57,23 @@ public class MagneticPinShot : BasicPinShot
     protected override void SetComponents(bool isEnabled)
     {
         _isPulling = isEnabled;
+
+        if (_isPulling)
+        {
+            if(!_magneticPulseEffect.isPlaying)
+                _magneticPulseEffect.Play();
+        }
+        else
+        {
+            if (_magneticPulseEffect.isPlaying)
+            {
+                _magneticPulseEffect.Stop();
+                _magneticPulseEffect.Clear();
+            }
+        }
+
         base.SetComponents(isEnabled);
+
     }
     private void UpdateEffects()
     {

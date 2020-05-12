@@ -15,7 +15,8 @@ MonoBehaviour:
   suckableObjectType: 6
   objectShot: {fileID: 5999436160203424231, guid: 592797cca6994e845afcb38ad9081ab7,
     type: 3}
-  collected: -3
+  collected: 0
   sprite: {fileID: 21300000, guid: c7c4ecdf2e434f243bcd3854b4baf7aa, type: 3}
+  bgSprite: {fileID: 21300000, guid: 8044dbfd1b6746a4f965bb3501f3e66a, type: 3}
   arrowObject: {fileID: 11400000, guid: 9f84633e211c3794b8c68dcde5c3589c, type: 2}
   score: 100

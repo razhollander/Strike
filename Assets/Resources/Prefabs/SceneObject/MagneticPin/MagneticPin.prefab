@@ -14705,7 +14705,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.27450982}
+      maxColor: {r: 0.16509432, g: 1, b: 0.6622942, a: 0.5529412}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.7877358, g: 0.9833518, b: 1, a: 1}
@@ -15526,7 +15526,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 140
+      scalar: 70
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -19410,17 +19410,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 2
+  canBeSucked: 1
   suckableobjectType: 5
   thisRenderer: {fileID: 3629263807141217088}
   thisCollider: {fileID: 5531602572877391318}
   thisRigidBody: {fileID: 7653102630084225264}
-  canBeSucked: 1
-  thisFollowPlayer: {fileID: 943927265126702033}
-  maxHealth: 200
-  spawnTimeDelay: 1
   healthCanvasTime: 3
   healthCanvas: {fileID: 5531602571014793682}
   healthBar: {fileID: 801660487933494873}
+  maxHealth: 200
+  thisFollowPlayer: {fileID: 943927265126702033}
+  spawnTimeDelay: 1
   _attackEffect: {fileID: 3478674444511955861}
   _magnet: {fileID: 6535700230349761449}
   _pullAmount: 20
@@ -49116,16 +49116,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5392616132178935519, guid: fac1b665dd81b1247b6c399391e262bd,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 60c4f99d55be7ee44a8521d1da5a59c6, type: 2}
     - target: {fileID: 5192936478130640495, guid: fac1b665dd81b1247b6c399391e262bd,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5392616132178935519, guid: fac1b665dd81b1247b6c399391e262bd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 60c4f99d55be7ee44a8521d1da5a59c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac1b665dd81b1247b6c399391e262bd, type: 3}
 --- !u!4 &5969894754678977771 stripped

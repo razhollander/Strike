@@ -6,7 +6,7 @@ public class InventorySuckableObject : SuckableObject
 {
     public override void Collected()
     {
-        InventoryUI.instance.StartAddEffect(suckableobjectType, transform.position);
+        InventoryUI.instance.StartInventoryAddEffect(suckableobjectType, transform.position);
         base.Collected();
     }
 }

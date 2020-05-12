@@ -84,6 +84,7 @@ MonoBehaviour:
     type: 3}
   _radius: 20
   _pullAmount: 600
+  _magneticPulseEffect: {fileID: 6842143570702780497}
 --- !u!1 &4516573943827998013
 GameObject:
   m_ObjectHideFlags: 0
@@ -4906,7 +4907,7 @@ GameObject:
   - component: {fileID: 6842143570702780497}
   - component: {fileID: 5599913361963754510}
   m_Layer: 11
-  m_Name: Shockwave
+  m_Name: MagneticPulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4934,7 +4935,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4521700092793230327}
   serializedVersion: 6
-  lengthInSec: 0.6
+  lengthInSec: 0.8
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5009,7 +5010,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5116,7 +5117,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.43529412}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.45490196}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.7877358, g: 0.9833518, b: 1, a: 1}
@@ -5937,7 +5938,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 140
+      scalar: 100
       minScalar: 1
       maxCurve:
         serializedVersion: 2

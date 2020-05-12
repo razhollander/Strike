@@ -8,8 +8,10 @@ public class InventoryObjectUI : MonoBehaviour
 {
     public InventoryObject inventoryObject;
     public Image image;
+    public Image bgImage;
     public Button button;
     [SerializeField] private Text text;
+
     private Tween punchTweener;
     private void Start()
     {

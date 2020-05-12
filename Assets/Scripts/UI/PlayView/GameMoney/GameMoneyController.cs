@@ -35,7 +35,7 @@ public class GameMoneyController
     public void AddGameMoney(int addedGameMoney, Vector3 suckedPosition)
     {
         _gameMoney += addedGameMoney;
-        _gameMoneyView.StartEffectCorutine(_gameMoney, suckedPosition);
+        _gameMoneyView.StartCoinAddEffect(_gameMoney, suckedPosition);
     }
     public void Dispose()
     {

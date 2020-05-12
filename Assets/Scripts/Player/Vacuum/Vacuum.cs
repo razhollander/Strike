@@ -109,7 +109,7 @@ public class Vacuum : OverridableMonoBehaviour
         ObjectBeingSucked = suckedObject;
         ObjectBeingSucked.IsBeingSucked = true;
         ShakeObject(suckedObject);
-        _headShake = VacuumHead.DOShakeRotation(1, 4, 15, 90, false).SetEase(Ease.Linear).SetLoops(-1);
+        _headShake = VacuumHead.DOShakeRotation(10, 4, 15, 90, false).SetEase(Ease.Linear).SetLoops(-1);
         _suckCoroutine = StartCoroutine(SuckObject());
         RotationTweener.Kill();
         _airParticals.SetActive(true);

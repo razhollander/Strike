@@ -9,6 +9,7 @@ public class InventoryObject : ScriptableObject
     public ObjectShot objectShot;
     public int collected = 0;
     public Sprite sprite;
+    public Sprite bgSprite;
     public ArrowObject arrowObject;
     public int score;
 }

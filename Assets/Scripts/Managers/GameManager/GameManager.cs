@@ -45,7 +45,10 @@ public class GameManager : MonoBehaviour
         MoneyModel = new MoneyModel();
         player = GameObject.FindObjectOfType<PlayerBase>();
 
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        //Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Screen.autorotateToLandscapeRight = true;
+        Screen.autorotateToLandscapeLeft = true;
+
         var normalPlayState = GameStateManager.GetState<NormalPlayState>();
         normalPlayState.OnEnter+= ()=> summonCorutine = StartCoroutine(SummonEnemies());
         normalPlayState.OnLeave+= () => { if (summonCorutine != null) StopCoroutine(summonCorutine); };
@@ -78,7 +81,6 @@ public class GameManager : MonoBehaviour
     public void PlayGame()
     {
         GameStateManager.SwitchGameState<NormalPlayState>();
-        Debug.Log("Start game");
     }
     IEnumerator SummonEnemies()
     {

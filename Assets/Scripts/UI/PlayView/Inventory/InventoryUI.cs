@@ -10,10 +10,13 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField] private Inventory inventory;
     [SerializeField] private Button templateButton;
-
-    GameManager _gm;
-    private static List<InventoryObjectUI> inventoryObjectUIList;
+    [SerializeField] InventoryEffectPooledObject _inventoryEffect;
+    
     public static InventoryUI instance;
+    
+    private List<InventoryObjectUI> inventoryObjectUIList;
+    private GameManager _gm;
+
     void Awake()
     {
         instance = this;
@@ -30,11 +33,13 @@ public class InventoryUI : MonoBehaviour
         {
             Button newButton = Instantiate(templateButton);
             InventoryObjectUI currIOUI = newButton.transform.GetComponent<InventoryObjectUI>();
-            currIOUI.image = newButton.transform.Find("Image").GetComponent<Image>();
+            //currIOUI.image = newButton.transform.Find("Image").GetComponent<Image>();
             currIOUI.image.sprite = inventoryObject.sprite;
+            currIOUI.bgImage.sprite = inventoryObject.bgSprite;
             currIOUI.inventoryObject = inventoryObject;
             currIOUI.UpdateText();
             currIOUI.button = newButton;
+
             inventoryObjectUIList.Add(currIOUI);         
             newButton.gameObject.SetActive(true);
             newButton.transform.SetParent(transform);
@@ -43,26 +48,16 @@ public class InventoryUI : MonoBehaviour
             newButton.transform.localRotation = Quaternion.identity;
         }
     }
-    public void StartAddEffect(SuckableobjectType suckableobjectType, Vector3 startPos)
-    {
-       StartCoroutine(StartAddEffectCoroutin(suckableobjectType, startPos));
-    }
-    private IEnumerator StartAddEffectCoroutin(SuckableobjectType suckableobjectType, Vector3 startPos)
+    public void StartInventoryAddEffect(SuckableobjectType suckableobjectType, Vector3 startPos)
     {
         InventoryObjectUI objectUI = GetInventoryObjectUI(suckableobjectType);
-        Image img = Instantiate(objectUI.image);
-        Vector3 endPos = Vector3.zero;
-        
-        img.transform.SetParent(objectUI.transform);
-        img.GetComponent<RectTransform>().position = CameraManager.instance.MainCamera.WorldToScreenPoint(startPos);
-        img.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        float waitForSeceonds = 0.5f;
-        img.transform.DOScale(1, waitForSeceonds).SetEase(Ease.OutExpo);
-        img.transform.DOLocalMove(endPos, waitForSeceonds).SetEase(ease);
-        yield return new WaitForSeconds(waitForSeceonds);
-        Destroy(img.gameObject);
+        _inventoryEffect.Get<InventoryEffectPooledObject>(objectUI.transform).StartEffect(objectUI.image.sprite, (RectTransform)objectUI.transform, startPos, () => OnEffectEnd(objectUI));
+    }
+
+    private void OnEffectEnd(InventoryObjectUI objectUI)
+    {
         objectUI.Add();
-        if(_gm == null)
+        if (_gm == null)
         {
             Debug.Log("No GameManager Instance!");
         }
@@ -72,8 +67,7 @@ public class InventoryUI : MonoBehaviour
             _gm.GameStateManager.GetState<NormalPlayState>().AddScore(score);
         }
     }
-
-    public static InventoryObjectUI GetInventoryObjectUI(SuckableobjectType suckableobjectType)
+    private InventoryObjectUI GetInventoryObjectUI(SuckableobjectType suckableobjectType)
     {
         return inventoryObjectUIList.Find(x => x.inventoryObject.suckableObjectType == suckableobjectType);
     }
