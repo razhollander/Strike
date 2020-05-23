@@ -23944,8 +23944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateWhenDisabled: 0
-  rigidBody: {fileID: 7653102630084225264}
-  speed: 2
+  _speed: 1
 --- !u!114 &952234884823912838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23959,18 +23958,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 2
+  canBeSucked: 1
   suckableobjectType: 4
-  scoreValue: 0
   thisRenderer: {fileID: 3629263807141217088}
   thisCollider: {fileID: 8262479636383553307}
   thisRigidBody: {fileID: 7653102630084225264}
-  canBeSucked: 1
-  thisFollowPlayer: {fileID: 6294628328102618582}
-  maxHealth: 150
-  spawnTimeDelay: 0.8
   healthCanvasTime: 3
   healthCanvas: {fileID: 5531602571014793682}
   healthBar: {fileID: 801660487933494873}
+  maxHealth: 150
+  thisFollowPlayer: {fileID: 6294628328102618582}
+  spawnTimeDelay: 0.8
   trailEffect: {fileID: 126462305762443133}
   attackCircleEffect: {fileID: 6094924670687185733}
 --- !u!1 &2160490494332474112

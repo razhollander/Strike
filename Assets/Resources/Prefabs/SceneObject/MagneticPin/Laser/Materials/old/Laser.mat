@@ -75,6 +75,7 @@ Material:
     - Vector1_7C7C21A6: 0.091
     - Vector1_8977D175: 25
     - _AlphaClip: 0
+    - _BendingAmount: 0.001
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
@@ -88,6 +89,7 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Shader_Alpha: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

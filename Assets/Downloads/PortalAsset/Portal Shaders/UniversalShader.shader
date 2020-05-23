@@ -32,6 +32,9 @@
         _EmissionColor("Color", Color) = (0,0,0)
         _EmissionMap("Emission", 2D) = "white" {}
 
+//        _BendAmount("Bend Amount", Vector) = (1,1,0,0)
+//        _BendFalloff("Bend Falloff", Vector) = (0,0,0,0)
+
         // Blending state
         [HideInInspector] _Surface("__surface", Float) = 0.0
         [HideInInspector] _Blend("__blend", Float) = 0.0
@@ -49,6 +52,57 @@
 
     SubShader
     {
+        //####
+        //Tags { "RenderType" = "Opaque" }
+        //LOD 200
+        //
+        //HLSLPROGRAM
+        //#pragma surface surf Lambert vertex:vert addshadow
+        //
+        //// Global Shader values
+        //uniform float2 _BendAmount;
+        //uniform float3 _BendOrigin;
+        //uniform float _BendFalloff;
+        //
+        //sampler2D _MainTex;
+        //
+        //struct Input
+        //{
+        //      float2 uv_MainTex;
+        //};
+        //
+        //float4 Curve(float4 v)
+        //{
+        //      //HACK: Considerably reduce amount of Bend
+        //      _BendAmount *= .0001;
+        //
+        //      float4 world = mul(_Object2World, v);
+        //
+        //      float dist = length(world.xz-_BendOrigin.xz);
+        //
+        //      dist = max(0, dist-_BendFalloff);
+        //
+        //      // Distance squared
+        //      dist = dist*dist;
+        //
+        //      world.xy += dist*_BendAmount;
+        //      return mul(_World2Object, world);
+        //}
+        //
+        //void vert(inout appdata_full v)
+        //{
+        //      v.vertex = Curve(v.vertex);
+        //}
+        //
+        //void surf(Input IN, inout SurfaceOutput o)
+        //{
+        //      fixed4 c = tex2D(_BaseMap, IN.uv_MainTex) * _BaseColor;
+        //      o.Albedo = c.rgb;
+        //      o.Alpha = c.a;
+        //}
+        //
+        //ENDHLSL
+        //####
 
         // With SRP we introduce a new "RenderPipeline" tag in Subshader. This allows to create shaders
         // that can match multiple render pipelines. If a RenderPipeline tag is not set it will match
@@ -56,6 +110,8 @@
         // "UniversalRenderPipeline"
         Tags{"RenderType" = "Opaque" "RenderPipeline" = "LightweightPipeline" "IgnoreProjector" = "True"}
         LOD 300
+
+
 
         // ------------------------------------------------------------------
         // Forward pass. Shades GI, emission, fog and all lights in a single pass.

@@ -76,6 +76,7 @@ Material:
     - Vector1_7C7C21A6: 0.58
     - Vector1_8977D175: 8.93
     - _AlphaClip: 0
+    - _BendingAmount: 0.003
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
