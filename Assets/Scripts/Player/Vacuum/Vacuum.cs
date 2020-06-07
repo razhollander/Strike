@@ -66,7 +66,7 @@ public class Vacuum : OverridableMonoBehaviour
     {
         VaccumButtonPressed = false;
     }
-    protected void StartSelfRotation()
+    protected virtual void StartSelfRotation()
     {
         RotationTweener.Kill();
         RotationTweener = transform.DOLocalRotate(new Vector3(0, 360, 0), 1, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);

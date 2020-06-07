@@ -26,11 +26,14 @@ public class UpdateManager : MonoBehaviour
 	private OverridableMonoBehaviour[] fixedArray = new OverridableMonoBehaviour[0];
 	private OverridableMonoBehaviour[] lateArray = new OverridableMonoBehaviour[0];
 
-	public UpdateManager()
+	//public UpdateManager()
+	//{
+	//	instance = this;
+	//}
+	public void Awake()
 	{
 		instance = this;
 	}
-
 	public static void AddItem(OverridableMonoBehaviour behaviour)
 	{
 		instance.AddItemToArray(behaviour);

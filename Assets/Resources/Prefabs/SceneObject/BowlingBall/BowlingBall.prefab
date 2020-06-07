@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 10
+  canBeSucked: 1
   suckableobjectType: 0
   thisRenderer: {fileID: 5458682732473248227}
   thisCollider: {fileID: 2367794016340903672}
@@ -147,6 +148,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -94.729004
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 5ed29caea2919a241b2c27346b68019b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 894ba554dcb1ea441a21c94c73927557, type: 2}
     - target: {fileID: -5178661895559278292, guid: 5ed29caea2919a241b2c27346b68019b,
         type: 3}
       propertyPath: m_Mesh

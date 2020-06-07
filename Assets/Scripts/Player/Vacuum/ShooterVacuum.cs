@@ -14,6 +14,8 @@ public class ShooterVacuum : Vacuum
     [SerializeField] private float arrowLerpAmount;
     [SerializeField] private float punchShootValue = 1;
     [SerializeField] private float shootAnimationDuration=0.5f;
+
+    bool isAiming=false;
     SpriteRenderer arrowSpriteRenderer;
     float arrowDefaultHeight;
     RaycastHit rayhit;
@@ -24,6 +26,7 @@ public class ShooterVacuum : Vacuum
              StopSuckingEnemy();
         RotationTweener.Kill();
         arrow.SetActive(true);
+        isAiming = true;
         Aim(aimDirection);
     }
     public void SetArrow(bool isActive)
@@ -80,10 +83,16 @@ public class ShooterVacuum : Vacuum
         //swallowAnimationDuration = sparksParticles.main.startLifetime.constantMax;
         //vacuumHead.DOPunchRotation((vacuumHead.right + vacuumHead.forward) * 10, swallowAnimationDuration).OnComplete(EndSwallowAnimation);
     }
+    protected override void StartSelfRotation()
+    {
+        if (!isAiming)
+            base.StartSelfRotation();
+    }
     public void StopAiming()
     {
         arrow.SetActive(false);
-        if(!IsInPulling)
+        isAiming = false;
+        if (!IsInPulling)
         StartSelfRotation();
 
     }

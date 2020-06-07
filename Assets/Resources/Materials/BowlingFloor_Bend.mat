@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BowlingFloor_Bend
-  m_Shader: {fileID: -6465566751694194690, guid: 25f3e03a11d3ec34f86c229873731f31,
+  m_Shader: {fileID: -6465566751694194690, guid: 2a42063e9a8983e44a96c2014d4a80a2,
     type: 3}
   m_ShaderKeywords: _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 4
@@ -21,11 +21,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_5F6BA150:
-        m_Texture: {fileID: 2800000, guid: 53d7657c2697cd447a89249eb23efc7b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8c4212a31b9e6734c9ade88dfc770e55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_D2106D26:
-        m_Texture: {fileID: 2800000, guid: 7eb63a36e3a111b489141b87efe67dff, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5efaa8d48149c3843adb2d974c50238f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_A90B71EA: 0.5
+    - Vector1_A90B71EA: 0
     - Vector1_F283843C: 0
     - _AlphaClip: 0
     - _BendingAmount: 0
@@ -90,8 +90,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_139DBD6D: {r: 1, g: 1, b: 1, a: 1}
-    - Color_FC7696F6: {r: 0.0009765625, g: 0.0009765625, b: 0.0009765625, a: 1}
-    - Vector2_3F251944: {r: 10, g: 10, b: 0, a: 0}
+    - Color_FC7696F6: {r: 0.03137255, g: 0.02745098, b: 0.02745098, a: 1}
+    - Vector2_3F251944: {r: 5, g: 5, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 0.9583019, b: 0.9198113, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0.097163856, g: 0.08931833, b: 0.08026579, a: 1}
