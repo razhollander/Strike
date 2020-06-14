@@ -7,62 +7,64 @@ public class ShooterVacuum : Vacuum
 {
     [Header("Shooter")]
 
-    [SerializeField] private GameObject arrow;
+    [SerializeField] private Transform arrow;
+    [SerializeField] private MeshRenderer arrowRenderer;
     [SerializeField] private float maxDistance=1000;
     [SerializeField] private float arrowLengthProportion = 1;
+    [SerializeField] private float arrowHeadLength = 1;
     [SerializeField] private float rayRadius = 0.5f;
     [SerializeField] private float arrowLerpAmount;
     [SerializeField] private float punchShootValue = 1;
     [SerializeField] private float shootAnimationDuration=0.5f;
 
     bool isAiming=false;
-    SpriteRenderer arrowSpriteRenderer;
+    Ray aimRay;
     float arrowDefaultHeight;
-    RaycastHit rayhit;
     Tween shootTween;
+    int enemyMask;
+    GameObject arrowGO;
     public void StartAiming(Vector2 aimDirection)
     {
         if(ObjectBeingSucked != null && !IsInPulling)
              StopSuckingEnemy();
         RotationTweener.Kill();
-        arrow.SetActive(true);
+        arrowGO.SetActive(true);
         isAiming = true;
         Aim(aimDirection);
     }
     public void SetArrow(bool isActive)
     {
-        arrow.SetActive(isActive);
+        arrowGO.SetActive(isActive);
     }
     public void SetArrow(ArrowObject arrowObject)
     {
-        SpriteRenderer spriteRenderer = arrow.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = arrowObject.sprite;
-        spriteRenderer.size = new Vector2(arrowObject.width, spriteRenderer.size.y);
-        //if (arrowObject.isHasChildSprite)
-        //    arrowObject.childSprite
+        arrowRenderer.sharedMaterial = arrowObject.Mat;
+        arrow.localScale = new Vector3(arrow.localScale.x, arrowObject.Width, arrow.localScale.z);
     }
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
-        arrowSpriteRenderer = arrow.GetComponent<SpriteRenderer>();
-        arrowDefaultHeight = arrowSpriteRenderer.size.y;
+        base.Awake();
+        aimRay = new Ray(VacuumPoint.position, Vector3.zero);
+        arrowDefaultHeight = arrow.localScale.x;
+        enemyMask = LayerMask.GetMask("Enemy");
+        arrowGO = arrow.gameObject;
     }
     public void Aim(Vector2 aimDirection)
     {
-        Ray ray = new Ray(VacuumPoint.position, new Vector3(aimDirection.x, 0, aimDirection.y));
-        Debug.DrawRay(VacuumPoint.position,  new Vector3(aimDirection.x, 0, aimDirection.y)*maxDistance, Color.red);
-        transform.LookAt(transform.position + new Vector3(ray.direction.x,0, ray.direction.z), Vector3.up);
+        var aimVector3 = aimDirection.ToVector3();
+        aimRay = new Ray(VacuumPoint.position, aimVector3);
+        transform.LookAt(transform.position + aimVector3, Vector3.up);
         RaycastHit rayhit;
-        if (Physics.SphereCast(ray, rayRadius, out rayhit, maxDistance, LayerMask.GetMask("Enemy")))
+        var arrowScale = arrow.localScale;
+        if (Physics.SphereCast(aimRay, rayRadius, out rayhit, maxDistance, enemyMask))
         {
-            arrowSpriteRenderer.size = Vector2.Lerp(arrowSpriteRenderer.size,new Vector2(arrowSpriteRenderer.size.x, rayhit.distance* arrowLengthProportion), arrowLerpAmount);
-            arrowSpriteRenderer.color = Color.gray;
-
+            arrow.localScale = Vector3.Lerp(arrowScale, new Vector3((rayhit.distance - arrowHeadLength) * arrowLengthProportion, arrowScale.y, arrowScale.z), arrowLerpAmount);
+            //arrowHead.color = Color.gray;
         }
         else
         {
-            arrowSpriteRenderer.color = Color.white;
-            arrowSpriteRenderer.size = Vector2.Lerp(arrowSpriteRenderer.size, new Vector2(arrowSpriteRenderer.size.x, arrowDefaultHeight), arrowLerpAmount); 
+            //arrowHead.color = Color.white;v
+            arrow.localScale = Vector3.Lerp(arrowScale, new Vector3(arrowDefaultHeight, arrowScale.y, arrowScale.z), arrowLerpAmount); 
         }
     }
     public void Shoot(ObjectShot objectShot, Vector2 direction)
@@ -90,7 +92,7 @@ public class ShooterVacuum : Vacuum
     }
     public void StopAiming()
     {
-        arrow.SetActive(false);
+        arrowGO.SetActive(false);
         isAiming = false;
         if (!IsInPulling)
         StartSelfRotation();

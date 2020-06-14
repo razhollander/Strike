@@ -42,7 +42,7 @@ public class JoystickShoot : Joystick
     public override void UpdateMe()
     {
         if(IsMouseHeld)
-                  shooterVacuum.Aim(input);
+            shooterVacuum.Aim(input);
         if (input.sqrMagnitude > Mathf.Pow(handlerRadiusToShoot, 2))
             shooterVacuum.SetArrow(true);
         else

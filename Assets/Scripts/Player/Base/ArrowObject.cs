@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class ArrowObject : ScriptableObject
 {
-    public float width;
-    public Sprite sprite;
-    public bool isHasChildSprite;
-    public Sprite childSprite;
-
+    public float Width;
+    public Material Mat;
 }

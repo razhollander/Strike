@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336d0ca3f1d9a8a4abc220ee31e95497, type: 3}
   m_Name: BasicArrow
   m_EditorClassIdentifier: 
-  width: 10
-  sprite: {fileID: 21300000, guid: abb0d74a91ad4434f9cd0400e720acef, type: 3}
-  isHasChildSprite: 0
-  childSprite: {fileID: 0}
+  Width: 1
+  Mat: {fileID: 2100000, guid: 1aafd0c7673a3b9429e22cf400386644, type: 2}
