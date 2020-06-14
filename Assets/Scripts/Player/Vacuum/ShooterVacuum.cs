@@ -9,6 +9,8 @@ public class ShooterVacuum : Vacuum
 
     [SerializeField] private Transform arrow;
     [SerializeField] private MeshRenderer arrowRenderer;
+    [SerializeField] private MeshRenderer arrowHeadRenderer;
+
     [SerializeField] private float maxDistance=1000;
     [SerializeField] private float arrowLengthProportion = 1;
     [SerializeField] private float arrowHeadLength = 1;
@@ -23,6 +25,7 @@ public class ShooterVacuum : Vacuum
     Tween shootTween;
     int enemyMask;
     GameObject arrowGO;
+    Material arrowMat;
     public void StartAiming(Vector2 aimDirection)
     {
         if(ObjectBeingSucked != null && !IsInPulling)
@@ -38,7 +41,8 @@ public class ShooterVacuum : Vacuum
     }
     public void SetArrow(ArrowObject arrowObject)
     {
-        arrowRenderer.sharedMaterial = arrowObject.Mat;
+        arrowRenderer.sharedMaterial.color = Color.white;
+        arrowMat = arrowRenderer.sharedMaterial = arrowHeadRenderer.sharedMaterial = arrowObject.Mat;
         arrow.localScale = new Vector3(arrow.localScale.x, arrowObject.Width, arrow.localScale.z);
     }
     protected override void Awake()
@@ -59,11 +63,11 @@ public class ShooterVacuum : Vacuum
         if (Physics.SphereCast(aimRay, rayRadius, out rayhit, maxDistance, enemyMask))
         {
             arrow.localScale = Vector3.Lerp(arrowScale, new Vector3((rayhit.distance - arrowHeadLength) * arrowLengthProportion, arrowScale.y, arrowScale.z), arrowLerpAmount);
-            //arrowHead.color = Color.gray;
+            arrowMat.color = Color.gray;
         }
         else
         {
-            //arrowHead.color = Color.white;v
+            arrowMat.color = Color.white;
             arrow.localScale = Vector3.Lerp(arrowScale, new Vector3(arrowDefaultHeight, arrowScale.y, arrowScale.z), arrowLerpAmount); 
         }
     }

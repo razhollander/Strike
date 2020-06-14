@@ -86,7 +86,6 @@ public class BendingManager : MonoBehaviour
 
     private void UpdateBendingAmount()
     {
-        Debug.Log("Update " + bendingAmount);
         _prevAmount = bendingAmount;
         Shader.SetGlobalFloat(BENDING_AMOUNT, bendingAmount);
         OnBendingAmountChanged?.Invoke(bendingAmount);
