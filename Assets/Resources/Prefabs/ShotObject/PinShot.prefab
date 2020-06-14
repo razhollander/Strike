@@ -4843,7 +4843,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: 67cb5133747727345a34e893465e78a2, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 7117224741512352304}
   - component: {fileID: 2080343370489885677}
   m_Layer: 0
-  m_Name: Pin
+  m_Name: PinShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
