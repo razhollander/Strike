@@ -20,6 +20,7 @@ public class ShooterVacuum : Vacuum
     [SerializeField] private float shootAnimationDuration=0.5f;
 
     bool isAiming=false;
+    bool isArrowAlreadySet = false;
     Ray aimRay;
     float arrowDefaultHeight;
     Tween shootTween;
@@ -28,15 +29,20 @@ public class ShooterVacuum : Vacuum
     Material arrowMat;
     public void StartAiming(Vector2 aimDirection)
     {
-        if(ObjectBeingSucked != null && !IsInPulling)
+        if (!isArrowAlreadySet)
+            return;
+        if (ObjectBeingSucked != null && !IsInPulling)
              StopSuckingEnemy();
         RotationTweener.Kill();
-        arrowGO.SetActive(true);
+        SetArrow(true);
         isAiming = true;
         Aim(aimDirection);
     }
     public void SetArrow(bool isActive)
     {
+        if (!isArrowAlreadySet && isActive)
+            return;
+
         arrowGO.SetActive(isActive);
     }
     public void SetArrow(ArrowObject arrowObject)
@@ -44,6 +50,7 @@ public class ShooterVacuum : Vacuum
         arrowRenderer.sharedMaterial.color = Color.white;
         arrowMat = arrowRenderer.sharedMaterial = arrowHeadRenderer.sharedMaterial = arrowObject.Mat;
         arrow.localScale = new Vector3(arrow.localScale.x, arrowObject.Width, arrow.localScale.z);
+        isArrowAlreadySet = true;
     }
     protected override void Awake()
     {
@@ -55,6 +62,9 @@ public class ShooterVacuum : Vacuum
     }
     public void Aim(Vector2 aimDirection)
     {
+        if (!isArrowAlreadySet)
+            return;
+
         var aimVector3 = aimDirection.ToVector3();
         aimRay = new Ray(VacuumPoint.position, aimVector3);
         transform.LookAt(transform.position + aimVector3, Vector3.up);
@@ -96,7 +106,7 @@ public class ShooterVacuum : Vacuum
     }
     public void StopAiming()
     {
-        arrowGO.SetActive(false);
+        SetArrow(false);
         isAiming = false;
         if (!IsInPulling)
         StartSelfRotation();

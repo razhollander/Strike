@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using System.Linq;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class GameManager : MonoBehaviour
         var normalPlayState = GameStateManager.GetState<NormalPlayState>();
         normalPlayState.OnEnter+= ()=> summonCorutine = StartCoroutine(SummonEnemies());
         normalPlayState.OnLeave+= () => { if (summonCorutine != null) StopCoroutine(summonCorutine); };
+
+        var postProcessLayer = FindObjectOfType<PostProcessLayer>();
+        postProcessLayer.volumeLayer.value = ~LayerMask.GetMask("UI");
     }
     public List<SuckableObject> GetSuckableObjects()
     {

@@ -4736,7 +4736,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: af29e4d6b5ada10438f9e9b5bb6d19d3, type: 2}
+  - {fileID: 2100000, guid: 96fc0acaee5e9ab48b1ae9aeca5ecc68, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4966,7 +4966,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7735849, g: 0.20337872, b: 0, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5028,8 +5028,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.025
-      minScalar: 0.05
+      scalar: 0.3
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5555,7 +5555,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 60
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9398,7 +9398,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 776677ab3818fb249adaca05f4e04545, type: 2}
+  - {fileID: 2100000, guid: 3b43fb6c8e3705d4a95575e2afd93ccf, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9659,12 +9659,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigExplosion
       objectReference: {fileID: 0}
+    - target: {fileID: 6304638739701456181, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6304749645474195283, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6304638739701456181, guid: ae7f01daf906786459d65e930c823443,
+    - target: {fileID: 6304165540696715395, guid: ae7f01daf906786459d65e930c823443,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270014764260709599, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -9675,11 +9685,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6304325092471790889, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304165540696715395, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -9740,11 +9745,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6304566832695480561, guid: ae7f01daf906786459d65e930c823443,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270014764260709599, guid: ae7f01daf906786459d65e930c823443,
         type: 3}
       propertyPath: playOnAwake
       value: 0
