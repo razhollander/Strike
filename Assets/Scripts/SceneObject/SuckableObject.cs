@@ -81,6 +81,7 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
     {
         Vector3 yPos = (MeshHandler.GetMeshHeight(thisRenderer) / 2 + EXTRA_Y_SPACE) * Vector3.up;
         transform.position = spawnedPos + yPos;
+        Debug.Log(transform.position.y);
     }
 
     public void DoQuitAnimation()
