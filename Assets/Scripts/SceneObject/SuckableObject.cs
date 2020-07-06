@@ -74,14 +74,13 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
 
     public virtual SuckableObject Duplicate()
     {
-        return this.Get<SuckableObject>();
+        return this.Get<SuckableObject>(false);
     }
 
     public virtual void SetSpawnedPosition(Vector3 spawnedPos)
     {
         Vector3 yPos = (MeshHandler.GetMeshHeight(thisRenderer) / 2 + EXTRA_Y_SPACE) * Vector3.up;
         transform.position = spawnedPos + yPos;
-        Debug.Log(transform.position.y);
     }
 
     public void DoQuitAnimation()
