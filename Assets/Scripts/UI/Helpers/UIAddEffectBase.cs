@@ -33,9 +33,14 @@ public class UIAddEffectBase : PooledMonobehaviour
     private void OnEnable()
     {
         Vector2 referenceResolution = _masterCanvasScaler.referenceResolution;
-        Vector2 screenWidth = new Vector2(Screen.width, Screen.height);
-        _resolutionMultiplier = referenceResolution / screenWidth;
+        float matchHeight = _masterCanvasScaler.matchWidthOrHeight;
+        float matchWidth = 1 - _masterCanvasScaler.matchWidthOrHeight;
+        Vector2 screenMatch = new Vector2(2-matchWidth,matchHeight/3+2/3f);//(0,1)
+        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+        //float screenRatio = screenSize.x / screenSize.y;//19.5/9
+        _resolutionMultiplier = referenceResolution / screenSize;// * screenMatch;
     }
+
     public void StartEffect(Sprite sprite, RectTransform parentTransfrom, Vector3 startWorldPos, Action OnArrive = null)
     {
         image.sprite = sprite;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class HealthySuckableObject : InventorySuckableObject
     private Coroutine healthCanvasTimeCoroutine;
 
     private float HealthLimit;
-
+    protected Action OnBeingHit;
     public float maxHealth;
     protected float health;
     public float Health
@@ -27,8 +28,6 @@ public class HealthySuckableObject : InventorySuckableObject
         healthCanvas.SetActive(false);
         SetHealth(maxHealth);
     }
-
-
 
     public void SetHealth(float value, bool isRelative = true, bool isUpdateHealthLimit = false, float delay = 0)
     {
@@ -58,11 +57,10 @@ public class HealthySuckableObject : InventorySuckableObject
         health = health >= 0 ? health : 0;
         health = Mathf.Clamp(health, 0, HealthLimit);
         if (isUpdateHealthLimit)
-            HealthLimit = health;
-        healthBar.UpdateBar(health, maxHealth);
-        if (health <= 0)
         {
-
+            HealthLimit = health;
+            OnBeingHit?.Invoke();
         }
+        healthBar.UpdateBar(health, maxHealth);
     }
 }

@@ -6,37 +6,32 @@ using System;
 using System.Threading.Tasks;
 public class Enemy : HealthySuckableObject
 {
+    const string  IS_HIT = "_IsHit";
 
     [SerializeField] protected FollowPlayer thisFollowPlayer;
 
-    //public float maxHealth;
     [SerializeField] protected float spawnTimeDelay = 0.2f;
-    //[SerializeField] private float healthCanvasTime=3;
-    //[SerializeField] private GameObject healthCanvas;
-    //private Coroutine healthCanvasTimeCoroutine;
-    //protected float health;
-    //public SimpleHealthBar healthBar;
-    //private float HealthLimit;
+    [SerializeField] private float _hitEffectDuration = 0.5f;
     private float timeToDie = 3;
     protected event Action dieEvent;
     protected event Action startDyingEvent;
+    private Material _material;
+    private WaitForSeconds _hitWaitForSeconds;
 
-    //public int Number = 0;
     protected override void Awake()
     {
         base.Awake();
         startDyingEvent += StartDying;
-    }
+        OnBeingHit += DoHitEffect;
 
+        _material = thisRenderer.material;
+        _hitWaitForSeconds = new WaitForSeconds(_hitEffectDuration);
+    }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         thisFollowPlayer.enabled = true;
-        //health = maxHealth;
-        //HealthLimit = maxHealth;
-        //healthCanvas.SetActive(false);
-        //SetHealth(maxHealth);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +39,20 @@ public class Enemy : HealthySuckableObject
         {
             startDyingEvent();
         }
+    }
+
+    private void DoHitEffect()
+    {
+        if (!_material.HasProperty(IS_HIT))
+            return;
+
+        _material.SetInt(IS_HIT,1);
+        StartCoroutine(EndHitEffect());
+    }
+    private IEnumerator EndHitEffect()
+    {
+        yield return _hitWaitForSeconds;
+        _material.SetInt(IS_HIT, 0);
     }
     private void StartDying()
     {
@@ -57,60 +66,18 @@ public class Enemy : HealthySuckableObject
         if(!IsBeingSucked)
              gameObject.SetActive(false);
     }
- 
-    //public void SetHealth(float value, bool isRelative = true, bool isUpdateHealthLimit = false, float delay = 0)
-    //{
-    //    if (value < 0)
-    //    {
-    //        if (healthCanvasTimeCoroutine != null)
-    //            StopCoroutine(healthCanvasTimeCoroutine);
-    //        healthCanvasTimeCoroutine = StartCoroutine(HealthCanvasShow());
-    //    }
-    //    StartCoroutine(SetHealthDelayed(value, isRelative, isUpdateHealthLimit, delay));
-    //}
 
     public void AddForce(Vector3 force,float delay)
     {
         StartCoroutine(AddForceDelay(force, delay));
     }
+
     private IEnumerator AddForceDelay(Vector3 force,float delay)
     {
         yield return new WaitForSeconds(delay);
         thisRigidBody.AddForce(force, ForceMode.Force);
     }
-    //private IEnumerator HealthCanvasShow()
-    //{
-    //    healthCanvas.SetActive(true);
-    //    yield return new WaitForSeconds(healthCanvasTime);
-    //    healthCanvas.SetActive(false);
-    //}
-    //public void ResetHealth()
-    //{
-    //    SetHealth(maxHealth, false);
-    //}
-    //private IEnumerator SetHealthDelayed(float value, bool isRelative, bool isUpdateHealthLimit, float delay)
-    //{
-    //    if (delay > 0)
-    //        yield return new WaitForSeconds(delay);
-    //    health = isRelative ? health + value : value;
-    //    health = health >= 0 ? health : 0;
-    //    health = Mathf.Clamp(health, 0, HealthLimit);
-    //    if (isUpdateHealthLimit)
-    //        HealthLimit = health;
-    //    healthBar.UpdateBar(health, maxHealth);
-    //    if (health<=0)
-    //    {
-
-    //    }
-    //}
-    //protected void SetCenterOfMass()
-    //{
-    //    GetComponentInChildren<Rigidbody>().centerOfMass = Vector3.down;
-    //}
-    //public override SuckableObject Duplicate()
-    //{
-    //    return this.Get<Enemy>();
-    //}
+   
     private IEnumerator SpawnInDelay()
     {
         MakeActive(false);
