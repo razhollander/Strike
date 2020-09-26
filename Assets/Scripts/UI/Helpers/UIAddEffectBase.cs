@@ -22,23 +22,12 @@ public class UIAddEffectBase : PooledMonobehaviour
 
     RectTransform _rectTransform;
     Vector2 _resolutionMultiplier;
-    CanvasScaler _masterCanvasScaler;
+    Canvas _masterCanvas;
     private void Awake()
     {
         _rectTransform = (RectTransform)transform;
         image.enabled = false;
-        _masterCanvasScaler = GameObject.FindGameObjectWithTag("MasterCanvas").GetComponent<CanvasScaler>();
-    }
-
-    private void OnEnable()
-    {
-        Vector2 referenceResolution = _masterCanvasScaler.referenceResolution;
-        float matchHeight = _masterCanvasScaler.matchWidthOrHeight;
-        float matchWidth = 1 - _masterCanvasScaler.matchWidthOrHeight;
-        Vector2 screenMatch = new Vector2(2-matchWidth,matchHeight/3+2/3f);//(0,1)
-        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
-        //float screenRatio = screenSize.x / screenSize.y;//19.5/9
-        _resolutionMultiplier = referenceResolution / screenSize;// * screenMatch;
+        _masterCanvas = GameObject.FindGameObjectWithTag("MasterCanvas").GetComponent<Canvas>();
     }
 
     public void StartEffect(Sprite sprite, RectTransform parentTransfrom, Vector3 startWorldPos, Action OnArrive = null)
@@ -51,9 +40,9 @@ public class UIAddEffectBase : PooledMonobehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        Vector3 spawnPointScreenSpace = CameraManager.instance.MainCamera.WorldToScreenPoint(startWorldPos);
-        Vector3 thisPointScreenSpace = CameraManager.instance.MainCamera.WorldToScreenPoint(parentTransfrom.position);
-        _rectTransform.localPosition = (spawnPointScreenSpace - thisPointScreenSpace) * _resolutionMultiplier;
+        Vector3 camPos = CameraManager.instance.MainCamera.transform.position;
+        Vector3 vectorCameraToCanvas = (startWorldPos - camPos).normalized * _masterCanvas.planeDistance;
+        _rectTransform.position = camPos + vectorCameraToCanvas;
 
         image.enabled = true;
 
