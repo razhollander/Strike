@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetLaserStrike : PooledMonobehaviour
+public class MagnetLaserStrike : PooledMonobehaviour, IUpdatable
 {
     [SerializeField] LineRenderer _lineRenderer1;
     [SerializeField] LineRenderer _lineRenderer2;
@@ -27,6 +27,15 @@ public class MagnetLaserStrike : PooledMonobehaviour
     float step;
     float pointY1;
     float pointY2;
+
+    public bool UpdateWhenDisabled => false;
+
+    public bool IsEnabled => enabled && gameObject.activeInHierarchy;
+
+    public void Awake()
+    {
+        UpdateManager.AddItem(this);
+    }
 
     // Generates the sine wave points.
     public void GeneratePoints()
@@ -74,13 +83,21 @@ public class MagnetLaserStrike : PooledMonobehaviour
         lr.colorGradient = gradient;
     }
 
-    public void Update()
-{
-    if (Target != null)
+    public void UpdateMe()
     {
-        GeneratePoints();
-        _lineRenderer1.Simplify(tolerance);
-        _lineRenderer2.Simplify(tolerance);
+        if (Target != null)
+        {
+            GeneratePoints();
+            _lineRenderer1.Simplify(tolerance);
+            _lineRenderer2.Simplify(tolerance);
+        }
     }
-}
+
+    public void FixedUpdateMe()
+    {
+    }
+
+    public void LateUpdateMe()
+    {
+    }
 }

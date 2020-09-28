@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class Asteroid : PooledMonobehaviour
+public class Asteroid : PooledMonobehaviour, IUpdatable
 {
     const string VORONOI_COLOR = "_voronoiColor";
     const string FRENSEL_COLOR = "_frenselColor";
@@ -12,29 +12,37 @@ public class Asteroid : PooledMonobehaviour
     [SerializeField] float hitRadius = 3;
     [SerializeField] float rotationSpeed=1;
     [SerializeField] float scaleSpeed;
-    [SerializeField] Transform astroidObject;
+    [SerializeField] Transform asteroidObject;
     [SerializeField] ParticleSystem shadowHitPoint;
     [SerializeField] float shadowShakeStrength = 1;
     [SerializeField] int shadowShakeVabration = 10;
     [SerializeField] ParticleSystem hitExplosionParticles;
     [SerializeField] ParticleSystem fireTrailParticles;
     [SerializeField] Renderer thisRenderer;
+
     private Tween rotationTweener;
     private Vector3 Scale;
     private Vector3 startScale;
     Color asteroidVoronoiColor;
     Color asteroidFrenselColor;
     Material asteroidMaterial;
+    Vector3 prevPos;
+
+    public bool UpdateWhenDisabled => false;
+
+    public bool IsEnabled => enabled && gameObject.activeInHierarchy;
+
     private void Awake()
     {
+        UpdateManager.AddItem(this);
         Scale = transform.localScale;
         asteroidMaterial = thisRenderer.material;
         asteroidVoronoiColor = asteroidMaterial.GetColor(VORONOI_COLOR);
         asteroidFrenselColor = asteroidMaterial.GetColor(FRENSEL_COLOR);
-
     }
     private void OnEnable()
     {
+        prevPos = transform.position;
         thisRenderer.enabled = true;
         asteroidMaterial.SetColor(VORONOI_COLOR, asteroidVoronoiColor);
         asteroidMaterial.SetColor(FRENSEL_COLOR, asteroidFrenselColor);
@@ -50,10 +58,10 @@ public class Asteroid : PooledMonobehaviour
         shadowHitPoint.Play();
         //rotation
         transform.LookAt(new Vector3(landPosition.x,transform.position.y,landPosition.z));
-        Vector3 rotationVec = new Vector3(100*rotationSpeed,0, 0);
+        //Vector3 rotationVec = new Vector3(100*rotationSpeed,0, 0);
         transform.localScale = startScale;
         transform.DOScale(Scale, scaleSpeed);
-        rotationTweener = astroidObject.DORotate(rotationVec, time*1.2f, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        //rotationTweener = astroidObject.DORotate(rotationVec, time*1.2f, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
         //Lounch
         transform.position = startPos;
         transform.DOJump(landPosition, jumpPower, 1, time).SetEase(Ease.InSine).OnComplete(() => StartCoroutine(Hit(landPosition)));
@@ -88,6 +96,22 @@ public class Asteroid : PooledMonobehaviour
 
         gameObject.SetActive(false);
         shadowHitPoint.transform.SetParent(transform);
+    }
 
+    public void UpdateMe()
+    {
+        var delta = asteroidObject.position - prevPos;
+        Debug.Log(delta);
+        asteroidObject.rotation = Quaternion.LookRotation(delta, Vector3.up);
+        prevPos = asteroidObject.position;
+    }
+
+    public void FixedUpdateMe()
+    {
+        
+    }
+
+    public void LateUpdateMe()
+    {
     }
 }

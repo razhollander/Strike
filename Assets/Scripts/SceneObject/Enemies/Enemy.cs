@@ -11,12 +11,13 @@ public class Enemy : HealthySuckableObject
     [SerializeField] protected FollowPlayer thisFollowPlayer;
 
     [SerializeField] protected float spawnTimeDelay = 0.2f;
-    [SerializeField] private float _hitEffectDuration = 0.5f;
+    private static float _hitEffectDuration = 0.3f;
     private float timeToDie = 3;
     protected event Action dieEvent;
     protected event Action startDyingEvent;
     private Material _material;
     private WaitForSeconds _hitWaitForSeconds;
+    private Coroutine hitEffectCoroutine;
 
     protected override void Awake()
     {
@@ -46,11 +47,14 @@ public class Enemy : HealthySuckableObject
         if (!_material.HasProperty(IS_HIT))
             return;
 
-        _material.SetInt(IS_HIT,1);
-        StartCoroutine(EndHitEffect());
+        if (hitEffectCoroutine != null)
+            StopCoroutine(hitEffectCoroutine);
+
+        hitEffectCoroutine = StartCoroutine(EndHitEffect());
     }
     private IEnumerator EndHitEffect()
     {
+        _material.SetInt(IS_HIT, 1);
         yield return _hitWaitForSeconds;
         _material.SetInt(IS_HIT, 0);
     }

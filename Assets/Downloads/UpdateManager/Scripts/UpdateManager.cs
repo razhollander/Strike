@@ -22,9 +22,9 @@ public class UpdateManager : MonoBehaviour
 	private int fixedUpdateArrayCount = 0;
     [SerializeField]
 	private int lateUpdateArrayCount = 0;
-	private OverridableMonoBehaviour[] regularArray = new OverridableMonoBehaviour[0];
-	private OverridableMonoBehaviour[] fixedArray = new OverridableMonoBehaviour[0];
-	private OverridableMonoBehaviour[] lateArray = new OverridableMonoBehaviour[0];
+	private IUpdatable[] regularArray = new IUpdatable[0];
+	private IUpdatable[] fixedArray = new IUpdatable[0];
+	private IUpdatable[] lateArray = new IUpdatable[0];
 
 	//public UpdateManager()
 	//{
@@ -34,48 +34,51 @@ public class UpdateManager : MonoBehaviour
 	{
 		instance = this;
 	}
-	public static void AddItem(OverridableMonoBehaviour behaviour)
+	public static void AddItem(IUpdatable behaviour)
 	{
 		instance.AddItemToArray(behaviour);
 	}
 
-	public static void RemoveSpecificItem(OverridableMonoBehaviour behaviour)
+	public static void RemoveSpecificItem(IUpdatable behaviour)
 	{
 		instance.RemoveSpecificItemFromArray(behaviour);
 	}
 
-	public static void RemoveSpecificItemAndDestroyIt(OverridableMonoBehaviour behaviour)
+	public static void RemoveSpecificItemAndDestroyIt(IUpdatable behaviour)
 	{
 		instance.RemoveSpecificItemFromArray(behaviour);
 
-		Destroy(behaviour.gameObject);
+		if (behaviour is MonoBehaviour)
+		{
+			Destroy(((MonoBehaviour)behaviour).gameObject);
+		}
 	}
 
-	private void AddItemToArray(OverridableMonoBehaviour behaviour)
+	private void AddItemToArray(IUpdatable behaviour)
 	{
-		if (behaviour.GetType().GetMethod("UpdateMe").DeclaringType != typeof(OverridableMonoBehaviour))
+		if (behaviour.GetType().GetMethod("UpdateMe").DeclaringType != typeof(IUpdatable))
 		{
 			regularArray = ExtendAndAddItemToArray(regularArray, behaviour);
 			regularUpdateArrayCount++;
 		}
 
-		if (behaviour.GetType().GetMethod("FixedUpdateMe").DeclaringType != typeof(OverridableMonoBehaviour))
+		if (behaviour.GetType().GetMethod("FixedUpdateMe").DeclaringType != typeof(IUpdatable))
 		{
 			fixedArray = ExtendAndAddItemToArray(fixedArray, behaviour);
 			fixedUpdateArrayCount++;
 		}
 
-		if (behaviour.GetType().GetMethod("LateUpdateMe").DeclaringType == typeof(OverridableMonoBehaviour))
+		if (behaviour.GetType().GetMethod("LateUpdateMe").DeclaringType == typeof(IUpdatable))
 			return;
 
 		lateArray = ExtendAndAddItemToArray(lateArray, behaviour);
 		lateUpdateArrayCount++;
 	}
 
-	public OverridableMonoBehaviour[] ExtendAndAddItemToArray(OverridableMonoBehaviour[] original, OverridableMonoBehaviour itemToAdd)
+	public IUpdatable[] ExtendAndAddItemToArray(IUpdatable[] original, IUpdatable itemToAdd)
 	{
 		int size = original.Length;
-		OverridableMonoBehaviour[] finalArray = new OverridableMonoBehaviour[size + 1];
+		IUpdatable[] finalArray = new IUpdatable[size + 1];
 		for (int i = 0; i < size; i++)
 		{
 			finalArray[i] = original[i];
@@ -84,7 +87,7 @@ public class UpdateManager : MonoBehaviour
 		return finalArray;
 	}
 
-	private void RemoveSpecificItemFromArray(OverridableMonoBehaviour behaviour)
+	private void RemoveSpecificItemFromArray(IUpdatable behaviour)
 	{
 		if (CheckIfArrayContainsItem(regularArray, behaviour))
 		{
@@ -104,7 +107,7 @@ public class UpdateManager : MonoBehaviour
 		lateUpdateArrayCount--;
 	}
 
-	public bool CheckIfArrayContainsItem(OverridableMonoBehaviour[] arrayToCheck, OverridableMonoBehaviour objectToCheckFor)
+	public bool CheckIfArrayContainsItem(IUpdatable[] arrayToCheck, IUpdatable objectToCheckFor)
 	{
 		int size = arrayToCheck.Length;
 
@@ -116,10 +119,10 @@ public class UpdateManager : MonoBehaviour
 		return false;
 	}
 
-	public OverridableMonoBehaviour[] ShrinkAndRemoveItemToArray(OverridableMonoBehaviour[] original, OverridableMonoBehaviour itemToRemove)
+	public IUpdatable[] ShrinkAndRemoveItemToArray(IUpdatable[] original, IUpdatable itemToRemove)
 	{
 		int size = original.Length;
-		OverridableMonoBehaviour[] finalArray = new OverridableMonoBehaviour[size - 1];
+		IUpdatable[] finalArray = new IUpdatable[size - 1];
 		for (int i = 0; i < size; i++)
 		{
 			if (original[i] == itemToRemove) continue;
@@ -141,7 +144,7 @@ public class UpdateManager : MonoBehaviour
 #if UNITY_3 || UNITY_3_0 || UNITY_3_1 || UNITY_3_2 || UNITY_3_3 || UNITY_3_4 || UNITY_3_5
 				&& (regularArray[i].enabled == false || regularArray[i].gameObject.active == false)
 #else
-				&& (regularArray[i].enabled == false || regularArray[i].gameObject.activeInHierarchy == false)
+				&& !regularArray[i].IsEnabled
 #endif
 			) continue;
 
@@ -160,7 +163,7 @@ public class UpdateManager : MonoBehaviour
 #if UNITY_3 || UNITY_3_0 || UNITY_3_1 || UNITY_3_2 || UNITY_3_3 || UNITY_3_4 || UNITY_3_5
 				&& (fixedArray[i].enabled == false || fixedArray[i].gameObject.active == false)
 #else
-				&& (fixedArray[i].enabled == false || fixedArray[i].gameObject.activeInHierarchy == false)
+				&& !fixedArray[i].IsEnabled
 #endif
 			) continue;
 
@@ -179,7 +182,7 @@ public class UpdateManager : MonoBehaviour
 #if UNITY_3 || UNITY_3_0 || UNITY_3_1 || UNITY_3_2 || UNITY_3_3 || UNITY_3_4 || UNITY_3_5
 				&& (lateArray[i].enabled == false || lateArray[i].gameObject.active == false)
 #else
-				&& (lateArray[i].enabled == false || lateArray[i].gameObject.activeInHierarchy == false)
+				&& !lateArray[i].IsEnabled
 #endif
 			) continue;
 

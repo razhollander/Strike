@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class OverridableMonoBehaviour : MonoBehaviour
+public class OverridableMonoBehaviour : MonoBehaviour, IUpdatable
 {
 	[SerializeField]
 	protected bool updateWhenDisabled = false;
@@ -37,4 +37,17 @@ public class OverridableMonoBehaviour : MonoBehaviour
 	/// Do not forget to replace your Late Update function with public override void LateUpdateMe()
 	/// </summary>
 	public virtual void LateUpdateMe() {}
+	public bool IsEnabled
+	{
+		get { return enabled && gameObject.activeInHierarchy; }
+	}
+}
+
+public interface IUpdatable
+{
+    bool UpdateWhenDisabled { get;}
+	void UpdateMe();
+	void FixedUpdateMe();
+	void LateUpdateMe();
+	bool IsEnabled { get; }
 }
