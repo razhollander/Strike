@@ -20,6 +20,13 @@ public class HealthySuckableObject : InventorySuckableObject
     {
         get { return health; }
     }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        pulledEvent += () => healthCanvas.SetActive(false);
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();

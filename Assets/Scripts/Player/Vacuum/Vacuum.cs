@@ -116,7 +116,7 @@ public class Vacuum : OverridableMonoBehaviour
     }
     private void ShakeObject(SuckableObject suckedObject)
     {
-        _shakeTweener = suckedObject.thisRenderer.transform.DOShakeRotation(4, 10, 6, 70, false).SetEase(Ease.Linear).SetLoops(-1);
+        _shakeTweener = suckedObject._renderer.transform.DOShakeRotation(4, 10, 6, 70, false).SetEase(Ease.Linear).SetLoops(-1);
     }
     private IEnumerator SuckObject()
     {
@@ -148,7 +148,7 @@ public class Vacuum : OverridableMonoBehaviour
     {
         IsInPulling = true;
         _shakeTweener.Kill();
-        int times = 14 * (int)_pullingSpeed;
+        int times = 7 * (int)_pullingSpeed;
         int x = Random.Range(1 * times, 2 * times);
         int y = Random.Range(1 * times, 2 * times);
         int z = Random.Range(1 * times, 2 * times);
@@ -156,11 +156,13 @@ public class Vacuum : OverridableMonoBehaviour
         pulledObjectBeginScale = ObjectBeingSucked.transform.localScale;
         float prevDistance = 0;
         float distance = Vector3.Distance(ObjectBeingSucked.transform.position, VacuumPoint.position);
-        ObjectBeingSucked.GetPulled();
+        ObjectBeingSucked.GetPulled(distance);
         while (distance > minDistance)
         {
             ObjectBeingSucked.transform.Rotate(rotationVec * Time.deltaTime, Space.Self);
             ObjectBeingSucked.transform.position += (VacuumPoint.position - ObjectBeingSucked.transform.position).normalized * _pullingSpeed * Time.deltaTime;
+            ObjectBeingSucked.SetSuckEffectPoint(VacuumPoint.position);
+
             prevDistance = distance;
             distance = Vector3.Distance(ObjectBeingSucked.transform.position, VacuumPoint.position);
             if (prevDistance < distance || distance < minDistance)
@@ -169,7 +171,7 @@ public class Vacuum : OverridableMonoBehaviour
             }
             else
             {
-                ObjectBeingSucked.transform.localScale = pulledObjectBeginScale * Mathf.Clamp(distance / _vacuumRadius, 0.1f, 1);
+                //ObjectBeingSucked.transform.localScale = pulledObjectBeginScale * Mathf.Clamp(distance / _vacuumRadius, 0.1f, 1);
                 transform.LookAt(new Vector3(ObjectBeingSucked.transform.position.x, transform.position.y, ObjectBeingSucked.transform.position.z), Vector3.up);
             }
             yield return null;

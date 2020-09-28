@@ -45,7 +45,7 @@ public class FirePinEnemy : AttackingEnemy
     }
     protected override void MakeActive(bool isActive)
     {
-        thisRenderer.gameObject.SetActive(isActive);
+        _renderer.gameObject.SetActive(isActive);
         base.MakeActive(isActive);
     }
     protected override IEnumerator Attack()

@@ -64,7 +64,7 @@ MonoBehaviour:
   initialPoolSize: 10
   canBeSucked: 1
   suckableobjectType: 8
-  thisRenderer: {fileID: 1576350395022405903}
+  _renderer: {fileID: 1576350395022405903}
   thisCollider: {fileID: 8736236471283477064}
   thisRigidBody: {fileID: 5563526502657718651}
   MoneyValue: 50

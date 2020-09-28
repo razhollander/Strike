@@ -5,45 +5,88 @@ using System;
 using DG.Tweening;
 public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
 {
-    private const float EXTRA_Y_SPACE = 0.1f;
+    private int DISTANCE_PROPERTY = Shader.PropertyToID("_Distance");
+    private int OVER_DISTANCE_SUCKED_PROPERTY = Shader.PropertyToID("_OverDIstanceSucked");
 
+    private int IS_SUCKED_PROPERTY = Shader.PropertyToID("_IsSucked");
+    private int HOLE_POSITION_PROPERTY = Shader.PropertyToID("_HolePosition");
+
+    private const float EXTRA_Y_SPACE = 0.1f;
     [SerializeField]
     protected bool canBeSucked = true;
     const float ON_QUIT_ANIMATION_TIME = 2f;
 
     [SerializeField] protected SuckableobjectType suckableobjectType;
-    [SerializeField] public Renderer thisRenderer;
+    [SerializeField] public Renderer _renderer;
     [SerializeField] protected Collider thisCollider;
     [SerializeField] protected Rigidbody thisRigidBody;
+    protected Material _material;
 
     private Vector3 BeginLocalScale;
     protected event Action pulledEvent;
+
+    private bool _isSupportSuckEffect = false;
     public bool IsActive { get; private set; }
     public bool IsBeingSucked { get; set; }
     public bool CanBeSucked()
     {
         return canBeSucked;
     }
-    public void DisableCollider()
-    {
-        thisCollider.enabled = false;
-    }
-    public void GetPulled()
-    {
-        thisRigidBody.isKinematic = true;
-        pulledEvent();
-    }
-    public virtual void Collected()
-    {
-        gameObject.SetActive(false);
-        IsBeingSucked = false;
-    }
+
     protected virtual void Awake()
     {
         BeginLocalScale = transform.localScale;
         thisRigidBody.centerOfMass = Vector3.zero;
         pulledEvent += DisableCollider;
+
+        _material = _renderer.material;
+        _isSupportSuckEffect = _material.HasProperty(DISTANCE_PROPERTY) &&
+            _material.HasProperty(HOLE_POSITION_PROPERTY) &&
+            _material.HasProperty(IS_SUCKED_PROPERTY);
+
+        if (_isSupportSuckEffect)
+        {
+            _material.SetInt(IS_SUCKED_PROPERTY, 0);
+            //_material.SetFloat(DISTANCE_PROPERTY, GameManager.Instance.UpgradesManager.GetUpgrade<RadiusUpgrader>().GetUpgradeValue());
+        }
     }
+
+    public void DisableCollider()
+    {
+        thisCollider.enabled = false;
+    }
+    public void GetPulled(float startDistance)
+    {
+        if(_isSupportSuckEffect)
+        {
+            _material.SetInt(IS_SUCKED_PROPERTY, 1);
+            _material.SetFloat(DISTANCE_PROPERTY, startDistance/2);
+            _material.SetFloat(OVER_DISTANCE_SUCKED_PROPERTY, startDistance/2);
+        }
+
+        thisRigidBody.isKinematic = true;
+        pulledEvent();
+    }
+
+    public virtual void Collected()
+    {
+        if (_isSupportSuckEffect)
+        {
+            _material.SetInt(IS_SUCKED_PROPERTY, 0);
+        }
+
+        gameObject.SetActive(false);
+        IsBeingSucked = false;
+    }
+
+    public void SetSuckEffectPoint(Vector3 holePos)
+    {
+        if(_isSupportSuckEffect)
+        {
+            _material.SetVector(HOLE_POSITION_PROPERTY ,holePos);
+        }
+    }
+
     protected virtual void OnEnable()
     {
         ResetTransform();
@@ -67,7 +110,7 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
     protected virtual void MakeActive(bool isActive)
     {
         thisCollider.enabled = isActive;
-        thisRenderer.enabled = isActive;
+        _renderer.enabled = isActive;
         thisRigidBody.useGravity = isActive;
         IsActive = isActive;
     }
@@ -79,7 +122,7 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
 
     public virtual void SetSpawnedPosition(Vector3 spawnedPos)
     {
-        Vector3 yPos = (MeshHandler.GetMeshHeight(thisRenderer) / 2 + EXTRA_Y_SPACE) * Vector3.up;
+        Vector3 yPos = (MeshHandler.GetMeshHeight(_renderer) / 2 + EXTRA_Y_SPACE) * Vector3.up;
         transform.position = spawnedPos + yPos;
     }
 

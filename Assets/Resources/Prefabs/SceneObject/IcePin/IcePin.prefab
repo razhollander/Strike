@@ -23959,7 +23959,7 @@ MonoBehaviour:
   initialPoolSize: 2
   canBeSucked: 1
   suckableobjectType: 4
-  thisRenderer: {fileID: 3629263807141217088}
+  _renderer: {fileID: 3629263807141217088}
   thisCollider: {fileID: 8262479636383553307}
   thisRigidBody: {fileID: 7653102630084225264}
   healthCanvasTime: 3

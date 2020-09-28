@@ -106,7 +106,7 @@ public class MagneticPinEnemy : Enemy
     }
     protected override void MakeActive(bool isActive)
     {
-        thisRenderer.gameObject.SetActive(isActive);
+        _renderer.gameObject.SetActive(isActive);
         _magnetLaserStrike.gameObject.SetActive(isActive);
        _isEffectEnabled = isActive;
 

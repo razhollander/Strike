@@ -30,7 +30,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1616209857393231033}
+  - {fileID: 1616209857407327384}
   m_Father: {fileID: 253076868896668784}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616209857393230106}
+  m_GameObject: {fileID: 1616209857393284112}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
@@ -256,18 +256,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 10
+  canBeSucked: 1
   suckableobjectType: 1
-  scoreValue: 0
-  thisRenderer: {fileID: 9122479814970042534}
+  _renderer: {fileID: 9122479814970042534}
   thisCollider: {fileID: 4498544385761885437}
   thisRigidBody: {fileID: 2806159765722841878}
-  canBeSucked: 1
-  thisFollowPlayer: {fileID: -7233009536556429776}
-  maxHealth: 100
-  spawnTimeDelay: 0.2
   healthCanvasTime: 3
   healthCanvas: {fileID: 920191540}
-  healthBar: {fileID: 1616209857393231315}
+  healthBar: {fileID: 5875452044582598617}
+  maxHealth: 100
+  thisFollowPlayer: {fileID: -7233009536556429776}
+  spawnTimeDelay: 0.2
 --- !u!114 &-7233009536556429776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,19 +414,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
---- !u!1 &1616209857393230106 stripped
+--- !u!1 &1616209857393284112 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 119886, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 1616209857393229918}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1616209857393231033 stripped
+--- !u!224 &1616209857407327384 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22486214, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 1616209857393229918}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1616209857393231315 stripped
+--- !u!114 &5875452044582598617 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5180303731695597447, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}

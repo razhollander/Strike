@@ -15,7 +15,6 @@ public class Enemy : HealthySuckableObject
     private float timeToDie = 3;
     protected event Action dieEvent;
     protected event Action startDyingEvent;
-    private Material _material;
     private WaitForSeconds _hitWaitForSeconds;
     private Coroutine hitEffectCoroutine;
 
@@ -25,7 +24,6 @@ public class Enemy : HealthySuckableObject
         startDyingEvent += StartDying;
         OnBeingHit += DoHitEffect;
 
-        _material = thisRenderer.material;
         _hitWaitForSeconds = new WaitForSeconds(_hitEffectDuration);
     }
 
@@ -33,6 +31,11 @@ public class Enemy : HealthySuckableObject
     {
         base.OnEnable();
         thisFollowPlayer.enabled = true;
+
+        if (_material.HasProperty(IS_HIT))
+        {
+            _material.SetInt(IS_HIT, 0);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -50,9 +53,9 @@ public class Enemy : HealthySuckableObject
         if (hitEffectCoroutine != null)
             StopCoroutine(hitEffectCoroutine);
 
-        hitEffectCoroutine = StartCoroutine(EndHitEffect());
+        hitEffectCoroutine = StartCoroutine(DoHitEffectCoroutine());
     }
-    private IEnumerator EndHitEffect()
+    private IEnumerator DoHitEffectCoroutine()
     {
         _material.SetInt(IS_HIT, 1);
         yield return _hitWaitForSeconds;

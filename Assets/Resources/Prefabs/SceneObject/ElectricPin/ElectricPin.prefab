@@ -39068,7 +39068,7 @@ MonoBehaviour:
   initialPoolSize: 10
   canBeSucked: 1
   suckableobjectType: 3
-  thisRenderer: {fileID: 8083045723034184711}
+  _renderer: {fileID: 8083045723034184711}
   thisCollider: {fileID: 3520471330072737884}
   thisRigidBody: {fileID: 2901526785762248631}
   healthCanvasTime: 3
@@ -39077,7 +39077,6 @@ MonoBehaviour:
   maxHealth: 150
   thisFollowPlayer: {fileID: 4630746786140002173}
   spawnTimeDelay: 0.3
-  _hitEffectDuration: 0.15
   minAttackTimer: 5
   maxAttackTimer: 10
   prepareAttack: {fileID: 7279209313070323570}

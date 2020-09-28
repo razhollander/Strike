@@ -101,7 +101,6 @@ public class Asteroid : PooledMonobehaviour, IUpdatable
     public void UpdateMe()
     {
         var delta = asteroidObject.position - prevPos;
-        Debug.Log(delta);
         asteroidObject.rotation = Quaternion.LookRotation(delta, Vector3.up);
         prevPos = asteroidObject.position;
     }

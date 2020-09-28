@@ -41,7 +41,7 @@ public class IcePinEnemy : Enemy
     }
     protected override void MakeActive(bool isActive)
     {
-        thisRenderer.gameObject.SetActive(isActive);
+        _renderer.gameObject.SetActive(isActive);
         base.MakeActive(isActive);
     }
 }
