@@ -10,7 +10,7 @@ public class Asteroid : PooledMonobehaviour, IUpdatable
     [SerializeField] float time = 4;
     [SerializeField] float jumpPower = 5;
     [SerializeField] float hitRadius = 3;
-    [SerializeField] float rotationSpeed=1;
+    [SerializeField] float rotationSpeed = 1;
     [SerializeField] float scaleSpeed;
     [SerializeField] Transform asteroidObject;
     [SerializeField] ParticleSystem shadowHitPoint;
@@ -51,13 +51,13 @@ public class Asteroid : PooledMonobehaviour, IUpdatable
     {
         Sequence animationSeq = DOTween.Sequence();
         animationSeq.PrependInterval(time / 2);
-        animationSeq.Append(shadowHitPoint.transform.DOShakePosition(time/2, shadowShakeStrength, shadowShakeVabration, 90, false, false).SetEase(Ease.InExpo));
+        animationSeq.Append(shadowHitPoint.transform.DOShakePosition(time / 2, shadowShakeStrength, shadowShakeVabration, 90, false, false).SetEase(Ease.InExpo));
         //ShadowPoint
         shadowHitPoint.transform.SetParent(null);
-        shadowHitPoint.transform.position = landPosition+Vector3.up*0.05f;
+        shadowHitPoint.transform.position = landPosition + Vector3.up * 0.05f;
         shadowHitPoint.Play();
         //rotation
-        transform.LookAt(new Vector3(landPosition.x,transform.position.y,landPosition.z));
+        transform.LookAt(new Vector3(landPosition.x, transform.position.y, landPosition.z));
         //Vector3 rotationVec = new Vector3(100*rotationSpeed,0, 0);
         transform.localScale = startScale;
         transform.DOScale(Scale, scaleSpeed);
@@ -85,10 +85,10 @@ public class Asteroid : PooledMonobehaviour, IUpdatable
         hitExplosionParticles.Play();
         fireTrailParticles.Stop();
         float effectTime = hitExplosionParticles.main.duration;
-        transform.DOScale(transform.localScale/2, effectTime);
+        transform.DOScale(transform.localScale / 2, effectTime);
         Material asteroidMaterial = thisRenderer.material;
         DOTween.To(() => asteroidMaterial.GetColor(VORONOI_COLOR), x => asteroidMaterial.SetColor(VORONOI_COLOR, x), Color.black, effectTime);
-        DOTween.To(() => asteroidMaterial.GetColor(FRENSEL_COLOR), x => asteroidMaterial.SetColor(FRENSEL_COLOR , x), Color.black, effectTime);
+        DOTween.To(() => asteroidMaterial.GetColor(FRENSEL_COLOR), x => asteroidMaterial.SetColor(FRENSEL_COLOR, x), Color.black, effectTime);
 
         yield return new WaitForSeconds(effectTime);
         thisRenderer.enabled = false;
@@ -100,14 +100,18 @@ public class Asteroid : PooledMonobehaviour, IUpdatable
 
     public void UpdateMe()
     {
+        if (asteroidObject.position == prevPos)
+            return;
+
         var delta = asteroidObject.position - prevPos;
+
         asteroidObject.rotation = Quaternion.LookRotation(delta, Vector3.up);
         prevPos = asteroidObject.position;
     }
 
     public void FixedUpdateMe()
     {
-        
+
     }
 
     public void LateUpdateMe()

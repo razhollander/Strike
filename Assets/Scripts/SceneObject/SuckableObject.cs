@@ -6,7 +6,7 @@ using DG.Tweening;
 public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
 {
     private int DISTANCE_PROPERTY = Shader.PropertyToID("_Distance");
-    private int OVER_DISTANCE_SUCKED_PROPERTY = Shader.PropertyToID("_OverDIstanceSucked");
+    private int OVER_DISTANCE_SUCKED_PROPERTY = Shader.PropertyToID("_OverDistanceSucked");
 
     private int IS_SUCKED_PROPERTY = Shader.PropertyToID("_IsSucked");
     private int HOLE_POSITION_PROPERTY = Shader.PropertyToID("_HolePosition");
@@ -42,12 +42,12 @@ public abstract class SuckableObject : PooledMonobehaviour, ISceneObject
         _material = _renderer.material;
         _isSupportSuckEffect = _material.HasProperty(DISTANCE_PROPERTY) &&
             _material.HasProperty(HOLE_POSITION_PROPERTY) &&
-            _material.HasProperty(IS_SUCKED_PROPERTY);
+            _material.HasProperty(IS_SUCKED_PROPERTY) && 
+            _material.HasProperty(OVER_DISTANCE_SUCKED_PROPERTY);
 
         if (_isSupportSuckEffect)
         {
             _material.SetInt(IS_SUCKED_PROPERTY, 0);
-            //_material.SetFloat(DISTANCE_PROPERTY, GameManager.Instance.UpgradesManager.GetUpgrade<RadiusUpgrader>().GetUpgradeValue());
         }
     }
 

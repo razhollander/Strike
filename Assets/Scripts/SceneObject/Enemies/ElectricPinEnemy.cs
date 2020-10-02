@@ -8,20 +8,19 @@ public class ElectricPinEnemy : AttackingEnemy
     [SerializeField] ParticleSystem prepareAttack;
     [SerializeField] float attackDelay = 4;
     [SerializeField] float radius = 10;
-
+    [SerializeField] GameObject _electricityEffect;
     protected override void Awake()
     {
         base.Awake();
         pulledEvent += StopAttack;
+        pulledEvent += () => _electricityEffect.SetActive(false);
         startDyingEvent += StopAttack;
     }
-    //public override SuckableObject Duplicate()
-    //{
-    //    return this.Get<ElectricPinEnemy>();
-    //}
+ 
     protected override void OnEnable()
     {
         base.OnEnable();
+        _electricityEffect.SetActive(true);
         StartCoroutine(SpawnInDelay());
         StartCoroutine(AttackCountdown());
     }

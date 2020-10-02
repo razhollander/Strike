@@ -98,7 +98,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059806395081394903}
+  m_GameObject: {fileID: 1059806395081317095}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
@@ -135,7 +135,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1059806395069973087}
+  - {fileID: 1059806395081315677}
   m_Father: {fileID: 951997158543898833}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39073,7 +39073,7 @@ MonoBehaviour:
   thisRigidBody: {fileID: 2901526785762248631}
   healthCanvasTime: 3
   healthCanvas: {fileID: 1059806396190394005}
-  healthBar: {fileID: 5283024183978813726}
+  healthBar: {fileID: 1059806395081314391}
   maxHealth: 150
   thisFollowPlayer: {fileID: 4630746786140002173}
   spawnTimeDelay: 0.3
@@ -39082,6 +39082,7 @@ MonoBehaviour:
   prepareAttack: {fileID: 7279209313070323570}
   attackDelay: 4
   radius: 10
+  _electricityEffect: {fileID: 1386899800973038523}
 --- !u!114 &4630746786140002173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58516,19 +58517,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
---- !u!1 &1059806395081394903 stripped
+--- !u!1 &1059806395081317095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 119886, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 1059806395081318041}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1059806395069973087 stripped
+--- !u!224 &1059806395081315677 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22486214, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 1059806395081318041}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5283024183978813726 stripped
+--- !u!114 &1059806395081314391 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5180303731695597447, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}

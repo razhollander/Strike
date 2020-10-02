@@ -84,8 +84,9 @@ MonoBehaviour:
   thisRigidBody: {fileID: 2367794016340903673}
   healthCanvasTime: 3
   healthCanvas: {fileID: 4063854611783974848}
-  healthBar: {fileID: 4425446712743706430}
+  healthBar: {fileID: 8831130724281779831}
   maxHealth: 100
+  _rainbowRingFX: {fileID: 6659239206814451579}
 --- !u!1 &4063854611783974848
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8831130724259959935}
+  - {fileID: 8831130724281779069}
   m_Father: {fileID: 2367794016340903674}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5079,7 +5080,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8831130724281834743}
+  m_GameObject: {fileID: 8831130724281781447}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5cbfe9bda916834892354214430c45d, type: 3}
@@ -5303,19 +5304,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
---- !u!1 &8831130724281834743 stripped
+--- !u!1 &8831130724281781447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 119886, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 8831130724281780409}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &8831130724259959935 stripped
+--- !u!224 &8831130724281779069 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22486214, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}
   m_PrefabInstance: {fileID: 8831130724281780409}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4425446712743706430 stripped
+--- !u!114 &8831130724281779831 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5180303731695597447, guid: 34017cf12560c804bb2f669f00c7af91,
     type: 3}

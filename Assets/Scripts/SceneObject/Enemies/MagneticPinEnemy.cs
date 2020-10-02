@@ -24,16 +24,13 @@ public class MagneticPinEnemy : Enemy
     float _prevDistance = float.MaxValue;
     bool _isEffectEnabled = false;
     Vector3 towardsPin;
-    //public override SuckableObject Duplicate()
-    //{
-    //    return this.Get<MagneticPinEnemy>();
-    //}
+
     protected override void Awake()
     {
         base.Awake();
-        pulledEvent += StopEffect;
-        startDyingEvent += StopEffect;
+        pulledEvent += () => _magnet.gameObject.SetActive(false);
         pulledEvent += () => _isEffectEnabled = false;
+        startDyingEvent += StopEffect;
         startDyingEvent += () => _isEffectEnabled = false;
     }
     private void Start()
