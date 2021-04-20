@@ -155,6 +155,7 @@ public class Vacuum : OverridableMonoBehaviour
         Vector3 rotationVec = new Vector3(x, y, z);
         pulledObjectBeginScale = ObjectBeingSucked.transform.localScale;
         float prevDistance = 0;
+        Vector3 prevVacuumPointPos = VacuumPoint.position;
         float distance = Vector3.Distance(ObjectBeingSucked.transform.position, VacuumPoint.position);
         ObjectBeingSucked.GetPulled(distance);
         while (distance > minDistance)
@@ -164,7 +165,9 @@ public class Vacuum : OverridableMonoBehaviour
             ObjectBeingSucked.SetSuckEffectPoint(VacuumPoint.position);
 
             prevDistance = distance;
-            distance = Vector3.Distance(ObjectBeingSucked.transform.position, VacuumPoint.position);
+            distance = Vector3.Distance(ObjectBeingSucked.transform.position,  prevVacuumPointPos);
+            prevVacuumPointPos = VacuumPoint.position;
+
             if (prevDistance < distance || distance < minDistance)
             {
                 distance = 0;
@@ -174,6 +177,7 @@ public class Vacuum : OverridableMonoBehaviour
                 //ObjectBeingSucked.transform.localScale = pulledObjectBeginScale * Mathf.Clamp(distance / _vacuumRadius, 0.1f, 1);
                 transform.LookAt(new Vector3(ObjectBeingSucked.transform.position.x, transform.position.y, ObjectBeingSucked.transform.position.z), Vector3.up);
             }
+
             yield return null;
         }
         FinishPullingObject();
